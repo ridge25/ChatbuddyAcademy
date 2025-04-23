@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module 1.1 – Build Your First Chatbot</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <script>
+    function toggleMenu() {
+      document.getElementById("mobileMenu").classList.toggle("hidden");
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: #2b2b2b;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: #444;
+      margin-top: 40px;
+    }
+
+    code, pre {
+      background-color: #f4f4f4;
+      padding: 10px;
+      border-radius: 6px;
+      display: block;
+      white-space: pre-wrap;
+      font-size: 14px;
+    }
+
+    a.button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      background-color: #4f46e5;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+
+    a.button:hover {
+      background-color: #3730a3;
+    }
+
+    /* Sidebar styles */
+    .sidebar {
+      width: 250px;
+      background: white;
+      border-right: 1px solid #ddd;
+      padding: 20px;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 10px;
+      color: #333;
+      text-decoration: none;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      transition: background 0.3s;
+    }
+
+    .sidebar a:hover {
+      background: #eef2ff;
+    }
+
+    .sidebar a.active {
+      background-color: #e0e7ff;
+      font-weight: bold;
+      color: #1e3a8a;
+    }
+
+    .mobile-toggle {
+      display: none;
+      padding: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        display: none;
+      }
+
+      .mobile-toggle {
+        display: block;
+      }
+
+      #mobileMenu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: white;
+        width: 250px;
+        height: 100%;
+        padding: 20px;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        z-index: 999;
+      }
+
+      #mobileMenu a {
+        display: block;
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div style="display: flex;">
+    <!-- Desktop Sidebar -->
+    <div class="sidebar">
+      <h3 style="margin-top: 0;">📘 Module 1.1</h3>
+      <a href="module1.html" class="active">🧠 Lesson 1.1</a>
+      <a href="quiz1.html">✅ Quiz 1.1</a>
+      <a href="module1-2.html">🧠 Lesson 1.2</a>
+      <a href="quiz1-2.html">✅ Quiz 1.2</a>
+      <a href="module1-3.html">🧠 Lesson 1.3</a>
+      <a href="module1-4.html">🧠 Lesson 1.4</a>
+      <a href="module1-5.html">🧠 Lesson 1.5</a>
+      <a href="module1-overview.html">📖 Module 1 Overview</a>
+      <a href="module1test.html">🏆 Module 1 Assessment</a>
+      <hr>
+      <a href="index.html">← Back to Home</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+      <h1>🚀 Module 1.1: Build Your First Chatbot in Python</h1>
+      <p>Welcome to your first hands-on chatbot lesson! No prior experience needed — let’s get you up and running in less than 15 minutes.</p>
+
+      <!-- Introduction to Chatbots -->
+      <section>
+        <h2>What is a Chatbot?</h2>
+        <p>A chatbot is a software application designed to simulate human conversation. It can be text-based or voice-based, interacting with users through messages or spoken words.</p>
+        <p><strong>Benefits of Chatbots:</strong></p>
+        <ul>
+          <li>24/7 Customer Support</li>
+          <li>Improved User Engagement</li>
+          <li>Instant Responses</li>
+          <li>Cost-Effective Automation</li>
+        </ul>
+      </section>
+
+      <!-- Basic Chatbot Concepts -->
+      <section>
+        <h2>Basic Chatbot Concepts</h2>
+        <p>To build an effective chatbot, you need to understand key concepts:</p>
+        <ul>
+          <li><strong>Natural Language Processing (NLP)</strong>: The technology that enables chatbots to understand and respond to human language.</li>
+          <li><strong>Intents</strong>: The goal or purpose of a user's input (e.g., "What's the weather today?").</li>
+          <li><strong>Entities</strong>: Specific pieces of information extracted from the user's input (e.g., "weather" or "today").</li>
+          <li><strong>Integrations</strong>: Connecting the chatbot with external services like APIs to provide dynamic responses (e.g., weather or stock data).</li>
+        </ul>
+      </section>
+
+      <!-- Terminology -->
+      <section>
+        <h2>Basic Terminology</h2>
+        <p>Here are some essential terms you'll come across when building a chatbot:</p>
+        <ul>
+          <li><strong>User Input</strong>: The message the user sends to the chatbot.</li>
+          <li><strong>Intent Recognition</strong>: The process of identifying the user's intent behind their message.</li>
+          <li><strong>Response Generation</strong>: The chatbot's ability to provide an appropriate response based on the user's input.</li>
+        </ul>
+      </section>
+
+      <!-- Step 1: Create Your Project -->
+      <h2>📁 Step 1: Create Your Project</h2>
+      <ol>
+        <li>Open Visual Studio Code.</li>
+        <li>Create a new folder and name it <strong>my_first_chatbot</strong>.</li>
+        <li>Inside the folder, create a new file named <strong>chatbot.py</strong>.</li>
+      </ol>
+
+      <!-- Step 2: Paste This Code -->
+      <h2>💻 Step 2: Paste This Code</h2>
+      <p>Copy and paste the following code into your <code>chatbot.py</code> file:</p>
+      <pre><code>print("🤖 Hello! I'm ChatBuddy. Ask me anything.")
+
+while True:
+    user_input = input("You: ").lower()
+
+    if "hello" in user_input or "hi" in user_input:
+        print("ChatBuddy: Hey there! 👋")
+    elif "how are you" in user_input:
+        print("ChatBuddy: I'm doing great, thanks! How about you?")
+    elif "bye" in user_input:
+        print("ChatBuddy: Goodbye! See you next time. 👋")
+        break
+    else:
+        print("ChatBuddy: Hmm... I don't know how to respond to that yet.")
+</code></pre>
+
+      <!-- Step 3: Run the Chatbot -->
+      <h2>▶️ Step 3: Run the Chatbot</h2>
+      <p>Right-click the file and choose <strong>"Run Python File in Terminal"</strong>, or use the terminal to navigate to your folder and run:</p>
+      <pre><code>python chatbot.py</code></pre>
+
+      <h2>✅ Step 4: Interact with your Bot</h2>
+      <p>When you open the terminal, your bot should greet you with its pre-determined message! You can immediately test its capabilities by responding with '<strong>hello</strong>' or '<strong>how are you</strong>.' You should receive the pre-determined response that you coded into your chatbot.py file!</p>
+      <p>Because of the code, capitalization will NOT play a factor in the bot's ability to understand your input, and will understand user input regardless of punctuation as well!</p>
+      <p>To end the chat, simply respond to your bot by saying '<strong>bye</strong>.' This will end the current interaction. You can then select the trashcan icon on your terminal to 'kill the terminal.'</p>
+      <p>You're doing great! Keep following along to take some steps to improve your bot!</p>
+      <!-- Bonus: Download the Template Pack -->
+      <h2>🎁 Bonus: Download the Template Pack</h2>
+      <p>Want a downloadable version of this chatbot to tinker with?</p>
+      <div style="text-align: center;">
+        <a class="button" href="downloads/chatbot_template.zip" download>Download Chatbot Template</a>
+      </div>
+
+      <!-- Next Steps -->
+      <hr>
+      <div style="text-align: center;">
+        <a class="button" href="quiz1.html">📝 Take the Quiz to Unlock Module 2</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
+

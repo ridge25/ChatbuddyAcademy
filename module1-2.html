@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module 1.2 – Add Personality and Memory</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <script>
+    function toggleMenu() {
+      document.getElementById("mobileMenu").classList.toggle("hidden");
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: #2b2b2b;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: #444;
+      margin-top: 40px;
+    }
+
+    code, pre {
+      background-color: #f4f4f4;
+      padding: 10px;
+      border-radius: 6px;
+      display: block;
+      white-space: pre-wrap;
+      font-size: 14px;
+    }
+
+    a.button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      background-color: #4f46e5;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+
+    a.button:hover {
+      background-color: #3730a3;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: white;
+      border-right: 1px solid #ddd;
+      padding: 20px;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 10px;
+      color: #333;
+      text-decoration: none;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      transition: background 0.3s;
+    }
+
+    .sidebar a:hover {
+      background: #eef2ff;
+    }
+
+    .sidebar a.active {
+      background-color: #e0e7ff;
+      font-weight: bold;
+      color: #1e3a8a;
+    }
+
+    .mobile-toggle {
+      display: none;
+      padding: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        display: none;
+      }
+
+      .mobile-toggle {
+        display: block;
+      }
+
+      #mobileMenu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: white;
+        width: 250px;
+        height: 100%;
+        padding: 20px;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        z-index: 999;
+      }
+
+      #mobileMenu a {
+        display: block;
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div style="display: flex;">
+    <!-- Desktop Sidebar -->
+    <div class="sidebar">
+      <h3 style="margin-top: 0;">📘 Module 1.2</h3>
+      <a href="module1.html">🧠 Lesson 1.1</a>
+      <a href="quiz1.html">✅ Quiz 1.1</a>
+      <a href="module1-2.html" class="active">🧠 Lesson 1.2</a>
+      <a href="quiz1-2.html">✅ Quiz 1.2</a>
+      <a href="module1-3.html">🧠 Lesson 1.3</a>
+      <a href="module1-4.html">🧠 Lesson 1.4</a>
+      <a href="module1-5.html">🧠 Lesson 1.5</a>
+      <a href="module1-overview.html">📖 Module 1 Overview</a>
+      <a href="module1test.html">🏆 Module 1 Assessment</a>
+      <hr>
+      <a href="index.html">← Back to Home</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+      <h1>🎭 Module 1.2: Add Personality and Memory</h1>
+      <p>Now that you've built a basic chatbot, let’s add some personality and memory to make it more engaging and smarter over time.</p>
+
+      <!-- Personality Section -->
+      <section>
+        <h2>Give Your Chatbot a Personality</h2>
+        <p>Chatbots should feel more like friendly assistants than cold scripts. Here’s how to add personality:</p>
+        <ul>
+          <li>Add emojis to your messages</li>
+          <li>Use friendly, casual language</li>
+        </ul>
+        <h3>Example:</h3>
+        <p><code>print("ChatBuddy: Hello! 😊 I'm your friendly assistant, ready to help with anything!")</code></p>
+        <p>By using casual, cheerful language and adding emojis, your chatbot will feel more approachable.</p>
+        <p>To do this, you can manually change the greeting in your chatbot.py to give your chatbot a more friendly, less robotic greeting!</p>
+      </section>
+
+      <!-- Add Memory Section -->
+      <section>
+        <h2>Add Memory</h2>
+        <p>We’ll use Python dictionaries to help the chatbot "remember" things the user tells it during the conversation.</p>
+        <h3>Example:</h3>
+        <p><code>memory["favorite_color"] = "blue"</code></p>
+        <p>Now, your chatbot can remember the favorite color and greet the user with it in future conversations.</p>
+      </section>
+
+      <!-- Step 1: Update Your chatbot.py -->
+      <h2>🧠 Step 1: Update chatbot.py</h2>
+      <p>Replace your previous code with this updated version:</p>
+      <pre><code>print("🤖 Hello! I'm ChatBuddy. What's your name?")
+user_name = input("You: ")
+        
+print(f"ChatBuddy: Nice to meet you, {user_name}! Ask me anything.")
+        
+memory = {}
+        
+while True:
+    user_input = input(f"{user_name}: ").lower()
+        
+    if "hello" in user_input or "hi" in user_input:
+        print("ChatBuddy: Hey there! 👋")
+    elif "how are you" in user_input:
+        print("ChatBuddy: I'm doing great, thanks! How about you?")
+    elif "my favorite color is" in user_input:
+        color = user_input.split("is")[-1].strip()
+        memory["favorite_color"] = color
+        print(f"ChatBuddy: Got it! I'll remember your favorite color is {color}. 🎨")
+    elif "what's my favorite color" in user_input or "what is my favorite color" in user_input:
+        if "favorite_color" in memory:
+            print(f"ChatBuddy: Your favorite color is {memory['favorite_color']}! 🌈")
+        else:
+            print("ChatBuddy: Hmm... I don’t know yet. Tell me your favorite color!")
+    elif "bye" in user_input:
+        print(f"ChatBuddy: Bye {user_name}! See you next time. 👋")
+        break
+    else:
+        print("ChatBuddy: Hmm... I don't know how to respond to that yet.")</code></pre>
+
+      <!-- Step 2: Try It Out -->
+      <h2>🧪 Step 2: Try It Out</h2>
+      <p>Run the file again and interact with ChatBuddy. First, introduce yourself..:</p>
+      <ul>
+        <li><code>My name is Carl</code></li>
+        <p>For the duration of the interaction, your bot will now remember your name!</p>
+        <li><code>My favorite color is blue</code></li>
+        <p>Your bot's memory will be updated (temporarily), and it will remember your favorite color!</p>
+        <li><code>What's my favorite color?</code></li>
+        <p>Your bot will now respond with your favorite color!</p>
+      </ul>
+
+      <!-- More Personality Tips -->
+      <section>
+        <h2>🚀 Pro Tip</h2>
+        <p>Remember, coding is hard! If something isn't working out, take a step back and identify the problem!</p>
+        <ul>
+          <li>Computers are DUMB! If you haven't realized by now, your bot is looking for a <strong>specific input</strong>! i.e. Right now, if you introduce yourself by saying 'My name is Carl', your bot will assume that your name is 'My name is Carl.' Not to worry, we'll train it to be smarter!</li>
+          <li><strong>SAVE, SAVE, SAVE!</strong> Copy & Paste your code into an external sheet (Google Docs, Word, etc...). If something goes wrong and your system crashes, your code is at risk of being deleted. Take the extra step to make sure your code is securely stored elsewhere!</li>
+        </ul>
+      </section>
+
+      <!-- Expand Memory Section -->
+      <h2>🔑 Step 3: Expand Your Chatbot's Memory</h2>
+      <p>Let’s add even more fun features. Now, let's save multiple preferences like:</p>
+      <ul>
+        <li>Favorite food</li>
+        <li>Nickname</li>
+      </ul>
+      <p>Update your chatbot to store these new preferences in the memory dictionary!</p>
+      <p>Here is an updated version of your code with increased memory for your <strong>favorite food</strong> and <strong>nickname</strong>!</p>
+      <pre><code>print("🤖 Hello! I'm ChatBuddy. What's your name?")
+user_name = input("You: ")
+        
+print(f"ChatBuddy: Nice to meet you, {user_name}! Ask me anything.")
+        
+memory = {}
+        
+while True:
+    user_input = input(f"{user_name}: ").lower()
+        
+    if "hello" in user_input or "hi" in user_input:
+        print("ChatBuddy: Hey there! 👋")
+    elif "how are you" in user_input:
+        print("ChatBuddy: I'm doing great, thanks! How about you?")
+    elif "my favorite color is" in user_input:
+        color = user_input.split("is")[-1].strip()
+        memory["favorite_color"] = color
+        print(f"ChatBuddy: Got it! I'll remember your favorite color is {color}. 🎨")
+    elif "what's my favorite color" in user_input or "what is my favorite color" in user_input:
+        if "favorite_color" in memory:
+            print(f"ChatBuddy: Your favorite color is {memory['favorite_color']}! 🌈")
+        else:
+            print("ChatBuddy: Hmm... I don’t know yet. Tell me your favorite color!")
+    elif "my favorite food is" in user_input:
+        food = user_input.split("is")[-1].strip()
+        memory["favorite_food"] = food
+        print(f"Chatbuddy: Yum! I'll remember your favorite food is {food}. 👍")
+    elif "what's my favorite food" in user_input or "what is my favorite food" in user_input:
+        if "favorite_food" in memory:
+            print(f"Chatbuddy: I remember this one! Your favorite food is {memory['favorite_food']}!")
+        else:
+            print("Chatbuddy: Hmm... I don't think you've told me your favorite food yet. Tell me what it is!")
+    elif "my nickname is" in user_input:
+        nickname = user_input.split("is")[-1].strip()
+        memory["nickname"] = nickname
+        print(f"Chatbuddy: That's a great nickname! I'll remember your nickname is {nickname}.😂")
+    elif "what's my nickname" in user_input or "what is my nickname" in user_input:
+        if "nickname" in memory:
+            print(f"Chatbuddy: You told me this one! Your nickname is {memory['nickname']}!")
+        else:
+            print("Chatbuddy: Hmm... I don't think you've told me your nickname yet. Is it a good one?")
+    elif "bye" in user_input:
+        print(f"ChatBuddy: Bye {user_name}! See you next time. 👋")
+        break
+    else:
+        print("ChatBuddy: Hmm... I don't know how to respond to that yet.")</code></pre>
+
+      <!-- Chatbot Challenge -->
+      <h2>🏆 Chatbot Challenge</h2>
+      <p>Challenge yourself to add a feature that lets the chatbot remember the user’s nickname and their favorite hobby!</p>
+      
+      <!-- Next Steps -->
+      <hr>
+      <div style="text-align: center;">
+        <a class="button" href="quiz1-2.html">📝 Take the Quiz to Unlock Module 3</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
