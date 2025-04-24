@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Module 2: Assessment</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .question {
+      margin-top: 25px;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .quiz-btn {
+      display: block;
+      width: 100%;
+      padding: 10px 15px;
+      margin: 6px 0;
+      border: none;
+      background-color: #3498db;
+      color: white;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .quiz-btn:hover {
+      background-color: #2980b9;
+    }
+
+    .quiz-btn.selected {
+      background-color: #2c3e50;
+    }
+
+    #quiz-feedback {
+      text-align: center;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    #quiz-result {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 1.1rem;
+    }
+
+    #nextModuleBtn {
+      display: none;
+      margin: 30px auto 0;
+      text-align: center;
+      background-color: #2ecc71;
+      color: white;
+      padding: 12px 20px;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    #nextModuleBtn:hover {
+      background-color: #27ae60;
+    }
+
+    .submit-btn {
+      display: block;
+      margin: 30px auto 0;
+      padding: 12px 20px;
+      font-size: 1rem;
+      background-color: #f39c12;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      background-color: #e67e22;
+    }
+
+    .icon {
+      margin-left: 10px;
+    }
+
+    .correct {
+      color: green;
+    }
+
+    .incorrect {
+      color: red;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: white;
+      border-right: 1px solid #ddd;
+      padding: 20px;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 10px;
+      color: #333;
+      text-decoration: none;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      transition: background 0.3s;
+    }
+
+    .sidebar a:hover {
+      background: #eef2ff;
+    }
+
+    .sidebar a.active {
+      background-color: #e0e7ff;
+      font-weight: bold;
+      color: #1e3a8a;
+    }
+
+    .mobile-toggle {
+      display: none;
+      padding: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        display: none;
+      }
+
+      .mobile-toggle {
+        display: block;
+      }
+
+      #mobileMenu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: white;
+        width: 250px;
+        height: 100%;
+        padding: 20px;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        z-index: 999;
+      }
+
+      #mobileMenu a {
+        display: block;
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+    <div style="display: flex;">
+        <!-- Desktop Sidebar -->
+        <div class="sidebar">
+          <h3 style="margin-top: 0;">🏆 Module 2 Assessment</h3>
+          <a href="module2-1.html">🧠 Lesson 2.1</a>
+          <a href="quiz2-1.html">✅ Quiz 2.1</a>
+          <a href="module2-2.html">🧠 Lesson 2.2</a>
+          <a href="module2-3.html">🧠 Lesson 2.3</a>
+          <a href="quiz2-3.html">✅ Quiz 2.3</a>
+          <a href="module2-4.html">🧠 Lesson 2.4</a>
+          <a href="module2-5.html">🧠 Lesson 2.5</a>
+          <a href="module2-overview.html">📖 Module 2 Overview</a>
+          <a href="module2test.html" class="active">🏆 Module 2 Assessment</a>
+          <a href="module3.html">MOD3 NAVIGATION TEST</a>
+          <hr>
+          <a href="index.html">← Back to Home</a>
+        </div>
+
+    <div class="container">
+      <h2>📝 Module Assessment: Module 2</h2>
+      <p>If you navigate away from the assessment, your answers will <strong>not</strong> be saved.</p>
+      <p>See what you remember from Module 2. Choose the correct answers:</p>
+
+      <p class="question">1. Why is code reusability considered a key advantage of modularization?</p>
+      <button class="quiz-btn" onclick="checkAnswer(1, 'A')" data-question="1" data-answer="A">A) Because the same module can be copied and pasted multiple times</button>
+      <button class="quiz-btn" onclick="checkAnswer(1, 'B')" data-question="1" data-answer="B">B) Because modules can be reused across different parts of a program or even in other projects</button>
+      <button class="quiz-btn" onclick="checkAnswer(1, 'C')" data-question="1" data-answer="C">C) Because it forces you to use only one function per file</button>
+
+      <p class="question">2. How can a well-structured 'Help' feature improve user experience?</p>
+      <button class="quiz-btn" onclick="checkAnswer(2, 'A')" data-question="2" data-answer="A">A) By offering vague suggestions and random responses</button>
+      <button class="quiz-btn" onclick="checkAnswer(2, 'B')" data-question="2" data-answer="B">B) By making users guess what to type next</button>
+      <button class="quiz-btn" onclick="checkAnswer(2, 'C')" data-question="2" data-answer="C">C) By reducing frustration and guiding the conversation flow</button>
+
+      <p class="question">3. Which of the following is an example of modular programming in Python?</p>
+      <button class="quiz-btn" onclick="checkAnswer(3, 'A')" data-question="3" data-answer="A">A) Writing everything in the main() function</button>
+      <button class="quiz-btn" onclick="checkAnswer(3, 'B')" data-question="3" data-answer="B">B) Creating separate functions or importing custom modules</button>
+      <button class="quiz-btn" onclick="checkAnswer(3, 'C')" data-question="3" data-answer="C">C) Using only print statements</button>
+
+      <p class="question">4. Why is a JSON file commonly used to store a chatbot’s memory?</p>
+      <button class="quiz-btn" onclick="checkAnswer(4, 'A')" data-question="4" data-answer="A">A) It's a binary format that only machines can read</button>
+      <button class="quiz-btn" onclick="checkAnswer(4, 'B')" data-question="4" data-answer="B">B) It allows data to be stored in a simple, structured, and human-readable way</button>
+      <button class="quiz-btn" onclick="checkAnswer(4, 'C')" data-question="4" data-answer="C">C) It's only compatible with C++ programs</button>
+
+      <p class="question">5. What type of information is typically stored in a chatbot's JSON memory file?</p>
+      <button class="quiz-btn" onclick="checkAnswer(5, 'A')" data-question="5" data-answer="A">A) User preferences, nicknames, and learned responses</button>
+      <button class="quiz-btn" onclick="checkAnswer(5, 'B')" data-question="5" data-answer="B">B) Website images and videos</button>
+      <button class="quiz-btn" onclick="checkAnswer(5, 'B')" data-question="5" data-answer="C">C) API keys and server passwords</button>
+
+      <p class="question">6. When should a chatbot ideally offer a summary to the user?</p>
+      <button class="quiz-btn" onclick="checkAnswer(6, 'A')" data-question="6" data-answer="A">A) Right after the bot shuts down</button>
+      <button class="quiz-btn" onclick="checkAnswer(6, 'B')" data-question="6" data-answer="B">B) After every joke</button>
+      <button class="quiz-btn" onclick="checkAnswer(6, 'C')" data-question="6" data-answer="C">A) When the user requests it or as part of a check-in</button>
+
+      <div id="quiz-container">
+
+        <p class="question">7. What is the abbreviation for 'User-Experience' in chatbot development?</p>
+        <input type="text" id="q7" placeholder="Your answer here..." style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc; margin-top: 6px;">
+
+        <p class="question">8.  What is the main benefit of modularizing code?</p>
+        <button class="quiz-btn" onclick="checkAnswer(8, 'A')" data-question="8" data-answer="A">A) It makes code harder to debug</button>
+        <button class="quiz-btn" onclick="checkAnswer(8, 'B')" data-question="8" data-answer="B">B) It helps break code into smaller, manageable pieces</button>
+        <button class="quiz-btn" onclick="checkAnswer(8, 'C')" data-question="8" data-answer="C">C) It reduces the number of comments in the code</button>
+
+        <p class="question">9. Which of the following is true about a chatbot WITHOUT a JSON-based memory system?</p>
+        <button class="quiz-btn" onclick="checkAnswer(9, 'A')" data-question="9" data-answer="A">A) It remembers all user inputs permanently</button>
+        <button class="quiz-btn" onclick="checkAnswer(9, 'B')" data-question="9" data-answer="B">B) It loses any learned information after the session ends</button>
+        <button class="quiz-btn" onclick="checkAnswer(9, 'C')" data-question="9" data-answer="C">C) It stores data more securely than JSON</button>
+
+        <p class="question">10. Which of the following is a sign of poor user guidance in a chatbot?</p>
+        <button class="quiz-btn" onclick="checkAnswer(10, 'A')" data-question="10" data-answer="A">A) The bot responds instantly</button>
+        <button class="quiz-btn" onclick="checkAnswer(10, 'B')" data-question="10" data-answer="B">B) Users don’t know what to say or what the bot can do</button>
+        <button class="quiz-btn" onclick="checkAnswer(10, 'C')" data-question="10" data-answer="C">C) The bot has colorful buttons</button>
+
+
+
+
+
+      </div>
+
+      <p id="quiz-feedback"></p>
+
+      <button class="submit-btn" onclick="submitQuiz()">🎯 Finish Quiz</button>
+      <p id="quiz-result"></p>
+  
+      <a class="button" href="module3.html" id="nextModuleBtn">Module 3 Sneak-Peek 👀</a>
+      <button class="submit-btn" id="retake-btn" style="display:none;" onclick="retakeQuiz()">🔄 Retake Quiz</button>
+    </div>
+  
+    <script>
+const correctAnswers = {
+  1: 'B',
+  2: 'C',
+  3: 'B',
+  4: 'B',
+  5: 'A',
+  6: 'C',
+  7: 'ux',
+  8: 'B',
+  9: 'B',
+  10:'B'
+};
+
+  
+      let userAnswers = {};
+      const feedback = document.getElementById('quiz-feedback');
+      const resultText = document.getElementById('quiz-result');
+  
+      function checkAnswer(question, answer) {
+        userAnswers[question] = answer;
+  
+        // Remove existing highlights
+        const buttons = document.querySelectorAll(`button[data-question="${question}"]`);
+        buttons.forEach(btn => btn.classList.remove('selected'));
+  
+        // Highlight selected button
+        const selectedButton = document.querySelector(`button[data-question="${question}"][data-answer="${answer}"]`);
+        if (selectedButton) selectedButton.classList.add('selected');
+      }
+
+      function confetti() {
+  confettiLib({
+    particleCount: 100,
+    spread: 70,
+    origin: { y: 0.6 }
+  });
+}
+
+// Alias because the library attaches itself as confetti by default
+const confettiLib = window.confetti;
+
+      function submitQuiz() {
+  let score = 0;
+  let feedbackHTML = "";
+
+  // Hide the 'Finish Quiz' button after submission
+  document.querySelector('.submit-btn').style.display = "none";
+
+  for (let q = 1; q <= 10; q++) {
+    const correct = correctAnswers[q];
+    let userAnswer = userAnswers[q];
+
+    // Special case for question 7 (text input)
+    if (q === 7) {
+      userAnswer = document.getElementById("q7").value.trim().toLowerCase();
+      userAnswers[q] = userAnswer; // Save it for feedback below
+    }
+
+    const isCorrect = userAnswer === correct;
+    const icon = isCorrect
+      ? "<span class='icon correct'>✔️</span>"
+      : "<span class='icon incorrect'>❌</span>";
+
+    feedbackHTML += `<p>Q${q}: ${icon} Your answer: ${userAnswer || "No answer"} (Correct: ${correct})</p>`;
+
+    if (isCorrect) {
+      score++;
+    }
+  }
+
+  resultText.innerText = `You scored ${score}/10!`;
+
+  if (score === 10) {
+  feedback.innerHTML = "🎯 Perfect score! You're ready. Off to Module 3!";
+  confetti();
+} else if (score >= 7) {
+  feedback.innerHTML = "👍 Good job! You've unlocked Module 3!";
+  confetti();
+  } else {
+    feedback.innerHTML = "🧐 Review the material and try again to unlock Module 3. You need to get at least 7 correct.";
+  }
+
+  feedback.innerHTML += feedbackHTML;
+
+  // Show or hide buttons based on score
+  document.getElementById('nextModuleBtn').style.display = score >= 7 ? "block" : "none";
+  document.getElementById('retake-btn').style.display = score <= 6 ? "block" : "none";
+}
+
+  
+    // Show "Retake Quiz" button if the score is less than or equal to 6
+    if (score <= 6) {
+      document.getElementById('retake-btn').style.display = "block";
+    }
+
+  
+  function retakeQuiz() {
+    // Reset user answers
+    userAnswers = {};
+  
+    // Remove 'selected' class from all buttons
+    const allButtons = document.querySelectorAll('.quiz-btn');
+    allButtons.forEach(btn => btn.classList.remove('selected'));
+  
+    // Clear feedback and result text
+    resultText.innerText = "";
+    feedback.innerHTML = "";
+  
+    // Show the 'Finish Quiz' button again
+    document.querySelector('.submit-btn').style.display = "block";
+  
+    // Hide the 'Retake Quiz' and 'Next Module' buttons
+    document.getElementById('retake-btn').style.display = "none"; 
+    document.getElementById('nextModuleBtn').style.display = "none";
+  
+    // Optionally scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  </body>
+  </html>
