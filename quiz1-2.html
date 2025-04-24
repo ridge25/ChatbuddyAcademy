@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz 1.2: Chatbot Memory</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .question {
+      margin-top: 25px;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .quiz-btn {
+      display: block;
+      width: 100%;
+      padding: 10px 15px;
+      margin: 6px 0;
+      border: none;
+      background-color: #3498db;
+      color: white;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .quiz-btn:hover {
+      background-color: #2980b9;
+    }
+
+    .quiz-btn.selected {
+      background-color: #2c3e50;
+    }
+
+    #quiz-feedback {
+      text-align: center;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    #quiz-result {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 1.1rem;
+    }
+
+    #nextModuleBtn {
+      display: none;
+      margin: 30px auto 0;
+      text-align: center;
+      background-color: #2ecc71;
+      color: white;
+      padding: 12px 20px;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    #nextModuleBtn:hover {
+      background-color: #27ae60;
+    }
+
+    .submit-btn {
+      display: block;
+      margin: 30px auto 0;
+      padding: 12px 20px;
+      font-size: 1rem;
+      background-color: #f39c12;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      background-color: #e67e22;
+    }
+
+    .icon {
+      margin-left: 10px;
+    }
+
+    .correct {
+      color: green;
+    }
+
+    .incorrect {
+      color: red;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: white;
+      border-right: 1px solid #ddd;
+      padding: 20px;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 10px;
+      color: #333;
+      text-decoration: none;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      transition: background 0.3s;
+    }
+
+    .sidebar a:hover {
+      background: #eef2ff;
+    }
+
+    .sidebar a.active {
+      background-color: #e0e7ff;
+      font-weight: bold;
+      color: #1e3a8a;
+    }
+
+    .mobile-toggle {
+      display: none;
+      padding: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        display: none;
+      }
+
+      .mobile-toggle {
+        display: block;
+      }
+
+      #mobileMenu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: white;
+        width: 250px;
+        height: 100%;
+        padding: 20px;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        z-index: 999;
+      }
+
+      #mobileMenu a {
+        display: block;
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div style="display: flex;">
+    <div class="sidebar">
+      <h3 style="margin-top: 0;">📘 Quiz 1.2</h3>
+      <a href="module1.html">🧠 Lesson 1.1</a>
+      <a href="quiz1.html">✅ Quiz 1.1</a>
+      <a href="module1-2.html">🧠 Lesson 1.2</a>
+      <a href="quiz1-2.html" class="active">✅ Quiz 1.2</a>
+      <a href="module1-3.html">🧠 Lesson 1.3</a>
+      <a href="module1-4.html">🧠 Lesson 1.4</a>
+      <a href="module1-5.html">🧠 Lesson 1.5</a>
+      <a href="module1-overview.html">📖 Module 1 Overview</a>
+      <a href="module1test.html">🏆 Module 1 Assessment</a>
+      <hr>
+      <a href="index.html">← Back to Home</a>
+    </div>
+
+    <div class="container">
+      <h2>📝 Knowledge Check: Chatbot Memory</h2>
+      <p>If you navigate away from the quiz, your answers will <strong>not</strong> be saved.</p>
+      <p>See what you remember about chatbot memory features. Choose the correct answers:</p>
+
+      <div id="quiz-container">
+        <p class="question">1. What does it mean for a chatbot to have memory?</p>
+        <button class="quiz-btn" onclick="checkAnswer(1, 'A')" data-question="1" data-answer="A">A) It can store and recall past interactions</button>
+        <button class="quiz-btn" onclick="checkAnswer(1, 'B')" data-question="1" data-answer="B">B) It plays memory games with users</button>
+        <button class="quiz-btn" onclick="checkAnswer(1, 'C')" data-question="1" data-answer="C">C) It downloads more data automatically</button>
+
+        <p class="question">2. Why is memory important in a chatbot?</p>
+        <button class="quiz-btn" onclick="checkAnswer(2, 'A')" data-question="2" data-answer="A">A) It helps provide more personalized and consistent responses</button>
+        <button class="quiz-btn" onclick="checkAnswer(2, 'B')" data-question="2" data-answer="B">B) It uses more computer memory</button>
+        <button class="quiz-btn" onclick="checkAnswer(2, 'C')" data-question="2" data-answer="C">C) It improves the chatbot's ability to draw images</button>
+
+        <p class="question">3. What is one way a chatbot can store user preferences?</p>
+        <button class="quiz-btn" onclick="checkAnswer(3, 'A')" data-question="3" data-answer="A">A) Using cookies or local storage</button>
+        <button class="quiz-btn" onclick="checkAnswer(3, 'B')" data-question="3" data-answer="B">B) Printing them on paper</button>
+        <button class="quiz-btn" onclick="checkAnswer(3, 'C')" data-question="3" data-answer="C">C) Saving them in a calculator</button>
+
+        <p class="question">4. Can a chatbot remember things between sessions without external storage?</p>
+        <button class="quiz-btn" onclick="checkAnswer(4, 'A')" data-question="4" data-answer="A">A) No, it needs some form of external storage like a database</button>
+        <button class="quiz-btn" onclick="checkAnswer(4, 'B')" data-question="4" data-answer="B">B) Yes, it remembers everything automatically</button>
+        <button class="quiz-btn" onclick="checkAnswer(4, 'C')" data-question="4" data-answer="C">C) Only if it's a supercomputer</button>
+
+        <p class="question">5. What kind of data might a chatbot remember to improve user experience?</p>
+        <button class="quiz-btn" onclick="checkAnswer(5, 'A')" data-question="5" data-answer="A">A) User's name, past questions, and preferences</button>
+        <button class="quiz-btn" onclick="checkAnswer(5, 'B')" data-question="5" data-answer="B">B) Favorite TV channels</button>
+        <button class="quiz-btn" onclick="checkAnswer(5, 'C')" data-question="5" data-answer="C">C) How often they blink</button>
+      </div>
+
+      <p id="quiz-feedback"></p>
+
+      <button class="submit-btn" onclick="submitQuiz()">🎯 Finish Quiz</button>
+      <p id="quiz-result"></p>
+  
+      <a class="button" href="module1-3.html" id="nextModuleBtn">Next Module ➡️</a>
+      <button class="submit-btn" id="retake-btn" style="display:none;" onclick="retakeQuiz()">🔄 Retake Quiz</button>
+    </div>
+  
+    <script>
+  const correctAnswers = {
+    1: 'A',
+    2: 'A',
+    3: 'A',
+    4: 'A',
+    5: 'A'
+  };
+  
+      let userAnswers = {};
+      const feedback = document.getElementById('quiz-feedback');
+      const resultText = document.getElementById('quiz-result');
+  
+      function checkAnswer(question, answer) {
+        userAnswers[question] = answer;
+  
+        // Remove existing highlights
+        const buttons = document.querySelectorAll(`button[data-question="${question}"]`);
+        buttons.forEach(btn => btn.classList.remove('selected'));
+  
+        // Highlight selected button
+        const selectedButton = document.querySelector(`button[data-question="${question}"][data-answer="${answer}"]`);
+        if (selectedButton) selectedButton.classList.add('selected');
+      }
+  
+      function submitQuiz() {
+    let score = 0;
+    let feedbackHTML = "";
+  
+    // Hide the 'Finish Quiz' button after submission
+    document.querySelector('.submit-btn').style.display = "none"; 
+  
+    for (let q = 1; q <= 5; q++) {
+      const correct = correctAnswers[q];
+      const userAnswer = userAnswers[q];
+      const icon = userAnswer === correct ? "<span class='icon correct'>✔️</span>" : "<span class='icon incorrect'>❌</span>";
+      feedbackHTML += `<p>Q${q}: ${icon} Your answer: ${userAnswer} (Correct: ${correct})</p>`;
+      if (userAnswer === correct) {
+        score++;
+      }
+    }
+  
+    resultText.innerText = `You scored ${score}/5!`;
+  
+    if (score === 5) {
+      feedback.innerHTML = "🎯 Perfect score! You're ready. Let's head to the next lesson!";
+    } else if (score >= 4) {
+      feedback.innerHTML = "👍 Good job! You've unlocked the next lesson!";
+    } else {
+      feedback.innerHTML = "🧐 Review the material and try again to unlock the next lesson. You need to get at least 4 correct.";
+    }
+  
+    feedback.innerHTML += feedbackHTML;
+  
+    // Show "Next Module" button only if the score is 4 or higher
+    if (score >= 4) {
+      document.getElementById('nextModuleBtn').style.display = "block";
+    } else {
+      document.getElementById('nextModuleBtn').style.display = "none";
+    }
+  
+    // Show "Retake Quiz" button if the score is less than or equal to 3
+    if (score <= 3) {
+      document.getElementById('retake-btn').style.display = "block";
+    }
+  }
+  
+  function retakeQuiz() {
+    // Reset user answers
+    userAnswers = {};
+  
+    // Remove 'selected' class from all buttons
+    const allButtons = document.querySelectorAll('.quiz-btn');
+    allButtons.forEach(btn => btn.classList.remove('selected'));
+  
+    // Clear feedback and result text
+    resultText.innerText = "";
+    feedback.innerHTML = "";
+  
+    // Show the 'Finish Quiz' button again
+    document.querySelector('.submit-btn').style.display = "block";
+  
+    // Hide the 'Retake Quiz' and 'Next Module' buttons
+    document.getElementById('retake-btn').style.display = "none"; 
+    document.getElementById('nextModuleBtn').style.display = "none";
+  
+    // Optionally scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  
+    </script>
+  </body>
+  </html>
