@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🔐 Unlock Module 3 | ChatBuddy Academy</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fira+Code&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Fira Code', monospace;
+      background-color: #0f0f0f;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #00cfff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -2;
+    }
+
+    .container {
+      background: rgba(0, 207, 255, 0.05);
+      border: 1px solid rgba(0, 207, 255, 0.3);
+      backdrop-filter: blur(14px);
+      padding: 2rem;
+      border-radius: 16px;
+      max-width: 600px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0, 207, 255, 0.2);
+      animation: floatIn 1.5s ease-out;
+      z-index: 1;
+      align-items: center;
+    }
+
+    @keyframes floatIn {
+      from { transform: scale(0.98); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .maze {
+      display: grid;
+      grid-template-columns: repeat(10, 30px);
+      grid-template-rows: repeat(10, 30px);
+      gap: 1px;
+      margin-top: 2rem;
+      justify-content: center;
+    }
+
+    .cell {
+      width: 30px;
+      height: 30px;
+      background-color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .wall {
+      background-color: #111;
+    }
+
+    .player {
+      background-color: #00cfff;
+      border-radius: 50%;
+    }
+
+    #success {
+      display: none;
+      margin-top: 2rem;
+      font-size: 1.2rem;
+      color: #b8f6ff;
+    }
+
+    a.unlock-btn {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 12px 24px;
+      background: #00cfff;
+      color: #0f0f0f;
+      font-weight: bold;
+      border-radius: 8px;
+      text-decoration: none;
+      box-shadow: 0 0 12px #00cfff;
+      display: none;
+    }
+
+    a.unlock-btn:hover {
+      box-shadow: 0 0 18px #00cfff;
+    }
+
+  </style>
+</head>
+<body>
+
+  <canvas id="matrix"></canvas>
+
+  <div class="container">
+    <h1>Unlock Module 3.4 🔐</h1>
+    <p>Use your key-pad to navigate through the maze to unlock the key.</p>
+
+    <div class="maze" id="maze"></div>
+
+    <p id="success">Unlocked! You may now proceed.</p>
+    <a href="module3-4.html" class="unlock-btn">🤖 Module 3.4</a>
+  </div>
+
+  <script>
+    // Matrix background
+    const canvas = document.getElementById("matrix");
+    const ctx = canvas.getContext("2d");
+  
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+  
+    const letters = "01";
+    const fontSize = 16;
+    const columns = canvas.width / fontSize;
+    const drops = Array(Math.floor(columns)).fill(1);
+  
+    function draw() {
+      // Deep blue-tinted background for trailing effect
+      ctx.fillStyle = "rgba(0, 20, 30, 0.15)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+  
+      // Electric blue characters
+      ctx.fillStyle = "#00cfff";
+      ctx.font = fontSize + "px monospace";
+  
+      for (let i = 0; i < drops.length; i++) {
+        const char = letters[Math.floor(Math.random() * letters.length)];
+        ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+  
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+  
+    setInterval(draw, 50);
+
+    // Maze setup
+    const maze = [
+      ['S', '.', '.', '.', '.', '#', '#', '#', '#', '#'],
+      ['.', '#', '.', '#', '.', '#', '#', '#', '#', '#'],
+      ['.', '#', '.', '.', '.', '.', '.', '.', '.', '#'],
+      ['.', '#', '#', '#', '#', '.', '#', '#', '.', '#'],
+      ['.', '#', '#', '#', '#', '.', '#', '#', '.', '#'],
+      ['.', '.', '.', '.', '#', '.', '.', '.', '.', '#'],
+      ['.', '#', '#', '.', '#', '#', '#', '#', '.', '#'],
+      ['.', '#', '#', '.', '.', '.', '#', '#', '.', '#'],
+      ['.', '#', '#', '.', '#', '.', '#', '#', '.', '#'],
+      ['.', '.', '.', '.', '.', '.', '#', '#', '.', 'E']
+    ];
+
+    const mazeElement = document.getElementById('maze');
+    let playerPosition = { row: 0, col: 0 };
+
+    function drawMaze() {
+      mazeElement.innerHTML = '';
+      for (let row = 0; row < maze.length; row++) {
+        for (let col = 0; col < maze[row].length; col++) {
+          const cell = document.createElement('div');
+          cell.classList.add('cell');
+          if (maze[row][col] === '#') {
+            cell.classList.add('wall');
+          } else if (row === playerPosition.row && col === playerPosition.col) {
+            cell.classList.add('player');
+          }
+          mazeElement.appendChild(cell);
+        }
+      }
+    }
+
+    function movePlayer(event) {
+      let { row, col } = playerPosition;
+
+      if (event.key === 'ArrowUp' && row > 0 && maze[row - 1][col] !== '#') row--;
+      if (event.key === 'ArrowDown' && row < maze.length - 1 && maze[row + 1][col] !== '#') row++;
+      if (event.key === 'ArrowLeft' && col > 0 && maze[row][col - 1] !== '#') col--;
+      if (event.key === 'ArrowRight' && col < maze[row].length - 1 && maze[row][col + 1] !== '#') col++;
+
+      playerPosition = { row, col };
+      drawMaze();
+      checkWin();
+    }
+
+    function checkWin() {
+      if (maze[playerPosition.row][playerPosition.col] === 'E') {
+        document.getElementById('success').style.display = 'block';
+        document.querySelector('.unlock-btn').style.display = 'inline-block';
+      }
+    }
+
+    window.addEventListener('keydown', movePlayer);
+    drawMaze();
+  </script>
+</body>
+</html>
+
+
