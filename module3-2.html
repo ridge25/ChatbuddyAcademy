@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module 3.2 – User Profiles Cont.</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <script>
+    function toggleMenu() {
+      document.getElementById("mobileMenu").classList.toggle("hidden");
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: #2b2b2b;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: #444;
+      margin-top: 40px;
+    }
+
+    code, pre {
+      background-color: #f4f4f4;
+      padding: 10px;
+      border-radius: 6px;
+      display: block;
+      white-space: pre-wrap;
+      font-size: 14px;
+    }
+
+    a.button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      background-color: #4f46e5;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+
+    a.button:hover {
+      background-color: #3730a3;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: white;
+      border-right: 1px solid #ddd;
+      padding: 20px;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 10px;
+      color: #333;
+      text-decoration: none;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      transition: background 0.3s;
+    }
+
+    .sidebar a:hover {
+      background: #eef2ff;
+    }
+
+    .sidebar a.active {
+      background-color: #e0e7ff;
+      font-weight: bold;
+      color: #1e3a8a;
+    }
+
+    .mobile-toggle {
+      display: none;
+      padding: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        display: none;
+      }
+
+      .mobile-toggle {
+        display: block;
+      }
+
+      #mobileMenu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: white;
+        width: 250px;
+        height: 100%;
+        padding: 20px;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        z-index: 999;
+      }
+
+      #mobileMenu a {
+        display: block;
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div style="display: flex;">
+    <!-- Desktop Sidebar -->
+    <div class="sidebar">
+      <h3 style="margin-top: 0;">📘 Module 3.2</h3>
+      <a href="module3-1.html">🧠 Lesson 3.1</a>
+      <a href="module3-2.html" class="active">🧠 Lesson 3.2</a>
+      <a href="module3-3.html">🚗 Lesson 3.3</a>
+      <hr>
+      <a href="index.html">← Back to Home</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+      <h1>🤝 Module 3.2: User Profiles Cont.</h1>
+      <p>As we discussed, now that we know the <strong>game-plan,</strong> we'll dive into exactly how we're going to accomplish the creation of <strong>user-profiles & user-specific memory files.</strong></p>
+      <p>Again, we're working with our <strong>most recent</strong> chatbot.py, which we have listed in <strong>Lesson 3.1</strong>.
+
+      <!-- Personality Section -->
+      <section>
+        <h2>☝️ Step One</h2>
+        <p>Time to begin 🧠 surgery on Chatbuddy!</p>
+        <p>For starters, we need to <strong>wipe Chatbuddy's current SHARED memory</strong>.</p>
+        <p>Also known as:</p>
+        <pre><code>learned_memory.json </code></pre>
+        <p>To do this, find your <strong>learned_memory.json </strong>file. Right-click on it <strong>(AND ONLY IT)</strong>, and select <strong>'Delete.'</strong></p>
+        <p>Now, the only active file in your entire project should be <strong>chatbot.py</strong></p>
+        <p>So by removing <strong>learned_memory.json</strong>, we removed Chatbuddy's ability to store any sort of memory from recent conversations.</p>
+        <p>Which is the <strong>FIRST STEP</strong> towards our goal of individual user-profiles🥳</p>
+
+        <h2>✌️ Step Two</h2>
+        <p>When Chatbuddy is booted up, we'll make it's first message <strong>an inquiry of username.</strong></p>
+        <p>Chatbuddy will <strong>display existing profiles</strong> (if any), and <strong>prompt the user to choose the profile they would like to operate in.</strong></p>
+        <p>Now to achieve this <strong>(AND maintain our modular code)</strong>, we'll head to:</p>
+        <pre><code># ============================== Chat Functions ==============================</code></pre>
+        <p>From there, we need to add the function that will <strong>select OR create a user-profile.</strong></p>
+        <p>What will this look like?🤔</p>
+        <p>Ideally, your new addition will look like this...</p>
+        <pre><code>def select_or_create_profile():
+print("🤖 Welcome! Are you a returning user or new here?")
+profiles = [f.replace("user_", "").replace(".json", "") for f in os.listdir() if f.startswith("user_")]
+        
+if profiles:
+    print("\n📋 Existing Profiles:")
+    for i, profile in enumerate(profiles, 1):
+        print(f"{i}. {profile}")
+else:
+    print("\n(No existing profiles yet.)")
+        
+print("\nType your name to select a profile or create a new one:")
+user_name = input("You: ").strip()
+        
+memory_file = f"user_{user_name.lower()}.json"
+if not os.path.exists(memory_file):
+    print(f"🔧 Creating a new profile for {user_name}...")
+    save_json_file({}, memory_file)
+else:
+    print(f"✅ Loaded profile for {user_name}!")
+        
+return user_name, memory_file</code></pre>
+        <p>You might be asking, <strong>"What does this do?"</strong></p>
+        <p>Following the <strong>'def</strong> integration (which foundationally defines the function), this code follows:</p>
+        <pre><code>profiles = [f.replace("user_", "").replace(".json", "") for f in os.listdir() if f.startswith("user_")]</code></pre>
+        <p>This addition is responsible for <strong>scanning the current directory for files that start with user_</strong> (e.g., user_john.json). It then <strong>strips off "user_" and ".json" to get clean profile names like john, sarah, etc.</strong></p>
+        <p>It can be coupled with this part of the code as well:
+        <pre><code>if profiles:
+        print("\n📋 Existing Profiles:")
+        for i, profile in enumerate(profiles, 1):
+            print(f"{i}. {profile}")
+else:
+        print("\n(No existing profiles yet.)")
+        </code></pre>
+        </p>
+        <p>If no files exist, Chatbuddy will know to <strong>automatically create a new, custom .json memory file.</strong></p>
+        <p>Once the user either <strong>chooses their profile OR creates a new one</strong>, which is made possible by:</p>
+        <pre><code>print("\nType your name to select a profile or create a new one:")
+user_name = input("You: ").strip()</code></pre>
+        <p>The <strong>Profile Loading OR Profile Creation Process</strong> (depending on the created or uncreated state of the profile) will take place through:</p>
+        <pre><code>if not os.path.exists(memory_file):
+    print(f"🔧 Creating a new profile for {user_name}...")
+    save_json_file({}, memory_file)
+else:
+    print(f"✅ Loaded profile for {user_name}!")</code></pre>
+    <p>And the <strong>grand finale...</strong></p>
+    <p>(By grand finale, we mean a singular line of code)🙄</p>
+    <pre><code>return user_name, memory_file</code></pre>
+    <p>This single line of code is responsible for creating and/or returning the user’s name and <strong>the corresponding JSON filename so that the chatbot can load and save memory to it.</strong></p>
+    <p>In short, that last line is <strong>responsible for determining what user-specific brain will be activated & what memory will be accessed.</strong>⚡</p>
+    <p>Now that we have some sort of direction, let's take a look at your <strong>FULLY updated chatbot.py</strong></p>
+    <p>❗<strong>REMINDER:</strong> We DELETED your pre-existing <strong>learned_memory.json</strong> becasue it was no longer needed and did not serve <strong>individual user-profiles</strong></p>
+    <p>❗❗<strong>REMINDER PT. 2:</strong> There is NO NEED to manually add JSON files. Chatbuddy will <strong>automatically create user-specific profiles that correspond with each account.</strong></p>
+
+    <h2>❄️ Your NEW chatbot.py</h2>
+    <p><strong>REPLACE YOUR CURRENT chatbot.py</strong> with this version⬇️</p>
+    <pre><code>import random
+import json
+import os
+from datetime import datetime
+        
+# ============================== Constants ==============================
+        
+JOKES = [
+    "Why don't skeletons fight each other? They don't have the guts. 💀",
+    "What do you call fake spaghetti? An impasta! 🍝",
+    "Why did the scarecrow win an award? Because he was outstanding in his field! 🌾",
+    "I'm reading a book on anti-gravity. It's impossible to put down! 📚",
+    "Why did the math book look sad? Because it had too many problems. ➗"
+]
+        
+QUOTES = [
+    "Believe in yourself and all that you are. 🌟",
+    "You are capable of amazing things. 🚀",
+    "Every day is a second chance. 🌅",
+    "Push yourself, because no one else is going to do it for you. 💪",
+    "Success doesn’t come from what you do occasionally, it comes from what you do consistently. 🏆"
+]
+        
+GREETINGS = ["Hey there! 👋", "Hiya! 😊", "Howdy! 🤠", "What's up? 🙌", "Yo yo yo! 🤖"]
+MOOD_RESPONSES = [
+    "I'm doing great, thanks for asking! 😎",
+    "Better now that you're here! 😁",
+    "Feeling fantastic! What about you? 🌟"
+]
+        
+HELP_MESSAGE = """
+Here are some things you can ask me! 🤖💬
+        
+🔹 Greet me: "hi", "hello", "hey"
+🔹 Ask how I'm doing: "how are you?"
+🔹 Ask the time: "what time is it?", "current time"
+🔹 Ask the date: "what's the date?", "current date"
+🔹 Tell me your favorites:
+    - "my favorite color is blue"
+    - "what's my favorite color?"
+    - "my favorite food is pizza"
+    - "what's my favorite food?"
+    - "my nickname is champ"
+    - "what's my nickname?"
+🔹 Ask for a summary of what I know about you: "summary"
+🔹 Tell me how you're feeling (e.g., tired, sad, great)
+🔹 Ask for motivation: "inspire me", "motivate me"
+🔹 Teach me new responses! If I don’t know something, you can tell me how to reply.
+🔹 Say "bye" to end the chat
+        
+Type "help" anytime to see this again! 🆘
+"""
+        
+# ============================== Utility Functions ==============================
+        
+def load_json_file(file_path):
+    if os.path.exists(file_path):
+        with open(file_path, "r") as f:
+            return json.load(f)
+    return {}
+        
+def save_json_file(data, file_path):
+    with open(file_path, "w") as f:
+        json.dump(data, f, indent=4)
+        
+def get_time_greeting():
+    hour = datetime.now().hour
+    if hour < 12:
+        return "Good morning"
+    elif hour < 18:
+        return "Good afternoon"
+    return "Good evening"
+        
+def get_current_time():
+    return datetime.now().strftime("%I:%M %p")
+        
+def get_current_date():
+    return datetime.now().strftime("%A, %B %d, %Y")
+        
+def offer_joke(user_name):
+    print("ChatBuddy: Want to hear a joke to cheer you up? (Yes/No)")
+    response = input(f"{user_name}: ").lower()
+    if "yes" in response:
+        print(f"ChatBuddy: {random.choice(JOKES)}")
+    else:
+        print("ChatBuddy: Alright, I'm here if you need a smile later. 🤗")
+        
+# ============================== Chat Functions ==============================
+        
+def select_or_create_profile():
+    print("🤖 Welcome! Are you a returning user or new here?")
+    profiles = [f.replace("user_", "").replace(".json", "") for f in os.listdir() if f.startswith("user_")]
+        
+    if profiles:
+        print("\n📋 Existing Profiles:")
+        for i, profile in enumerate(profiles, 1):
+            print(f"{i}. {profile}")
+    else:
+        print("\n(No existing profiles yet.)")
+        
+    print("\nType your name to select a profile or create a new one:")
+    user_name = input("You: ").strip()
+        
+    memory_file = f"user_{user_name.lower()}.json"
+    if not os.path.exists(memory_file):
+        print(f"🔧 Creating a new profile for {user_name}...")
+        save_json_file({}, memory_file)
+    else:
+        print(f"✅ Loaded profile for {user_name}!")
+        
+    return user_name, memory_file
+        
+def ask_emotion(user_name):
+    print("ChatBuddy: How are you doing today?")
+    return input(f"{user_name}: ").lower()
+        
+def handle_emotion(emotion_input, user_name):
+    if "not great" in emotion_input:
+        print("ChatBuddy: I'm sorry you're not feeling great. Anything I can do to cheer you up? 🤗")
+        offer_joke(user_name)
+    elif any(word in emotion_input for word in ["good", "great", "happy"]):
+        print("ChatBuddy: That's awesome to hear! 😄 Keep up the good vibes!")
+    elif "sad" in emotion_input:
+        print("ChatBuddy: I'm sorry you're feeling sad. I'm here if you want to talk. 🤗")
+        offer_joke(user_name)
+    elif "tired" in emotion_input:
+        print("ChatBuddy: You should try to rest up. Sleep is important! 😴")
+    elif "hungry" in emotion_input:
+        print("ChatBuddy: You better grab a snack! 🍕 Got a favorite food?")
+    else:
+        print("ChatBuddy: Thanks for sharing. I'm here for you no matter what! 😊")
+        
+def respond_to_input(user_input, memory, user_name, memory_file):
+    if user_input in memory:
+        print(f"ChatBuddy: {memory[user_input]}")
+    elif user_input == "help":
+        print(f"ChatBuddy: {HELP_MESSAGE}")
+    elif "hello" in user_input or "hi" in user_input:
+        print(f"ChatBuddy: {random.choice(GREETINGS)}")
+    elif "how are you" in user_input:
+        print(f"ChatBuddy: {random.choice(MOOD_RESPONSES)}")
+    elif any(phrase in user_input for phrase in ["what time is it", "current time", "tell me the time", "what's the time"]):
+        print(f"ChatBuddy: It's currently {get_current_time()} ⏰")
+    elif any(phrase in user_input for phrase in ["what's the date", "what is the date", "current date"]):
+        print(f"ChatBuddy: Today is {get_current_date()} 📅")
+    elif "my favorite color is" in user_input:
+        color = user_input.split("is")[-1].strip()
+        memory["favorite_color"] = color
+        print(f"ChatBuddy: Got it! I'll remember your favorite color is {color}. 🎨")
+    elif "what's my favorite color" in user_input:
+        print(f"ChatBuddy: Your favorite color is {memory.get('favorite_color', '...Tell me! 🤷‍♂️')}")
+    elif "my favorite food is" in user_input:
+        food = user_input.split("is")[-1].strip()
+        memory["favorite_food"] = food
+        print(f"ChatBuddy: Yum! I'll remember your favorite food is {food}. 😋")
+    elif "what's my favorite food" in user_input:
+        print(f"ChatBuddy: Your favorite food is {memory.get('favorite_food', '...Not sure yet! 🤤')}")
+    elif "my nickname is" in user_input:
+        nickname = user_input.split("is")[-1].strip()
+        memory["nickname"] = nickname
+        print(f"ChatBuddy: That's a cool nickname! I'll remember it's {nickname}, right? 😎")
+    elif "what's my nickname" in user_input:
+        print(f"ChatBuddy: Your nickname is {memory.get('nickname', '...Tell me what it is! 🕵️')}")
+    elif user_input == "summary":
+        print("ChatBuddy: Here's what I remember about you so far! 🧠📋")
+        print(f"👤 Name: {user_name}")
+        print(f"🏷️ Nickname: {memory.get('nickname', 'Not set 😕')}")
+        print(f"🎨 Favorite Color: {memory.get('favorite_color', 'Not set 😕')}")
+        print(f"🍔 Favorite Food: {memory.get('favorite_food', 'Not set 😕')}")
+    elif "inspire me" in user_input or "motivate me" in user_input:
+        print(f"ChatBuddy: 💡 {random.choice(QUOTES)}")
+    elif "bye" in user_input:
+        print(f"ChatBuddy: Bye {user_name}! Catch you later! 👋")
+        return False
+    elif any(word in user_input for word in ["good", "great", "sad", "tired", "hungry", "not great"]):
+        handle_emotion(user_input, user_name)
+    else:
+        print("ChatBuddy: I don't know how to respond to that yet. 🤔")
+        print("ChatBuddy: What should I say next time someone says that?")
+        new_response = input(f"{user_name}: ")
+        memory[user_input] = new_response
+        print("ChatBuddy: Got it! I'll remember that next time. 🧠")
+    save_json_file(memory, memory_file)  # Save the profile immediately after learning a new response
+    return True
+        
+        # ============================== Main ==============================
+        
+def main():
+    user_name, memory_file = select_or_create_profile()
+    memory = load_json_file(memory_file)
+        
+    greeting = get_time_greeting()
+    print(f"ChatBuddy: {greeting}, {user_name}! {random.choice(GREETINGS)} Ask me anything. 😄")
+    emotion_input = ask_emotion(user_name)
+    handle_emotion(emotion_input, user_name)
+        
+    while True:
+        user_input = input(f"{user_name}: ").lower()
+        if not respond_to_input(user_input, memory, user_name, memory_file):
+            break
+        
+if __name__ == "__main__":
+    main()</code></pre>
+<p><strong>🎉AND THERE IT IS</strong></p>
+<p>You've OFFICIALLY made Chatbuddy <strong>more user-friendly</strong> by integrating <strong>individual user-profiles!</strong></p>
+<p>Now that the heavy lifting is done, click the button below for a <strong>guided test-drive</strong> of Chatbuddy's new capabilites!</p>
+      <hr>
+      <div style="text-align: center;">
+        <a class="button" href="module3-3.html">🚗 Test-Drive</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module 3.1 – User Profiles</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <script>
+    function toggleMenu() {
+      document.getElementById("mobileMenu").classList.toggle("hidden");
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: #2b2b2b;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: #444;
+      margin-top: 40px;
+    }
+
+    code, pre {
+      background-color: #f4f4f4;
+      padding: 10px;
+      border-radius: 6px;
+      display: block;
+      white-space: pre-wrap;
+      font-size: 14px;
+    }
+
+    a.button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      background-color: #4f46e5;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+
+    a.button:hover {
+      background-color: #3730a3;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: white;
+      border-right: 1px solid #ddd;
+      padding: 20px;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 10px;
+      color: #333;
+      text-decoration: none;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      transition: background 0.3s;
+    }
+
+    .sidebar a:hover {
+      background: #eef2ff;
+    }
+
+    .sidebar a.active {
+      background-color: #e0e7ff;
+      font-weight: bold;
+      color: #1e3a8a;
+    }
+
+    .mobile-toggle {
+      display: none;
+      padding: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        display: none;
+      }
+
+      .mobile-toggle {
+        display: block;
+      }
+
+      #mobileMenu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: white;
+        width: 250px;
+        height: 100%;
+        padding: 20px;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        z-index: 999;
+      }
+
+      #mobileMenu a {
+        display: block;
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div style="display: flex;">
+    <!-- Desktop Sidebar -->
+    <div class="sidebar">
+      <h3 style="margin-top: 0;">📘 Module 3.1</h3>
+      <a href="module3-1.html" class="active">🧠 Lesson 3.1</a>
+      <a href="module3-2.html">🧠 Lesson 3.2</a>
+      <a href="module3-3.html">🚗 Lesson 3.3</a>
+      <hr>
+      <a href="index.html">← Back to Home</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+      <h1>👤 Module 3.1: User Profiles</h1>
+      <p><strong>CONGRATULATIONS🎉</strong> You've officially made it to <strong>Module 3!</strong> Making it to Module 2 was no small feat, and well, Module 3 is going to be like <strong>entering a whole new world...</strong></p>
+      <p>You recently agreed to the ⚠️<strong>DISCLAIMER</strong> stating that this is where the course <strong>REALLY starts to pick up.</strong> It's not meant to scare you, we just want to ensure that you're committed. As tough as it might get, we can <strong>PROMISE</strong> you it'll be worth it when you see the final product of Chatbuddy.</p>
+
+      <!-- Personality Section -->
+      <section>
+        <h2>🔄 Refresher</h2>
+        <p>Before we get back to building, it's important for us to make sure we're <strong>all on the same page.</strong></p>
+        <p>Our hope is that at this point, you've implemented some of your own unique integrations in terms of responses, jokes, and greetings. <strong>ALL while remaining somewhat similar (if not EXACTLY similar) to what we've built in our examples.</strong></p>
+        <p>For your reference, here is what we have at this point over here @ Chatbuddy HQ...🤖</p>
+        <p>Our <strong>CURRENT</strong> chatbot.py⬇️</p>
+        <pre><code>import random
+import json
+import os
+from datetime import datetime
+                                    
+# ============================== Constants ==============================
+            
+JOKES = [
+    "Why don't skeletons fight each other? They don't have the guts. 💀",
+    "What do you call fake spaghetti? An impasta! 🍝",
+    "Why did the scarecrow win an award? Because he was outstanding in his field! 🌾",
+    "I'm reading a book on anti-gravity. It's impossible to put down! 📚",
+    "Why did the math book look sad? Because it had too many problems. ➗"
+]
+            
+QUOTES = [
+    "Believe in yourself and all that you are. 🌟",
+    "You are capable of amazing things. 🚀",
+    "Every day is a second chance. 🌅",
+    "Push yourself, because no one else is going to do it for you. 💪",
+    "Success doesn’t come from what you do occasionally, it comes from what you do consistently. 🏆"
+]
+            
+GREETINGS = ["Hey there! 👋", "Hiya! 😊", "Howdy! 🤠", "What's up? 🙌", "Yo yo yo! 🤖"]
+MOOD_RESPONSES = [
+    "I'm doing great, thanks for asking! 😎",
+    "Better now that you're here! 😁",
+    "Feeling fantastic! What about you? 🌟"
+]
+            
+NO_RESPONSES = [
+    "Hmm... I don't know how to respond to that yet. 🤔",
+    "I'm still learning! Try something else. 📚",
+    "That one's a mystery to me. 😅"
+]
+            
+HELP_MESSAGE = """
+Here are some things you can ask me! 🤖💬
+            
+🔹 Greet me: "hi", "hello", "hey"
+🔹 Ask how I'm doing: "how are you?"
+🔹 Ask the time: "what time is it?", "current time"
+🔹 Ask the date: "what's the date?", "current date"
+🔹 Tell me your favorites:
+    - "my favorite color is blue"
+    - "what's my favorite color?"
+    - "my favorite food is pizza"
+    - "what's my favorite food?"
+    - "my nickname is champ"
+    - "what's my nickname?"
+🔹 Ask for a summary of what I know about you: "summary"
+🔹 Tell me how you're feeling (e.g., tired, sad, great)
+🔹 Ask for motivation: "inspire me", "motivate me"
+🔹 Teach me new responses! If I don’t know something, you can tell me how to reply.
+🔹 Say "bye" to end the chat
+            
+Type "help" anytime to see this again! 🆘
+"""
+            
+MEMORY_FILE = "learned_memory.json"
+            
+# ============================== Utility Functions ==============================
+            
+def load_memory():
+    if os.path.exists(MEMORY_FILE):
+        with open(MEMORY_FILE, "r") as f:
+            return json.load(f)
+    return {}
+            
+def save_memory(memory):
+    with open(MEMORY_FILE, "w") as f:
+        json.dump(memory, f, indent=4)
+            
+def get_time_greeting():
+    hour = datetime.now().hour
+    if hour < 12:
+        return "Good morning"
+    elif hour < 18:
+        return "Good afternoon"
+    return "Good evening"
+            
+def get_current_time():
+    return datetime.now().strftime("%I:%M %p")
+            
+def get_current_date():
+    return datetime.now().strftime("%A, %B %d, %Y")
+            
+def offer_joke(user_name):
+    print("ChatBuddy: Want to hear a joke to cheer you up? (Yes/No)")
+    response = input(f"{user_name}: ").lower()
+    if "yes" in response:
+        print(f"ChatBuddy: {random.choice(JOKES)}")
+    else:
+        print("ChatBuddy: Alright, I'm here if you need a smile later. 🤗")
+            
+# ============================== Core Chat Functions ==============================
+            
+def greet_user():
+    print("🤖 Hello! I'm ChatBuddy. What's your name?")
+    user_name = input("You: ")
+    greeting = get_time_greeting()
+    print(f"ChatBuddy: {greeting}, {user_name}! {random.choice(GREETINGS)} Ask me anything. 😄")
+    return user_name
+            
+def ask_emotion(user_name):
+    print("ChatBuddy: How are you doing today?")
+    return input(f"{user_name}: ").lower()
+            
+def handle_emotion(emotion_input, user_name):
+    if "not great" in emotion_input:
+        print("ChatBuddy: I'm sorry you're not feeling great. Anything I can do to cheer you up? 🤗")
+        offer_joke(user_name)
+    elif any(word in emotion_input for word in ["good", "great", "happy"]):
+        print("ChatBuddy: That's awesome to hear! 😄 Keep up the good vibes!")
+    elif "sad" in emotion_input:
+        print("ChatBuddy: I'm sorry you're feeling sad. I'm here if you want to talk. 🤗")
+        offer_joke(user_name)
+    elif "tired" in emotion_input:
+        print("ChatBuddy: You should try to rest up. Sleep is important! 😴")
+    elif "hungry" in emotion_input:
+        print("ChatBuddy: You better grab a snack! 🍕 Got a favorite food?")
+    else:
+        print("ChatBuddy: Thanks for sharing. I'm here for you no matter what! 😊")
+            
+def respond_to_input(user_input, memory, learned_memory, user_name):
+    if user_input in learned_memory:
+        print(f"ChatBuddy: {learned_memory[user_input]}")
+    elif user_input == "help":
+        print(f"ChatBuddy: {HELP_MESSAGE}")
+    elif "hello" in user_input or "hi" in user_input:
+        print(f"ChatBuddy: {random.choice(GREETINGS)}")
+    elif "how are you" in user_input:
+        print(f"ChatBuddy: {random.choice(MOOD_RESPONSES)}")
+    elif any(phrase in user_input for phrase in ["what time is it", "current time", "tell me the time", "what's the time"]):
+        print(f"ChatBuddy: It's currently {get_current_time()} ⏰")
+    elif any(phrase in user_input for phrase in ["what's the date", "what is the date", "current date"]):
+        print(f"ChatBuddy: Today is {get_current_date()} 📅")
+    elif "my favorite color is" in user_input:
+        color = user_input.split("is")[-1].strip()
+        memory["favorite_color"] = color
+        print(f"ChatBuddy: Got it! I'll remember your favorite color is {color}. 🎨")
+    elif "what's my favorite color" in user_input:
+        print(f"ChatBuddy: Your favorite color is {memory.get('favorite_color', '...Tell me! 🤷‍♂️')}")
+    elif "my favorite food is" in user_input:
+        food = user_input.split("is")[-1].strip()
+        memory["favorite_food"] = food
+        print(f"ChatBuddy: Yum! I'll remember your favorite food is {food}. 😋")
+    elif "what's my favorite food" in user_input:
+        print(f"ChatBuddy: Your favorite food is {memory.get('favorite_food', '...Not sure yet! 🤤')}")
+    elif "my nickname is" in user_input:
+        nickname = user_input.split("is")[-1].strip()
+        memory["nickname"] = nickname
+        print(f"ChatBuddy: That's a cool nickname! I'll remember it's {nickname}, right? 😎")
+    elif "what's my nickname" in user_input:
+        print(f"ChatBuddy: Your nickname is {memory.get('nickname', '...Tell me what it is! 🕵️')}")
+    elif user_input == "summary":
+        print("ChatBuddy: Here's what I remember about you so far! 🧠📋")
+        print(f"👤 Name: {user_name}")
+        print(f"🏷️ Nickname: {memory.get('nickname', 'Not set 😕')}")
+        print(f"🎨 Favorite Color: {memory.get('favorite_color', 'Not set 😕')}")
+        print(f"🍔 Favorite Food: {memory.get('favorite_food', 'Not set 😕')}")
+    elif "inspire me" in user_input or "motivate me" in user_input:
+        print(f"ChatBuddy: 💡 {random.choice(QUOTES)}")
+    elif "bye" in user_input:
+        print(f"ChatBuddy: Bye {user_name}! Catch you later! 👋")
+        return False
+    elif any(word in user_input for word in ["good", "great", "sad", "tired", "hungry", "not great"]):
+        handle_emotion(user_input, user_name)
+    else:
+        print("ChatBuddy: I don't know how to respond to that yet. 🤔")
+        print("ChatBuddy: What should I say next time someone says that?")
+        new_response = input(f"{user_name}: ")
+        learned_memory[user_input] = new_response
+        save_memory(learned_memory)
+        print("ChatBuddy: Got it! I'll remember that next time. 🧠")
+    return True
+            
+# ============================== Main ==============================
+            
+def main():
+    learned_memory = load_memory()
+    memory = {}
+    user_name = greet_user()
+    emotion_input = ask_emotion(user_name)
+    handle_emotion(emotion_input, user_name)
+            
+    while True:
+        user_input = input(f"{user_name}: ").lower()
+        if not respond_to_input(user_input, memory, learned_memory, user_name):
+            break
+            
+if __name__ == "__main__":
+    main()</code></pre>
+        <p>Now that we're all caught up, let's <strong>OFFICIALLY</strong> begin Module 3!🎉</p>
+        <h2>🥶 Improving the User-Experience</h2>
+        <p>You might be thinking, <strong>"Why do these people keep stressing the importance of uSeR-eXpErIenCe?"</strong> Well, it's actually pretty simple...</p>
+        <p>We have established your <strong>goal of making 💲</strong> and <strong>landing a developer role.</strong></p>
+        <p><strong>A POSITIVE USER-EXPERIENCE IS THE 🔑 TO WEALTH.</strong></p>
+        <p>To make money, you need to <strong>move your client's money to YOUR pockets...</strong></p>
+        <p>If your clients are enjoying the programs you have developed, their 💲 will be fast-tracked to <strong>YOUR</strong> pockets as they will always want more.</p>
+        <p><strong>IN SUMMARY:</strong> Improved UX = More 💲</p>
+      <!-- Step 2: Try It Out -->
+      <h2>⚾ Here's the Game-Plan...</h2>
+      <p>Right away, we're going to come out swinging for the fences.</p>
+      <p>To start our journey in the world of UX, we're going to make Chatbuddy multi-user capable.</p>
+      <p>If you've been showing off your Chatbuddy to your family & friends, odds are everyone has interacted with it under the same<strong> 'account.'</strong></p>
+      <p>By <strong>'account,'</strong> we mean that everything your bot has learned to this point has been stored in the same memory file:</p>
+      <pre><code>leanred_memory.json</code></pre>
+      <p>What we're getting at is, if you and your brother, <strong>Jeff</strong>, are taking turns using the bot, odds are your preferences will not always align...</p>
+      <h3>🫂 Here's an Example</h3>
+      <p>Your brother, <strong>Jeff</strong>, is interacting with Chatbuddy. Jeff's favroite baseball team is the <strong>Boston Red Sox.</strong></p>
+      <p>So Jeff has programmed Chatbuddy's memory like this...</p>
+      <pre><code>Jeff: What's my favorite baseball team?
+ChatBuddy: Your favorite baseball team is the Boston Red Sox! Their last World Series ring came in 2018! Let's get another this year!⚾</code></pre>
+    <p>Now, Jeff heads to work and it is <strong>your turn</strong> to interact with Chatbuddy.</p>
+    <p>You <strong>HATE</strong> the Red Sox. You've been a diehard fan of the <strong>New York Yankees</strong> for as long as you can remember.</p>
+    <p>So, as a Yankees fan, you're going to be a bit dissapointed when <strong>YOU</strong> ask:</p>
+    <pre><code>You: What's my favorite baseball team?</code></pre>
+    <p>And Chatbuddy responds with:</p>
+    <pre><code>ChatBuddy: Your favorite baseball team is the Boston Red Sox! Their last World Series ring came in 2018! Let's get another this year!⚾</code></pre>
+    <p>Now, becasue they are <strong>different inputs</strong>, Chatbuddy will respond with whatever is logged in it's memory file.</p>
+    <p>❗ Chatbuddy has <strong>NO IDEA WHO IS USING THE PROGRAM</strong>. After you introduce yourself, <strong>Chatbuddy assumes you are the user for the duration it is booted up.</strong></p>
+    <p>This kind of confusion will likely cause some tension between you and Jeff.</p>
+    <p>So, wouldn't it be cool to <strong>create individual user-profiles with their own individual memory files</strong> so that everyone can have their own <strong>profile?</strong></p>
+    <p>Well, that's <strong>EXACTLY</strong> what we're going to do!</p>
+
+      <h2>📺 Stay Tuned...</h2>
+      <p>That was <strong>A LOT</strong> of bark & not much bite...</p>
+      <p>But now that we have laid out the game-plan, as well as <strong>WHY</strong> we should implement individual user-profiles, let's get to it!</p>
+      <p>We told you it was going to get good...</p>
+      <p>Before we REALLY get into it, <strong>grab some water or coffee & something to eat.</strong> Your 🧠 can't function without fuel!</p>
+      <p><strong>Let's Do It!</strong></p>
+
+      <!-- Next Steps -->
+      <hr>
+      <div style="text-align: center;">
+        <a class="button" href="module3-2.html">😎 Module 3.2</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
