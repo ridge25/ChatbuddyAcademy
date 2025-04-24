@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Module 1.5 – Finish Your Basic Bot</title>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <script>
+    function toggleMenu() {
+      document.getElementById("mobileMenu").classList.toggle("hidden");
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: #2b2b2b;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: #444;
+      margin-top: 40px;
+    }
+
+    code, pre {
+      background-color: #f4f4f4;
+      padding: 10px;
+      border-radius: 6px;
+      display: block;
+      white-space: pre-wrap;
+      font-size: 14px;
+    }
+
+    a.button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      background-color: #4f46e5;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+
+    a.button:hover {
+      background-color: #3730a3;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: white;
+      border-right: 1px solid #ddd;
+      padding: 20px;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 10px;
+      color: #333;
+      text-decoration: none;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      transition: background 0.3s;
+    }
+
+    .sidebar a:hover {
+      background: #eef2ff;
+    }
+
+    .sidebar a.active {
+      background-color: #e0e7ff;
+      font-weight: bold;
+      color: #1e3a8a;
+    }
+
+    .mobile-toggle {
+      display: none;
+      padding: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        display: none;
+      }
+
+      .mobile-toggle {
+        display: block;
+      }
+
+      #mobileMenu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: white;
+        width: 250px;
+        height: 100%;
+        padding: 20px;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        z-index: 999;
+      }
+
+      #mobileMenu a {
+        display: block;
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div style="display: flex;">
+    <!-- Desktop Sidebar -->
+    <div class="sidebar">
+      <h3 style="margin-top: 0;">📘 Module 1.5</h3>
+      <a href="module1.html">🧠 Lesson 1.1</a>
+      <a href="quiz1.html">✅ Quiz 1.1</a>
+      <a href="module1-2.html">🧠 Lesson 1.2</a>
+      <a href="quiz1-2.html">✅ Quiz 1.2</a>
+      <a href="module1-3.html">🧠 Lesson 1.3</a>
+      <a href="module1-4.html">🧠 Lesson 1.4</a>
+      <a href="module1-5.html" class="active">🧠 Lesson 1.5</a>
+      <a href="module1-overview.html">📖 Module 1 Overview</a>
+      <a href="module1test.html">🏆 Module 1 Assessment</a>
+      <hr>
+      <a href="index.html">← Back to Home</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+      <h1>🤖 Module 1.5: Finish Your Basic Bot</h1>
+      <p>And just like that, <strong>Lesson 1</strong> is coming to an end! You've crushed it so far & your bot looks great! Let's add a few more finishing touches before we call it a day!</p>
+
+      <section>
+        <h2>Emotional Detection</h2>
+        <p>Before we finish up, let's make sure your bot is capable of understanding the mood you're in.</p>
+        <p>We can do this by adding more '<strong>elif</strong>' statements, similar to the other ones we've coded to this point. Before we dive into the entire code, here are the two pieces that will allow your bot to understand emotions better...</p>
+        <pre><code># After combined greeting
+print(f"ChatBuddy: {time_greeting}, {user_name}! {random.choice(greetings)} Ask me anything. 😄")
+            
+# Ask how they’re doing
+print("ChatBuddy: How are you doing today?")
+emotion_input = input(f"{user_name}: ").lower()
+            
+if "good" in emotion_input or "great" in emotion_input:
+    print("ChatBuddy: That's awesome to hear! 😄 Keep up the good vibes!")
+elif "sad" in emotion_input:
+    print("ChatBuddy: I'm sorry you're feeling sad. I'm here if you want to talk. 💙")
+elif "tired" in emotion_input:
+    print("ChatBuddy: You should try to rest up. Sleep is important! 😴")
+elif "hungry" in emotion_input:
+    print("ChatBuddy: You better grab a snack! 🍕 Got a favorite food?")
+elif "not great" in emotion_input:
+    print("ChatBuddy: I'm sorry you're not feeling great. Anything I can do to cheer you up? 🤗")
+else:
+    print("ChatBuddy: Thanks for sharing. I'm here for you no matter what! 😊")</code></pre>
+        <p>Note that the only included emotions right now are 'good' , 'great' , 'sad' , 'tired' , 'hungry' & 'not great.' Any other response that is NOT included in this list will result in the '<strong>else</strong>' response of:</p>
+        <code><pre>"ChatBuddy: I'm sorry you're not feeling great. Anything I can do to cheer you up? 🤗"</pre></code>
+        <p>You can add other emotions by utilizing the same structure as the one above!</p>
+
+        <h2>🔑 Pro Tip</h2>
+        <p><strong>Red lines under segements of code</strong> indicate some sort of bug. Not to worry! Typically, these errors are the result of incorrect indentation or missing punctuation. Remember what we said... <strong>Computers are DUMB</strong> until you teach them otherwise!</p>
+      </section>
+
+      <section>
+        <h2>🥺 Step 1: Add Emotional Recognition</h2>
+        <p>Using the additional '<strong>elif</strong>' statements we talked about before (⬆️), we can now integrate them with our current code!</p>
+        <p>Here's what the <strong>FULL UPDATE</strong> will look like:</p>
+        <pre><code>import random
+from datetime import datetime
+            
+print("🤖 Hello! I'm ChatBuddy. What's your name?")
+user_name = input("You: ")
+            
+# Time of day greeting
+current_hour = datetime.now().hour
+            
+if current_hour < 12:
+    time_greeting = "Good morning"
+elif current_hour < 18:
+    time_greeting = "Good afternoon"
+else:
+    time_greeting = "Good evening"
+            
+# Greeting list
+greetings = ["Hey there! 👋", "Hiya! 😊", "Howdy! 🤠", "What's up? 🙌", "Yo yo yo! 🤖"]
+mood_responses = ["I'm doing great, thanks for asking! 😎", "Better now that you're here! 😁", "Feeling fantastic! What about you? 🌟"]
+no_response = [
+    "Hmm... I don't know how to respond to that yet. 🤔",
+    "I'm still learning! Try something else. 📚",
+    "That one's a mystery to me. 😅"
+]
+            
+# Combined greeting
+print(f"ChatBuddy: {time_greeting}, {user_name}! {random.choice(greetings)} Ask me anything. 😄")
+            
+# Ask how they’re doing and respond
+print("ChatBuddy: How are you doing today?")
+emotion_input = input(f"{user_name}: ").lower()
+            
+if "good" in emotion_input or "great" in emotion_input or "happy" in emotion_input:
+    print("ChatBuddy: That's awesome to hear! 😄 Keep up the good vibes!")
+elif "sad" in emotion_input:
+    print("ChatBuddy: I'm sorry you're feeling sad. I'm here if you want to talk. 💙")
+elif "tired" in emotion_input:
+    print("ChatBuddy: You should try to rest up. Sleep is important! 😴")
+elif "hungry" in emotion_input:
+    print("ChatBuddy: You better grab a snack! 🍕 Got a favorite food?")
+elif "not great" in emotion_input:
+    print("ChatBuddy: I'm sorry you're not feeling great. Anything I can do to cheer you up? 🤗")
+else:
+    print("ChatBuddy: Thanks for sharing. I'm here for you no matter what! 😊")
+            
+# Begin chat loop
+memory = {}
+            
+while True:
+    user_input = input(f"{user_name}: ").lower()
+            
+    if "hello" in user_input or "hi" in user_input:
+        print(f"ChatBuddy: {random.choice(greetings)}")
+    elif "how are you" in user_input:
+        print(f"ChatBuddy: {random.choice(mood_responses)}")
+    elif "what time is it" in user_input or "current time" in user_input or "tell me the time" in user_input or "what's the time" in user_input:
+        current_time = datetime.now().strftime("%I:%M %p")
+        print(f"ChatBuddy: It's currently {current_time} ⏰")
+    elif "what's the date" in user_input or "what is the date" in user_input or "current date" in user_input:
+        current_date = datetime.now().strftime("%A, %B %d, %Y")
+        print(f"ChatBuddy: Today is {current_date} 📅")
+    elif "my favorite color is" in user_input:
+        color = user_input.split("is")[-1].strip()
+        memory["favorite_color"] = color
+        print(f"ChatBuddy: Got it! I'll remember your favorite color is {color}. 🎨")
+    elif "what's my favorite color" in user_input or "what is my favorite color" in user_input:
+        if "favorite_color" in memory:
+            print(f"ChatBuddy: Your favorite color is {memory['favorite_color']}! 🌈")
+        else:
+            print("ChatBuddy: Hmm... I don’t know yet. Tell me your favorite color! 🤷‍♂️")
+    elif "my favorite food is" in user_input:
+        food = user_input.split("is")[-1].strip()
+        memory["favorite_food"] = food
+        print(f"ChatBuddy: Yum! I'll remember your favorite food is {food}. 😋")
+    elif "what's my favorite food" in user_input or "what is my favorite food" in user_input:
+        if "favorite_food" in memory:
+            print(f"ChatBuddy: I remember this one! Your favorite food is {memory['favorite_food']}! 🍽️")
+        else:
+            print("ChatBuddy: Hmm... I don't think you've told me your favorite food yet. Tell me what it is! 🤤")
+    elif "my nickname is" in user_input:
+        nickname = user_input.split("is")[-1].strip()
+        memory["nickname"] = nickname
+        print(f"ChatBuddy: That's a cool nickname! I'll remember it—{nickname}, right? 😎")
+    elif "what's my nickname" in user_input or "what is my nickname" in user_input:
+        if "nickname" in memory:
+            print(f"ChatBuddy: You told me this one! Your nickname is {memory['nickname']}! 😄")
+        else:
+            print("ChatBuddy: Hmm... I don't think you've told me your nickname yet. Wanna share it? 🕵️")
+    elif "bye" in user_input:
+        print(f"ChatBuddy: Bye {user_name}! Catch you later! 👋")
+        break
+    else:
+        # Optional: emotional check during the chat
+        if any(word in user_input for word in ["good", "great", "sad", "tired", "hungry", "not great"]):
+            if "good" in user_input or "great" in user_input:
+                print("ChatBuddy: That’s awesome! 😄 Keep being you!")
+            elif "sad" in user_input:
+                print("ChatBuddy: I'm here for you if you need a virtual hug. 🤗")
+            elif "tired" in user_input:
+                print("ChatBuddy: Don’t push yourself too hard. Rest is key. 😴")
+            elif "hungry" in user_input:
+                print("ChatBuddy: You deserve a snack! 🍪")
+            elif "not great" in user_input:
+                print("ChatBuddy: Rough day? I'm here to chat. 💬")
+        else:
+            print(f"ChatBuddy: {random.choice(no_response)}")</code></pre>
+        <p><strong>P.S. If we're doing our counting right, this implementation pushes us over 100 lines of code! 🎉</strong></p>
+        <p>Now, immediately following the introduction, the bot will ask how you're doing. <strong>Respond with one of the emotions from your list</strong> and watch the bot adjust its tone accordingly!</p>
+      </section>
+
+      <section>
+        <h2>🌊 Take Your Bot For a Test-Drive</h2>
+        <p>With the new code in place, it's time to see how everything is shaking out!</p>
+        <p>Following your initial introduction, when the bot asks:</p>
+        <pre><code>"ChatBuddy: How are you doing today?"</code></pre>
+            <p>Respond by saying, "<strong>I am really hungry today!</strong>"</p>
+            <p>If all is right, your bot should respond with the determined output of:</p>
+            <pre><code>ChatBuddy: You better grab a snack! 🍕 Got a favorite food?</code></pre>
+            <p>And <strong>BOOM</strong>! Guess what? When you respond with your favorite food, the bot will store it in its memory just like we programmed it to back in the earlier lesson!</p>
+      </section>
+
+      <section>
+        <h2>🎁 How About a Little Extra Addition Before We Call it a Day?</h2>
+<p>If the user responds with a negative emotion (i.e. 'Not great' or 'sad'), <strong>the bot will offer to tell a joke in hopes of cheering the user up!</strong></p>
+<p>Remember when we used '<strong>random</strong>' to vary greetings earlier in the module? We'll use the same approach so that if the user wants to hear a joke, the bot will pull from a pre-determined list of jokes. Feel free to add your own jokes as well!</p>
+<pre><code># Joke list
+jokes = [
+    "Why don't skeletons fight each other? They don't have the guts. 💀",
+    "What do you call fake spaghetti? An impasta! 🍝",
+    "Why did the scarecrow win an award? Because he was outstanding in his field! 🌾",
+    "I'm reading a book on anti-gravity. It's impossible to put down! 📚",
+    "Why did the math book look sad? Because it had too many problems. ➗"
+]</code></pre>
+<p>The bot will now pull randomly from this group of 5 jokes. Again, <strong>you can add to the list of jokes with your own as well!</strong></p>
+      </section>
+
+      <section>
+        <h2>🤝 Last Code Update of Module 1</h2>
+        <p>Well, here it is. Your last chatbot code update of this module!</p>
+        <p>Go ahead and <strong>replace your current chatbot.py with this one</strong>⬇️</p>
+        <pre><code>import random
+from datetime import datetime
+            
+# Joke list
+jokes = [
+    "Why don't skeletons fight each other? They don't have the guts. 💀",
+    "What do you call fake spaghetti? An impasta! 🍝",
+    "Why did the scarecrow win an award? Because he was outstanding in his field! 🌾",
+    "I'm reading a book on anti-gravity. It's impossible to put down! 📚",
+    "Why did the math book look sad? Because it had too many problems. ➗"
+]
+            
+print("🤖 Hello! I'm ChatBuddy. What's your name?")
+user_name = input("You: ")
+            
+# Time of day greeting
+current_hour = datetime.now().hour
+            
+if current_hour < 12:
+    time_greeting = "Good morning"
+elif current_hour < 18:
+    time_greeting = "Good afternoon"
+else:
+    time_greeting = "Good evening"
+            
+# Greeting list
+greetings = ["Hey there! 👋", "Hiya! 😊", "Howdy! 🤠", "What's up? 🙌", "Yo yo yo! 🤖"]
+mood_responses = ["I'm doing great, thanks for asking! 😎", "Better now that you're here! 😁", "Feeling fantastic! What about you? 🌟"]
+no_response = [
+    "Hmm... I don't know how to respond to that yet. 🤔",
+    "I'm still learning! Try something else. 📚",
+    "That one's a mystery to me. 😅"
+]
+            
+# Combined greeting
+print(f"ChatBuddy: {time_greeting}, {user_name}! {random.choice(greetings)} Ask me anything. 😄")
+            
+# Ask how they’re doing and respond
+print("ChatBuddy: How are you doing today?")
+emotion_input = input(f"{user_name}: ").lower()
+            
+def offer_joke():
+    print("ChatBuddy: Want to hear a joke to cheer you up? (Yes/No)")
+    response = input(f"{user_name}: ").lower()
+    if "yes" in response:
+        print(f"ChatBuddy: {random.choice(jokes)}")
+    else:
+        print("ChatBuddy: Alright, I'm here if you need a smile later. 🤗")
+            
+# Emotion response
+if "not great" in emotion_input:
+    print("ChatBuddy: I'm sorry you're not feeling great. Anything I can do to cheer you up? 🤗")
+    offer_joke()
+elif "good" in emotion_input or "great" in emotion_input or "happy" in emotion_input:
+    print("ChatBuddy: That's awesome to hear! 😄 Keep up the good vibes!")
+elif "sad" in emotion_input:
+    print("ChatBuddy: I'm sorry you're feeling sad. I'm here if you want to talk. 🤗")
+    offer_joke()
+elif "tired" in emotion_input:
+    print("ChatBuddy: You should try to rest up. Sleep is important! 😴")
+elif "hungry" in emotion_input:
+    print("ChatBuddy: You better grab a snack! 🍕 Got a favorite food?")
+else:
+    print("ChatBuddy: Thanks for sharing. I'm here for you no matter what! 😊")
+            
+# Begin chat loop
+memory = {}
+            
+while True:
+    user_input = input(f"{user_name}: ").lower()
+            
+    if "hello" in user_input or "hi" in user_input:
+        print(f"ChatBuddy: {random.choice(greetings)}")
+    elif "how are you" in user_input:
+        print(f"ChatBuddy: {random.choice(mood_responses)}")
+    elif "what time is it" in user_input or "current time" in user_input or "tell me the time" in user_input or "what's the time" in user_input:
+        current_time = datetime.now().strftime("%I:%M %p")
+        print(f"ChatBuddy: It's currently {current_time} ⏰")
+    elif "what's the date" in user_input or "what is the date" in user_input or "current date" in user_input:
+        current_date = datetime.now().strftime("%A, %B %d, %Y")
+        print(f"ChatBuddy: Today is {current_date} 📅")
+    elif "my favorite color is" in user_input:
+        color = user_input.split("is")[-1].strip()
+        memory["favorite_color"] = color
+        print(f"ChatBuddy: Got it! I'll remember your favorite color is {color}. 🎨")
+    elif "what's my favorite color" in user_input or "what is my favorite color" in user_input:
+        if "favorite_color" in memory:
+            print(f"ChatBuddy: Your favorite color is {memory['favorite_color']}! 🌈")
+        else:
+            print("ChatBuddy: Hmm... I don’t know yet. Tell me your favorite color! 🤷‍♂️")
+    elif "my favorite food is" in user_input:
+        food = user_input.split("is")[-1].strip()
+        memory["favorite_food"] = food
+        print(f"ChatBuddy: Yum! I'll remember your favorite food is {food}. 😋")
+    elif "what's my favorite food" in user_input or "what is my favorite food" in user_input:
+        if "favorite_food" in memory:
+            print(f"ChatBuddy: I remember this one! Your favorite food is {memory['favorite_food']}! 🍽️")
+        else:
+            print("ChatBuddy: Hmm... I don't think you've told me your favorite food yet. Tell me what it is! 🤤")
+    elif "my nickname is" in user_input:
+        nickname = user_input.split("is")[-1].strip()
+        memory["nickname"] = nickname
+        print(f"ChatBuddy: That's a cool nickname! I'll remember it—{nickname}, right? 😎")
+    elif "what's my nickname" in user_input or "what is my nickname" in user_input:
+        if "nickname" in memory:
+            print(f"ChatBuddy: You told me this one! Your nickname is {memory['nickname']}! 😄")
+        else:
+            print("ChatBuddy: Hmm... I don't think you've told me your nickname yet. Wanna share it? 🕵️")
+    elif "bye" in user_input:
+        print(f"ChatBuddy: Bye {user_name}! Catch you later! 👋")
+        break
+    else:
+        # Emotional check during the chat
+        if any(word in user_input for word in ["good", "great", "sad", "tired", "hungry", "not great"]):
+            if "not great" in user_input:
+                print("ChatBuddy: Rough day? I'm here to chat. 💬")
+                offer_joke()
+            elif "good" in user_input or "great" in user_input:
+                print("ChatBuddy: That’s awesome! 😄 Keep being you!")
+            elif "sad" in user_input:
+                print("ChatBuddy: I'm here for you if you need a virtual hug. 🤗")
+                offer_joke()
+            elif "tired" in user_input:
+                print("ChatBuddy: Don’t push yourself too hard. Rest is key. 😴")
+            elif "hungry" in user_input:
+                print("ChatBuddy: You deserve a snack! 🍪")
+        else:
+            print(f"ChatBuddy: {random.choice(no_response)}")</code></pre>           
+      </section>
+
+      <section>
+        <h2>🏆 Take Your Victory Lap</h2>
+        <p>Give it a go yourself! When the bot asks how you are doing, respond by saying '<strong>I am sad</strong>.'</p>
+        <p>This will trigger the bot into referring to the <strong>joke list</strong> if the user says '<strong>Yes</strong>' when offered.</p>
+      </section>
+
+      <section>
+        <h2>⏭️ Next Steps</h2>
+        <ul>
+          <li>Continue on for a <strong>comprehensive overview</strong> of EVERYTHING we learned in the first module.</li>
+          <li>A <strong>Final Assessment</strong> will be given prior to moving on to <strong>Module 2</strong>.</li>
+          <li>Be proud of your chatbot so far! You're already ahead of 99% of people <strong>worldwide</strong> when it comes to chatbot development!</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>🎯 Pro Tip</h2>
+        <p>You just coded over 125 lines of code. Give your eyes a break from the screen and go outside! ☀️</strong></p>
+      </section>
+
+      <div style="display: flex; justify-content: center; margin-top: 40px;">
+        <a href="module1-overview.html" class="button">💡 Module 1 Overview</a>
+      </div>
+      
+    </div>
+  </div>
+</body>
+</html>

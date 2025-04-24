@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Module 1.3 – Personality & Variation</title>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <script>
+    function toggleMenu() {
+      document.getElementById("mobileMenu").classList.toggle("hidden");
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: #2b2b2b;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: #444;
+      margin-top: 40px;
+    }
+
+    code, pre {
+      background-color: #f4f4f4;
+      padding: 10px;
+      border-radius: 6px;
+      display: block;
+      white-space: pre-wrap;
+      font-size: 14px;
+    }
+
+    a.button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      background-color: #4f46e5;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+
+    a.button:hover {
+      background-color: #3730a3;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: white;
+      border-right: 1px solid #ddd;
+      padding: 20px;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 10px;
+      color: #333;
+      text-decoration: none;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      transition: background 0.3s;
+    }
+
+    .sidebar a:hover {
+      background: #eef2ff;
+    }
+
+    .sidebar a.active {
+      background-color: #e0e7ff;
+      font-weight: bold;
+      color: #1e3a8a;
+    }
+
+    .mobile-toggle {
+      display: none;
+      padding: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        display: none;
+      }
+
+      .mobile-toggle {
+        display: block;
+      }
+
+      #mobileMenu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: white;
+        width: 250px;
+        height: 100%;
+        padding: 20px;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        z-index: 999;
+      }
+
+      #mobileMenu a {
+        display: block;
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div style="display: flex;">
+    <!-- Desktop Sidebar -->
+    <div class="sidebar">
+      <h3 style="margin-top: 0;">📘 Module 1.3</h3>
+      <a href="module1.html">🧠 Lesson 1.1</a>
+      <a href="quiz1.html">✅ Quiz 1.1</a>
+      <a href="module1-2.html">🧠 Lesson 1.2</a>
+      <a href="quiz1-2.html">✅ Quiz 1.2</a>
+      <a href="module1-3.html" class="active">🧠 Lesson 1.3</a>
+      <a href="module1-4.html">🧠 Lesson 1.4</a>
+      <a href="module1-5.html">🧠 Lesson 1.5</a>
+      <a href="module1-overview.html">📖 Module 1 Overview</a>
+      <a href="module1test.html">🏆 Module 1 Assessment</a>
+      <hr>
+      <a href="index.html">← Back to Home</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+      <h1>🧠 Module 1.3: Personality & Variation</h1>
+      <p>In this lesson, we'll keep improving your chatbot's personality by incorporating varying responses to each question to make it less robotic.</p>
+
+      <section>
+        <h2>Why Variation Matters</h2>
+        <p>Including response variation will make your bot more enjoyable and improve user-experience (UX). For example instead of the same greeting of:</p>
+        <pre><code>🤖 Hello! I'm ChatBuddy. What's your name?</code></pre>
+        <p>We can adjust the code so that the greeting will be <strong>randomly</strong> chosen from a coded list. For example:</p>
+        <ul>
+          <li>“Hey there! 👋”</li>
+          <li>“What's up? 🙌”</li>
+          <li>“Hiya! 😊”</li>
+        </ul>
+        <p>Instead of the same greeting every time, the bot will randomly pull a greeting from the list to make it sound more friendly and personable!</p>
+      </section>
+
+      <section>
+        <h2>👋 Step 1: Use 'import random'</h2>
+        <p>At the very beginning of your code (yes, the first line), we'll initialize our desire to choose responses from a random list.</p>
+        <pre><code>import random</code></pre>
+        <p>This way, your chatbot will know that it shouldn't use the same greeting every time.</p>
+      </section>
+
+      <section>
+        <h2>🛠️ Step 2: Create Your Greetings List & Update Your chatbot.py</h2>
+        <p>Now, we'll create the new list of greetings that you want your bot to pull its random choices from!</p>
+        <p>Here's what your new, fully updated code should look like:</p>
+        <pre><code>import random
+
+print("🤖 Hello! I'm ChatBuddy. What's your name?")
+user_name = input("You: ")
+            
+print(f"ChatBuddy: Nice to meet you, {user_name}! Ask me anything.")
+            
+memory = {}
+            
+greetings = ["Hey there! 👋", "Hiya! 😊", "Howdy! 🤠", "What's up? 🙌", "Yo yo yo! 🤖"]
+            
+while True:
+    user_input = input(f"{user_name}: ").lower()
+            
+    if "hello" in user_input or "hi" in user_input:
+        print(f"ChatBuddy: {random.choice(greetings)}")
+    elif "how are you" in user_input:
+        print("ChatBuddy: I'm doing great, thanks! How about you?")
+    elif "my favorite color is" in user_input:
+        color = user_input.split("is")[-1].strip()
+        memory["favorite_color"] = color
+        print(f"ChatBuddy: Got it! I'll remember your favorite color is {color}. 🎨")
+    elif "what's my favorite color" in user_input or "what is my favorite color" in user_input:
+        if "favorite_color" in memory:
+            print(f"ChatBuddy: Your favorite color is {memory['favorite_color']}! 🌈")
+        else:
+            print("ChatBuddy: Hmm... I don’t know yet. Tell me your favorite color!")
+    elif "my favorite food is" in user_input:
+        food = user_input.split("is")[-1].strip()
+        memory["favorite_food"] = food
+        print(f"Chatbuddy: Yum! I'll remember your favorite food is {food}. 👍")
+    elif "what's my favorite food" in user_input or "what is my favorite food" in user_input:
+        if "favorite_food" in memory:
+            print(f"Chatbuddy: I remember this one! Your favorite food is {memory['favorite_food']}!")
+        else:
+            print("Chatbuddy: Hmm... I don't think you've told me your favorite food yet. Tell me what it is!")
+    elif "my nickname is" in user_input:
+        nickname = user_input.split("is")[-1].strip()
+        memory["nickname"] = nickname
+        print(f"Chatbuddy: That's a great nickname! I'll remember your nickname is {nickname}.😂")
+    elif "what's my nickname" in user_input or "what is my nickname" in user_input:
+        if "nickname" in memory:
+            print(f"Chatbuddy: You told me this one! Your nickname is {memory['nickname']}!")
+        else:
+            print("Chatbuddy: Hmm... I don't think you've told me your nickname yet. Is it a good one?")
+    elif "bye" in user_input:
+        print(f"ChatBuddy: Bye {user_name}! See you next time. 👋")
+        break
+    else:
+        print("ChatBuddy: Hmm... I don't know how to respond to that yet.")
+            </code></pre>
+      </section>
+
+      <section>
+        <h2>✅ Try It Yourself</h2>
+        <ul>
+          <li>Tell your bot your name as usual, then say '<strong>Hi</strong>' or '<strong>Hello</strong>' a couple times.</li>
+          <li>Your bot should now vary responses, choosing them from the list we created!</li>
+          <li>If you feel like it, you can add more greetings on your own!</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>🔧 Let's Keep Building...</h2>
+        <p>Now that we've added a random, extended list of greetings, let's do the same for when you ask the bot '<strong>How are you?</strong>' as well as the response when your bot does not yet know the answer to something.</p>
+        <p>Since we already have '<strong>import random</strong>' in our code, we now need to create new lists as well as adjust the <strong>if</strong> statement relating to mood and uncertainty.</p>
+        <p>Here are the new lists. We'll FULLY update your code in the next step...</p>
+        <code><pre>mood_responses = ["I'm doing great, thanks for asking! 😎", "Better now that you're here! 😁", "Feeling fantastic! What about you? 🌟"]
+no_response = [
+    "Hmm... I don't know how to respond to that yet. 🤔",
+    "I'm still learning! Try something else. 📚",
+    "That one's a mystery to me. 😅"
+]</pre></code>            
+      </section>
+
+      <section>
+        <h2>🤩 Step 3: Your FULLY Updated chatbot.py</h2>
+        <p>Now that we've created random lists for the bot to pull responses from, let's put it all to work!</p>
+        <p>Go ahead and paste this code into your chatbot.py in full!</p>
+        <code><pre>import random
+
+print("🤖 Hello! I'm ChatBuddy. What's your name?")
+user_name = input("You: ")
+            
+print(f"ChatBuddy: Nice to meet you, {user_name}! Ask me anything. 😄")
+            
+memory = {}
+            
+greetings = ["Hey there! 👋", "Hiya! 😊", "Howdy! 🤠", "What's up? 🙌", "Yo yo yo! 🤖"]
+mood_responses = ["I'm doing great, thanks for asking! 😎", "Better now that you're here! 😁", "Feeling fantastic! What about you? 🌟"]
+no_response = [
+    "Hmm... I don't know how to respond to that yet. 🤔",
+    "I'm still learning! Try something else. 📚",
+    "That one's a mystery to me. 😅"
+]
+            
+while True:
+    user_input = input(f"{user_name}: ").lower()
+            
+    if "hello" in user_input or "hi" in user_input:
+        print(f"ChatBuddy: {random.choice(greetings)}")
+    elif "how are you" in user_input:
+        print(f"ChatBuddy: {random.choice(mood_responses)}")
+    elif "my favorite color is" in user_input:
+        color = user_input.split("is")[-1].strip()
+        memory["favorite_color"] = color
+        print(f"ChatBuddy: Got it! I'll remember your favorite color is {color}. 🎨")
+    elif "what's my favorite color" in user_input or "what is my favorite color" in user_input:
+        if "favorite_color" in memory:
+            print(f"ChatBuddy: Your favorite color is {memory['favorite_color']}! 🌈")
+        else:
+            print("ChatBuddy: Hmm... I don’t know yet. Tell me your favorite color! 🤷‍♂️")
+    elif "my favorite food is" in user_input:
+        food = user_input.split("is")[-1].strip()
+        memory["favorite_food"] = food
+        print(f"ChatBuddy: Yum! I'll remember your favorite food is {food}. 😋")
+    elif "what's my favorite food" in user_input or "what is my favorite food" in user_input:
+        if "favorite_food" in memory:
+            print(f"ChatBuddy: I remember this one! Your favorite food is {memory['favorite_food']}! 🍽️")
+        else:
+            print("ChatBuddy: Hmm... I don't think you've told me your favorite food yet. Tell me what it is! 🤤")
+    elif "my nickname is" in user_input:
+        nickname = user_input.split("is")[-1].strip()
+        memory["nickname"] = nickname
+        print(f"ChatBuddy: That's a cool nickname! I'll remember it—{nickname}, right? 😎")
+    elif "what's my nickname" in user_input or "what is my nickname" in user_input:
+        if "nickname" in memory:
+            print(f"ChatBuddy: You told me this one! Your nickname is {memory['nickname']}! 😄")
+        else:
+            print("ChatBuddy: Hmm... I don't think you've told me your nickname yet. Wanna share it? 🕵️")
+    elif "bye" in user_input:
+        print(f"ChatBuddy: Bye {user_name}! Catch you later! 👋✨")
+        break
+    else:
+        print(f"ChatBuddy: {random.choice(no_response)}")</pre></code>
+      </section>
+
+      <section>
+        <h2>✅ Try It Out</h2>
+        <ul>
+          <li>Tell your bot your name as usual, then say '<strong>Hi</strong>' or '<strong>Hello</strong>' a couple times.</li>
+          <li>Ask your bot '<strong>How are you?</strong>' more than once to see the responses get pulled randomly!</li>
+          <li>If you feel like it, you can add more responses on your own! Try to follow the same frameworks!</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>📚 Bonus Challenge</h2>
+        <p>Can you create a random list for responses when you say '<strong>Bye</strong>' to conclude a conversation? Make sure to create the response list & follow the <strong>elif</strong> frameworks!</p>
+      </section>
+
+      <div style="display: flex; justify-content: center; margin-top: 40px;">
+        <a href="module1-4.html" class="button">👉 Next Module</a>
+      </div>
+      
+    </div>
+  </div>
+</body>
+</html>

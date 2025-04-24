@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Module 1.4 – Increased Awareness</title>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <script>
+    function toggleMenu() {
+      document.getElementById("mobileMenu").classList.toggle("hidden");
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: #2b2b2b;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: #444;
+      margin-top: 40px;
+    }
+
+    code, pre {
+      background-color: #f4f4f4;
+      padding: 10px;
+      border-radius: 6px;
+      display: block;
+      white-space: pre-wrap;
+      font-size: 14px;
+    }
+
+    a.button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      background-color: #4f46e5;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+
+    a.button:hover {
+      background-color: #3730a3;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: white;
+      border-right: 1px solid #ddd;
+      padding: 20px;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 10px;
+      color: #333;
+      text-decoration: none;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      transition: background 0.3s;
+    }
+
+    .sidebar a:hover {
+      background: #eef2ff;
+    }
+
+    .sidebar a.active {
+      background-color: #e0e7ff;
+      font-weight: bold;
+      color: #1e3a8a;
+    }
+
+    .mobile-toggle {
+      display: none;
+      padding: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        display: none;
+      }
+
+      .mobile-toggle {
+        display: block;
+      }
+
+      #mobileMenu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: white;
+        width: 250px;
+        height: 100%;
+        padding: 20px;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        z-index: 999;
+      }
+
+      #mobileMenu a {
+        display: block;
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div style="display: flex;">
+    <!-- Desktop Sidebar -->
+    <div class="sidebar">
+      <h3 style="margin-top: 0;">📘 Module 1.4</h3>
+      <a href="module1.html">🧠 Lesson 1.1</a>
+      <a href="quiz1.html">✅ Quiz 1.1</a>
+      <a href="module1-2.html">🧠 Lesson 1.2</a>
+      <a href="quiz1-2.html">✅ Quiz 1.2</a>
+      <a href="module1-3.html">🧠 Lesson 1.3</a>
+      <a href="module1-4.html" class="active">🧠 Lesson 1.4</a>
+      <a href="module1-5.html">🧠 Lesson 1.5</a>
+      <a href="module1-overview.html">📖 Module 1 Overview</a>
+      <a href="module1test.html">🏆 Module 1 Assessment</a>
+      <hr>
+      <a href="index.html">← Back to Home</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+      <h1>📈 Module 1.4: Increased Awareness</h1>
+      <p>Now since your chatbot has some personality, we'll start making it aware of things such as time of day (i.e. Morning, Afternoon, Evening), the current date & current time.</p>
+
+      <section>
+        <h2>Greeting Awareness</h2>
+        <p>Let's make your bot aware of what time it currently is. Note that this relies what time your current operating system (OS) is functioning on...</p>
+        <p>First, underneat 'import random', we need to add '<strong>from datetime import datetime</strong>.' Your very first two lines of code should look like this:</p>
+        <pre><code>import random
+from datetime import datetime</code></pre>
+        <p>This doesn't have any functionality yet, but is the first step in making sure your bot is aware of the time of day!</p>
+        <p>Now, we can get into the code structure! We need to add the time criteria that it will follow to determine which greeting to use. Let's use this code:</p>
+        <code><pre># Time of day greeting
+current_hour = datetime.now().hour
+            
+if current_hour < 12:
+    time_greeting = "Good morning"
+elif current_hour < 18:
+    time_greeting = "Good afternoon"
+else:
+    time_greeting = "Good evening"</pre></code>
+
+        <h2>🔥 Pro Tip</h2>
+        <p><strong>Using a '#' negates code and is used for labeling.</strong> As your bot starts to become more advanced, it would be smart to start labeling. If you ever need to go back into your code to edit a certain part, the label will help you find it easily!</p>
+      </section>
+
+      <section>
+        <h2>🥇 Step 1: Combine Greetings</h2>
+        <p>We want to make sure that while your bot recognizes the time of day, it also still pulls greetings randomly from the list we've already made. To do this, we'll write some code that looks like this:</p>
+        <pre><code># Combined greeting
+print(f"ChatBuddy: {time_greeting}, {user_name}! {random.choice(greetings)} Ask me anything. 😄")</code></pre>
+        <p>Your chatbot will now understand to <strong>1. Figure out what time of day meets the criteria</strong> and <strong>2. Pull a random greeting from the list.</strong></p>
+      </section>
+
+      <section>
+        <h2>🚧 Step 2: Update Your chatbot.py</h2>
+        <p>Now that we've got that covered, it's time to fully update your chatbot.py </p>
+        <p>Here's what your new, fully updated code should look like for random greetings based on time of day:</p>
+        <pre><code>import random
+from datetime import datetime
+            
+print("🤖 Hello! I'm ChatBuddy. What's your name?")
+user_name = input("You: ")
+            
+# Time of day greeting
+current_hour = datetime.now().hour
+            
+if current_hour < 12:
+    time_greeting = "Good morning"
+elif current_hour < 18:
+    time_greeting = "Good afternoon"
+else:
+    time_greeting = "Good evening"
+            
+# Greeting list
+greetings = ["Hey there! 👋", "Hiya! 😊", "Howdy! 🤠", "What's up? 🙌", "Yo yo yo! 🤖"]
+mood_responses = ["I'm doing great, thanks for asking! 😎", "Better now that you're here! 😁", "Feeling fantastic! What about you? 🌟"]
+no_response = [
+    "Hmm... I don't know how to respond to that yet. 🤔",
+    "I'm still learning! Try something else. 📚",
+    "That one's a mystery to me. 😅"
+]
+            
+# Combined greeting
+print(f"ChatBuddy: {time_greeting}, {user_name}! {random.choice(greetings)} Ask me anything. 😄")
+            
+memory = {}
+            
+while True:
+    user_input = input(f"{user_name}: ").lower()
+            
+    if "hello" in user_input or "hi" in user_input:
+        print(f"ChatBuddy: {random.choice(greetings)}")
+    elif "how are you" in user_input:
+        print(f"ChatBuddy: {random.choice(mood_responses)}")
+    elif "my favorite color is" in user_input:
+        color = user_input.split("is")[-1].strip()
+        memory["favorite_color"] = color
+        print(f"ChatBuddy: Got it! I'll remember your favorite color is {color}. 🎨")
+    elif "what's my favorite color" in user_input or "what is my favorite color" in user_input:
+        if "favorite_color" in memory:
+            print(f"ChatBuddy: Your favorite color is {memory['favorite_color']}! 🌈")
+        else:
+            print("ChatBuddy: Hmm... I don’t know yet. Tell me your favorite color! 🤷‍♂️")
+    elif "my favorite food is" in user_input:
+        food = user_input.split("is")[-1].strip()
+        memory["favorite_food"] = food
+        print(f"ChatBuddy: Yum! I'll remember your favorite food is {food}. 😋")
+    elif "what's my favorite food" in user_input or "what is my favorite food" in user_input:
+        if "favorite_food" in memory:
+            print(f"ChatBuddy: I remember this one! Your favorite food is {memory['favorite_food']}! 🍽️")
+        else:
+            print("ChatBuddy: Hmm... I don't think you've told me your favorite food yet. Tell me what it is! 🤤")
+    elif "my nickname is" in user_input:
+        nickname = user_input.split("is")[-1].strip()
+        memory["nickname"] = nickname
+        print(f"ChatBuddy: That's a cool nickname! I'll remember it—{nickname}, right? 😎")
+    elif "what's my nickname" in user_input or "what is my nickname" in user_input:
+        if "nickname" in memory:
+            print(f"ChatBuddy: You told me this one! Your nickname is {memory['nickname']}! 😄")
+        else:
+            print("ChatBuddy: Hmm... I don't think you've told me your nickname yet. Wanna share it? 🕵️")
+    elif "bye" in user_input:
+        print(f"ChatBuddy: Bye {user_name}! Catch you later! 👋")
+        break
+    else:
+        print(f"ChatBuddy: {random.choice(no_response)}")
+            </code></pre>
+            <p>We've also added some new emojis to add some more personality!</p>
+      </section>
+
+      <section>
+        <h2>🧪 Try It Yourself</h2>
+        <ul>
+          <li>Tell your bot your name as usual. You should then be greeted by <strong>a time-based greeting</strong> following our implemented criteria!</li>
+          <li>Check back in at different parts of the day to see the others!</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>💼 Let's Get Back to Work...</h2>
+        <p>Now that your bot is becoming aware of the time of day, <strong>let's give it the ability to tell the time of day when it is asked.</strong></p>
+        <p>We can also make the bot aware of the <strong>current date</strong> as well in order to improve capabilities!</p>
+        <p>Again, remember that the bot will pull the information directly from your current OS (operating system). This means if your OS has the incorrect date/time, the bot will ALSO display the incorrect date/time!</p>           
+      </section>
+
+      <section>
+        <h2>👊 Step 3: Paste This Into Your chatbot.py</h2>
+        <p>The below code will now give your bot the ability to tell you the current date and time when it is asked!</p>
+        <p>If you haven't realized by now, you're FLYING through the process of creating your very own chatbot!</p>
+        <code><pre>import random
+from datetime import datetime
+            
+print("🤖 Hello! I'm ChatBuddy. What's your name?")
+user_name = input("You: ")
+            
+# Time of day greeting
+current_hour = datetime.now().hour
+            
+if current_hour < 12:
+    time_greeting = "Good morning"
+elif current_hour < 18:
+    time_greeting = "Good afternoon"
+else:
+    time_greeting = "Good evening"
+            
+# Greeting list
+greetings = ["Hey there! 👋", "Hiya! 😊", "Howdy! 🤠", "What's up? 🙌", "Yo yo yo! 🤖"]
+mood_responses = ["I'm doing great, thanks for asking! 😎", "Better now that you're here! 😁", "Feeling fantastic! What about you? 🌟"]
+no_response = [
+    "Hmm... I don't know how to respond to that yet. 🤔",
+    "I'm still learning! Try something else. 📚",
+    "That one's a mystery to me. 😅"
+]
+            
+# Combined greeting
+print(f"ChatBuddy: {time_greeting}, {user_name}! {random.choice(greetings)} Ask me anything. 😄")
+            
+memory = {}
+            
+while True:
+    user_input = input(f"{user_name}: ").lower()
+            
+    if "hello" in user_input or "hi" in user_input:
+        print(f"ChatBuddy: {random.choice(greetings)}")
+    elif "how are you" in user_input:
+        print(f"ChatBuddy: {random.choice(mood_responses)}")
+    elif "what time is it" in user_input or "current time" in user_input or "tell me the time" in user_input or "what's the time" in user_input:
+        current_time = datetime.now().strftime("%I:%M %p")
+        print(f"ChatBuddy: It's currently {current_time} ⏰")
+    elif "what's the date" in user_input or "what is the date" in user_input or "current date" in user_input:
+        current_date = datetime.now().strftime("%A, %B %d, %Y")
+        print(f"ChatBuddy: Today is {current_date} 📅")
+    elif "my favorite color is" in user_input:
+        color = user_input.split("is")[-1].strip()
+        memory["favorite_color"] = color
+        print(f"ChatBuddy: Got it! I'll remember your favorite color is {color}. 🎨")
+    elif "what's my favorite color" in user_input or "what is my favorite color" in user_input:
+        if "favorite_color" in memory:
+            print(f"ChatBuddy: Your favorite color is {memory['favorite_color']}! 🌈")
+        else:
+            print("ChatBuddy: Hmm... I don’t know yet. Tell me your favorite color! 🤷‍♂️")
+    elif "my favorite food is" in user_input:
+        food = user_input.split("is")[-1].strip()
+        memory["favorite_food"] = food
+        print(f"ChatBuddy: Yum! I'll remember your favorite food is {food}. 😋")
+    elif "what's my favorite food" in user_input or "what is my favorite food" in user_input:
+        if "favorite_food" in memory:
+            print(f"ChatBuddy: I remember this one! Your favorite food is {memory['favorite_food']}! 🍽️")
+        else:
+            print("ChatBuddy: Hmm... I don't think you've told me your favorite food yet. Tell me what it is! 🤤")
+    elif "my nickname is" in user_input:
+        nickname = user_input.split("is")[-1].strip()
+        memory["nickname"] = nickname
+        print(f"ChatBuddy: That's a cool nickname! I'll remember it—{nickname}, right? 😎")
+    elif "what's my nickname" in user_input or "what is my nickname" in user_input:
+        if "nickname" in memory:
+            print(f"ChatBuddy: You told me this one! Your nickname is {memory['nickname']}! 😄")
+        else:
+            print("ChatBuddy: Hmm... I don't think you've told me your nickname yet. Wanna share it? 🕵️")
+    elif "bye" in user_input:
+        print(f"ChatBuddy: Bye {user_name}! Catch you later! 👋")
+        break
+    else:
+        print(f"ChatBuddy: {random.choice(no_response)}")</pre></code>
+      </section>
+
+      <section>
+        <h2>🏄‍♂️ Try It Out</h2>
+        <ul>
+          <li>Following the input of your name, ask the bot '<strong>What time is it?</strong>'</li>
+          <li>Ask your bot '<strong>What's the date?</strong>'</li>
+          <li>Your bot still has all of its previous functionality! The newest addition being the date & time feature!</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>🔥 Pro Tip</h2>
+        <p>Make sure you're saving your work both in VS Code AND in another place such as Google Docs! <strong>We're coming up on our 100th line of code!</strong></p>
+      </section>
+
+      <div style="display: flex; justify-content: center; margin-top: 40px;">
+        <a href="module1-5.html" class="button">➡️ Last Module</a>
+      </div>
+      
+    </div>
+  </div>
+</body>
+</html>
