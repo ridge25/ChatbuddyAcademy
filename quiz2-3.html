@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz 2.3: The 🆘 Button + More</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .question {
+      margin-top: 25px;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .quiz-btn {
+      display: block;
+      width: 100%;
+      padding: 10px 15px;
+      margin: 6px 0;
+      border: none;
+      background-color: #3498db;
+      color: white;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .quiz-btn:hover {
+      background-color: #2980b9;
+    }
+
+    .quiz-btn.selected {
+      background-color: #2c3e50;
+    }
+
+    #quiz-feedback {
+      text-align: center;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    #quiz-result {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 1.1rem;
+    }
+
+    #nextModuleBtn {
+      display: none;
+      margin: 30px auto 0;
+      text-align: center;
+      background-color: #2ecc71;
+      color: white;
+      padding: 12px 20px;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    #nextModuleBtn:hover {
+      background-color: #27ae60;
+    }
+
+    .submit-btn {
+      display: block;
+      margin: 30px auto 0;
+      padding: 12px 20px;
+      font-size: 1rem;
+      background-color: #f39c12;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      background-color: #e67e22;
+    }
+
+    .icon {
+      margin-left: 10px;
+    }
+
+    .correct {
+      color: green;
+    }
+
+    .incorrect {
+      color: red;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: white;
+      border-right: 1px solid #ddd;
+      padding: 20px;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 10px;
+      color: #333;
+      text-decoration: none;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      transition: background 0.3s;
+    }
+
+    .sidebar a:hover {
+      background: #eef2ff;
+    }
+
+    .sidebar a.active {
+      background-color: #e0e7ff;
+      font-weight: bold;
+      color: #1e3a8a;
+    }
+
+    .mobile-toggle {
+      display: none;
+      padding: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        display: none;
+      }
+
+      .mobile-toggle {
+        display: block;
+      }
+
+      #mobileMenu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: white;
+        width: 250px;
+        height: 100%;
+        padding: 20px;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        z-index: 999;
+      }
+
+      #mobileMenu a {
+        display: block;
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div style="display: flex;">
+    <div class="sidebar">
+      <h3 style="margin-top: 0;">📘 Quiz 2.3</h3>
+      <a href="module2-1.html">🧠 Lesson 2.1</a>
+      <a href="quiz2-1.html">✅ Quiz 2.1</a>
+      <a href="module2-2.html">🧠 Lesson 2.2</a>
+      <a href="module2-3.html">🧠 Lesson 2.3</a>
+      <a href="quiz2-3.html" class="active">✅ Quiz 2.3</a>
+      <a href="module2-4.html">🧠 Lesson 2.4</a>
+      <a href="module2-5.html">🧠 Lesson 2.5</a>
+      <a href="module2-overview.html">📖 Module 2 Overview</a>
+      <a href="module2test.html">🏆 Module 2 Assessment</a>
+      <hr>
+      <a href="index.html">← Back to Home</a>
+    </div>
+
+    <div class="container">
+      <h2>📝 Knowledge Check: The 🆘 Button + More</h2>
+      <p>If you navigate away from the quiz, your answers will <strong>not</strong> be saved.</p>
+      <p>Here's a Little Refresher on <strong>Modular Code</strong> & the <strong>Help Button.</strong> Choose the correct answers:</p>
+
+      <div id="quiz-container">
+        <p class="question">1. What is one benefit of Modularization?</p>
+        <button class="quiz-btn" onclick="checkAnswer(1, 'A')" data-question="1" data-answer="A">A) It allows the bot to be bilingual</button>
+        <button class="quiz-btn" onclick="checkAnswer(1, 'B')" data-question="1" data-answer="B">B) It makes the code easier to fix & reuse</button>
+        <button class="quiz-btn" onclick="checkAnswer(1, 'C')" data-question="1" data-answer="C">C) It saves the code automatically</button>
+
+        <p class="question">2. True or False: The Help Button is designed to help users navigate the bot's full list of capabilities</p>
+        <button class="quiz-btn" onclick="checkAnswer(2, 'A')" data-question="2" data-answer="A">A) True</button>
+        <button class="quiz-btn" onclick="checkAnswer(2, 'B')" data-question="2" data-answer="B">B) False</button>
+
+        <p class="question">3. What is one benefit of integrating an SOS (Help) button?</p>
+        <button class="quiz-btn" onclick="checkAnswer(3, 'A')" data-question="3" data-answer="A">A) It helps conserve OS battery life </button>
+        <button class="quiz-btn" onclick="checkAnswer(3, 'B')" data-question="3" data-answer="B">B) It improves user guidance </button>
+        <button class="quiz-btn" onclick="checkAnswer(3, 'C')" data-question="3" data-answer="C">C) Chatbuddy cannot function without one </button>
+
+        <p class="question">4. What is a key advantage of using seperate functions (i.e. 'respond_to_input') in your code?</p>
+        <button class="quiz-btn" onclick="checkAnswer(4, 'A')" data-question="4" data-answer="A">A)  It makes the code run slower but adds more lines for clarity.</button>
+        <button class="quiz-btn" onclick="checkAnswer(4, 'B')" data-question="4" data-answer="B">B) It allows the chatbot to save data even when not asked.</button>
+        <button class="quiz-btn" onclick="checkAnswer(4, 'C')" data-question="4" data-answer="C">C) It improves readability, debugging, and future updates by isolating specific tasks.</button>
+
+        <p class="question">5. When should a help feature be used within a chatbot?</p>
+        <button class="quiz-btn" onclick="checkAnswer(5, 'A')" data-question="5" data-answer="A">A) Only at the end of a conversation to summarize the chat.</button>
+        <button class="quiz-btn" onclick="checkAnswer(5, 'B')" data-question="5" data-answer="B">B) As a hidden feature only developers can use.</button>
+        <button class="quiz-btn" onclick="checkAnswer(5, 'C')" data-question="5" data-answer="C">C) When users are unsure what they can say or ask the chatbot.</button>
+      </div>
+
+      <p id="quiz-feedback"></p>
+
+      <button class="submit-btn" onclick="submitQuiz()">🎯 Finish Quiz</button>
+      <p id="quiz-result"></p>
+  
+      <a class="button" href="module2-4.html" id="nextModuleBtn">Next Module ➡️</a>
+      <button class="submit-btn" id="retake-btn" style="display:none;" onclick="retakeQuiz()">🔄 Retake Quiz</button>
+    </div>
+  
+    <script>
+  const correctAnswers = {
+    1: 'B',
+    2: 'A',
+    3: 'B',
+    4: 'C',
+    5: 'C'
+  };
+  
+      let userAnswers = {};
+      const feedback = document.getElementById('quiz-feedback');
+      const resultText = document.getElementById('quiz-result');
+  
+      function checkAnswer(question, answer) {
+        userAnswers[question] = answer;
+  
+        // Remove existing highlights
+        const buttons = document.querySelectorAll(`button[data-question="${question}"]`);
+        buttons.forEach(btn => btn.classList.remove('selected'));
+  
+        // Highlight selected button
+        const selectedButton = document.querySelector(`button[data-question="${question}"][data-answer="${answer}"]`);
+        if (selectedButton) selectedButton.classList.add('selected');
+      }
+  
+      function submitQuiz() {
+    let score = 0;
+    let feedbackHTML = "";
+  
+    // Hide the 'Finish Quiz' button after submission
+    document.querySelector('.submit-btn').style.display = "none"; 
+  
+    for (let q = 1; q <= 5; q++) {
+      const correct = correctAnswers[q];
+      const userAnswer = userAnswers[q];
+      const icon = userAnswer === correct ? "<span class='icon correct'>✔️</span>" : "<span class='icon incorrect'>❌</span>";
+      feedbackHTML += `<p>Q${q}: ${icon} Your answer: ${userAnswer} (Correct: ${correct})</p>`;
+      if (userAnswer === correct) {
+        score++;
+      }
+    }
+  
+    resultText.innerText = `You scored ${score}/5!`;
+  
+    if (score === 5) {
+      feedback.innerHTML = "🎯 Perfect score! You're ready. Let's keep building!";
+    } else if (score >= 4) {
+      feedback.innerHTML = "👍 Good job! You've unlocked the next lesson!";
+    } else {
+      feedback.innerHTML = "🧐 Review the material and try again to unlock the next lesson. You need to get at least 4 correct.";
+    }
+  
+    feedback.innerHTML += feedbackHTML;
+  
+    // Show "Next Module" button only if the score is 4 or higher
+    if (score >= 4) {
+      document.getElementById('nextModuleBtn').style.display = "block";
+    } else {
+      document.getElementById('nextModuleBtn').style.display = "none";
+    }
+  
+    // Show "Retake Quiz" button if the score is less than or equal to 3
+    if (score <= 3) {
+      document.getElementById('retake-btn').style.display = "block";
+    }
+  }
+  
+  function retakeQuiz() {
+    // Reset user answers
+    userAnswers = {};
+  
+    // Remove 'selected' class from all buttons
+    const allButtons = document.querySelectorAll('.quiz-btn');
+    allButtons.forEach(btn => btn.classList.remove('selected'));
+  
+    // Clear feedback and result text
+    resultText.innerText = "";
+    feedback.innerHTML = "";
+  
+    // Show the 'Finish Quiz' button again
+    document.querySelector('.submit-btn').style.display = "block";
+  
+    // Hide the 'Retake Quiz' and 'Next Module' buttons
+    document.getElementById('retake-btn').style.display = "none"; 
+    document.getElementById('nextModuleBtn').style.display = "none";
+  
+    // Optionally scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  
+    </script>
+  </body>
+  </html>

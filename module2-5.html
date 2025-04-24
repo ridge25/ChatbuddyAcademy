@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module 2.5 – Extra Motivation</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <script>
+    function toggleMenu() {
+      document.getElementById("mobileMenu").classList.toggle("hidden");
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: #2b2b2b;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: #444;
+      margin-top: 40px;
+    }
+
+    code, pre {
+      background-color: #f4f4f4;
+      padding: 10px;
+      border-radius: 6px;
+      display: block;
+      white-space: pre-wrap;
+      font-size: 14px;
+    }
+
+    a.button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      background-color: #4f46e5;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+
+    a.button:hover {
+      background-color: #3730a3;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: white;
+      border-right: 1px solid #ddd;
+      padding: 20px;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 10px;
+      color: #333;
+      text-decoration: none;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      transition: background 0.3s;
+    }
+
+    .sidebar a:hover {
+      background: #eef2ff;
+    }
+
+    .sidebar a.active {
+      background-color: #e0e7ff;
+      font-weight: bold;
+      color: #1e3a8a;
+    }
+
+    .mobile-toggle {
+      display: none;
+      padding: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        display: none;
+      }
+
+      .mobile-toggle {
+        display: block;
+      }
+
+      #mobileMenu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: white;
+        width: 250px;
+        height: 100%;
+        padding: 20px;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        z-index: 999;
+      }
+
+      #mobileMenu a {
+        display: block;
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div style="display: flex;">
+    <!-- Desktop Sidebar -->
+    <div class="sidebar">
+      <h3 style="margin-top: 0;">📘 Module 2.5</h3>
+      <a href="module2-1.html">🧠 Lesson 2.1</a>
+      <a href="quiz2-1.html">✅ Quiz 2.1</a>
+      <a href="module2-2.html">🧠 Lesson 2.2</a>
+      <a href="module2-3.html">🧠 Lesson 2.3</a>
+      <a href="quiz2-3.html">✅ Quiz 2.3</a>
+      <a href="module2-4.html">🧠 Lesson 2.4</a>
+      <a href="module2-5.html" class="active">🧠 Lesson 2.5</a>
+      <a href="module2-overview.html">📖 Module 2 Overview</a>
+      <a href="module2test.html">🏆 Module 2 Assessment</a>
+      <hr>
+      <a href="index.html">← Back to Home</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+      <h1>🏋️‍♂️ Module 2.5: Extra Motivation</h1>
+      <p>If you've made it this far, <strong>YOU'RE DOING AMAZING!🎉</strong></p>
+      <p>We've implemented a TON of new updateds to Chatbuddy in this module, so for the last one, we're going to <strong>add some inspiration🏆</strong></p>
+
+      <!-- Personality Section -->
+      <section>
+        <h2>😎 The Extra Motivation Feature</h2>
+        <p>Chatbot development is not always the most seamless process. This being said, it never hurts to be given some words of wisdom from the one <strong>you're working the closest with...</strong>🤖 Chatbuddy itself!</p>
+        <p>This update may seem easier than others in this module, and well, that's because <strong>you've done this before!</strong></p>
+        <p>When prompted, we'll make sure Chatbuddy pulls motivational quotes from a random, rotating list...</p>
+        <p>JUST like our current:</p>
+        <ul>
+          <li><pre><code>JOKES = [
+    "Why don't skeletons fight each other? They don't have the guts. 💀",
+    "What do you call fake spaghetti? An impasta! 🍝",
+    "Why did the scarecrow win an award? Because he was outstanding in his field! 🌾",
+    "I'm reading a book on anti-gravity. It's impossible to put down! 📚",
+    "Why did the math book look sad? Because it had too many problems. ➗"
+]</code></pre></li>
+<p>AND...</p>
+          <li><pre><code>GREETINGS = ["Hey there! 👋", "Hiya! 😊", "Howdy! 🤠", "What's up? 🙌", "Yo yo yo! 🤖"]
+MOOD_RESPONSES = [
+    "I'm doing great, thanks for asking! 😎",
+    "Better now that you're here! 😁",
+    "Feeling fantastic! What about you? 🌟"
+]</code></li>
+        </ul>
+        <p>First, <strong>let's build our motivational quote list...🛠</strong></p>
+        <p>To make sure we stay in line with our <strong>modular code</strong>, we'll naviagate here:</p>
+        <pre><code># ============================== Constants ==============================</code></pre>
+        <p>This is where we'll construct our <strong>random motivational quotes list</strong> where Chatbuddy will pull from when instructed to.</p>
+        <p>For the sake of the exercise, we'll keep it to a list of <strong>5 random motivational quotes.</strong></p>
+        <p>❗<strong>REMINDER:</strong> This is YOUR bot. Add or change the list of motivational quotes to fit what would provide YOU with the extra push to keep on going!</p>
+        <pre><code>QUOTES = [
+    "Believe in yourself and all that you are. 🌟",
+    "You are capable of amazing things. 🚀",
+    "Every day is a second chance. 🌅",
+    "Push yourself, because no one else is going to do it for you. 💪",
+    "Success doesn’t come from what you do occasionally, it comes from consistency.🏆"
+]</code></pre>
+        <p>With our random list of motivational quotes now in place, let's <strong>craft the elif statement:</strong></p>
+        <pre><code>    elif "inspire me" in user_input or "motivate me" in user_input:
+        print(f"ChatBuddy: 💡 {random.choice(QUOTES)}")</code></pre>
+        <p>And let's not forget to <strong>update our 'Help Feature'</strong> as well...</p>
+        <pre><code>🔹 Ask for motivation: "inspire me", "motivate me"</code></pre>
+        <p>Now that we know what needs to be done, let's go ahead and <strong>FULLY update our chatbot.py 💬</strong></p>
+        <p>❗<strong>REMINDER:</strong> If your chatbot.py looks slightly different, that <strong>OKAY</strong>. Your bot is <strong>supposed to be unique!</strong></p>
+      </section>
+
+      <section>
+        <h2>⚡ Your NEW chatbot.py  </h2>
+        <pre><code>import random
+import json
+import os
+from datetime import datetime
+                                    
+# ============================== Constants ==============================
+            
+JOKES = [
+    "Why don't skeletons fight each other? They don't have the guts. 💀",
+    "What do you call fake spaghetti? An impasta! 🍝",
+    "Why did the scarecrow win an award? Because he was outstanding in his field! 🌾",
+    "I'm reading a book on anti-gravity. It's impossible to put down! 📚",
+    "Why did the math book look sad? Because it had too many problems. ➗"
+]
+            
+QUOTES = [
+    "Believe in yourself and all that you are. 🌟",
+    "You are capable of amazing things. 🚀",
+    "Every day is a second chance. 🌅",
+    "Push yourself, because no one else is going to do it for you. 💪",
+    "Success doesn’t come from what you do occasionally, it comes from what you do consistently. 🏆"
+]
+            
+GREETINGS = ["Hey there! 👋", "Hiya! 😊", "Howdy! 🤠", "What's up? 🙌", "Yo yo yo! 🤖"]
+MOOD_RESPONSES = [
+    "I'm doing great, thanks for asking! 😎",
+    "Better now that you're here! 😁",
+    "Feeling fantastic! What about you? 🌟"
+]
+            
+NO_RESPONSES = [
+    "Hmm... I don't know how to respond to that yet. 🤔",
+    "I'm still learning! Try something else. 📚",
+    "That one's a mystery to me. 😅"
+]
+            
+HELP_MESSAGE = """
+Here are some things you can ask me! 🤖💬
+            
+🔹 Greet me: "hi", "hello", "hey"
+🔹 Ask how I'm doing: "how are you?"
+🔹 Ask the time: "what time is it?", "current time"
+🔹 Ask the date: "what's the date?", "current date"
+🔹 Tell me your favorites:
+    - "my favorite color is blue"
+    - "what's my favorite color?"
+    - "my favorite food is pizza"
+    - "what's my favorite food?"
+    - "my nickname is champ"
+    - "what's my nickname?"
+🔹 Ask for a summary of what I know about you: "summary"
+🔹 Tell me how you're feeling (e.g., tired, sad, great)
+🔹 Ask for motivation: "inspire me", "motivate me"
+🔹 Teach me new responses! If I don’t know something, you can tell me how to reply.
+🔹 Say "bye" to end the chat
+            
+Type "help" anytime to see this again! 🆘
+"""
+            
+MEMORY_FILE = "learned_memory.json"
+            
+# ============================== Utility Functions ==============================
+            
+def load_memory():
+    if os.path.exists(MEMORY_FILE):
+        with open(MEMORY_FILE, "r") as f:
+            return json.load(f)
+    return {}
+            
+def save_memory(memory):
+    with open(MEMORY_FILE, "w") as f:
+        json.dump(memory, f, indent=4)
+            
+def get_time_greeting():
+    hour = datetime.now().hour
+    if hour < 12:
+        return "Good morning"
+    elif hour < 18:
+        return "Good afternoon"
+    return "Good evening"
+            
+def get_current_time():
+    return datetime.now().strftime("%I:%M %p")
+            
+def get_current_date():
+    return datetime.now().strftime("%A, %B %d, %Y")
+            
+def offer_joke(user_name):
+    print("ChatBuddy: Want to hear a joke to cheer you up? (Yes/No)")
+    response = input(f"{user_name}: ").lower()
+    if "yes" in response:
+        print(f"ChatBuddy: {random.choice(JOKES)}")
+    else:
+        print("ChatBuddy: Alright, I'm here if you need a smile later. 🤗")
+            
+# ============================== Core Chat Functions ==============================
+            
+def greet_user():
+    print("🤖 Hello! I'm ChatBuddy. What's your name?")
+    user_name = input("You: ")
+    greeting = get_time_greeting()
+    print(f"ChatBuddy: {greeting}, {user_name}! {random.choice(GREETINGS)} Ask me anything. 😄")
+    return user_name
+            
+def ask_emotion(user_name):
+    print("ChatBuddy: How are you doing today?")
+    return input(f"{user_name}: ").lower()
+            
+def handle_emotion(emotion_input, user_name):
+    if "not great" in emotion_input:
+        print("ChatBuddy: I'm sorry you're not feeling great. Anything I can do to cheer you up? 🤗")
+        offer_joke(user_name)
+    elif any(word in emotion_input for word in ["good", "great", "happy"]):
+        print("ChatBuddy: That's awesome to hear! 😄 Keep up the good vibes!")
+    elif "sad" in emotion_input:
+        print("ChatBuddy: I'm sorry you're feeling sad. I'm here if you want to talk. 🤗")
+        offer_joke(user_name)
+    elif "tired" in emotion_input:
+        print("ChatBuddy: You should try to rest up. Sleep is important! 😴")
+    elif "hungry" in emotion_input:
+        print("ChatBuddy: You better grab a snack! 🍕 Got a favorite food?")
+    else:
+        print("ChatBuddy: Thanks for sharing. I'm here for you no matter what! 😊")
+            
+def respond_to_input(user_input, memory, learned_memory, user_name):
+    if user_input in learned_memory:
+        print(f"ChatBuddy: {learned_memory[user_input]}")
+    elif user_input == "help":
+        print(f"ChatBuddy: {HELP_MESSAGE}")
+    elif "hello" in user_input or "hi" in user_input:
+        print(f"ChatBuddy: {random.choice(GREETINGS)}")
+    elif "how are you" in user_input:
+        print(f"ChatBuddy: {random.choice(MOOD_RESPONSES)}")
+    elif any(phrase in user_input for phrase in ["what time is it", "current time", "tell me the time", "what's the time"]):
+        print(f"ChatBuddy: It's currently {get_current_time()} ⏰")
+    elif any(phrase in user_input for phrase in ["what's the date", "what is the date", "current date"]):
+        print(f"ChatBuddy: Today is {get_current_date()} 📅")
+    elif "my favorite color is" in user_input:
+        color = user_input.split("is")[-1].strip()
+        memory["favorite_color"] = color
+        print(f"ChatBuddy: Got it! I'll remember your favorite color is {color}. 🎨")
+    elif "what's my favorite color" in user_input:
+        print(f"ChatBuddy: Your favorite color is {memory.get('favorite_color', '...Tell me! 🤷‍♂️')}")
+    elif "my favorite food is" in user_input:
+        food = user_input.split("is")[-1].strip()
+        memory["favorite_food"] = food
+        print(f"ChatBuddy: Yum! I'll remember your favorite food is {food}. 😋")
+    elif "what's my favorite food" in user_input:
+        print(f"ChatBuddy: Your favorite food is {memory.get('favorite_food', '...Not sure yet! 🤤')}")
+    elif "my nickname is" in user_input:
+        nickname = user_input.split("is")[-1].strip()
+        memory["nickname"] = nickname
+        print(f"ChatBuddy: That's a cool nickname! I'll remember it's {nickname}, right? 😎")
+    elif "what's my nickname" in user_input:
+        print(f"ChatBuddy: Your nickname is {memory.get('nickname', '...Tell me what it is! 🕵️')}")
+    elif user_input == "summary":
+        print("ChatBuddy: Here's what I remember about you so far! 🧠📋")
+        print(f"👤 Name: {user_name}")
+        print(f"🏷️ Nickname: {memory.get('nickname', 'Not set 😕')}")
+        print(f"🎨 Favorite Color: {memory.get('favorite_color', 'Not set 😕')}")
+        print(f"🍔 Favorite Food: {memory.get('favorite_food', 'Not set 😕')}")
+    elif "inspire me" in user_input or "motivate me" in user_input:
+        print(f"ChatBuddy: 💡 {random.choice(QUOTES)}")
+    elif "bye" in user_input:
+        print(f"ChatBuddy: Bye {user_name}! Catch you later! 👋")
+        return False
+    elif any(word in user_input for word in ["good", "great", "sad", "tired", "hungry", "not great"]):
+        handle_emotion(user_input, user_name)
+    else:
+        print("ChatBuddy: I don't know how to respond to that yet. 🤔")
+        print("ChatBuddy: What should I say next time someone says that?")
+        new_response = input(f"{user_name}: ")
+        learned_memory[user_input] = new_response
+        save_memory(learned_memory)
+        print("ChatBuddy: Got it! I'll remember that next time. 🧠")
+    return True
+            
+# ============================== Main ==============================
+            
+def main():
+    learned_memory = load_memory()
+    memory = {}
+    user_name = greet_user()
+    emotion_input = ask_emotion(user_name)
+    handle_emotion(emotion_input, user_name)
+            
+    while True:
+        user_input = input(f"{user_name}: ").lower()
+        if not respond_to_input(user_input, memory, learned_memory, user_name):
+            break
+            
+if __name__ == "__main__":
+    main()</code></pre>
+        <p>Now with your new chatbot.py in place, <strong>let's test it out🧪</strong></p>
+        <p>❗<strong>REMINDER:</strong> Your code will NOT run its most up-to-date version UNLESS you save your file prior to running it!</p>
+      <p>Let's get motivated! Boot up your newly <strong>SAVED</strong> chatbot.py </p>
+      <p>Following the <strong>introduction phase</strong>, input either:</p>
+      <pre><code>motivate me</code></pre>
+      <p>OR</p>
+      <pre><code>inspire me</code></pre>
+      <p>Similar to the <strong>JOKE & GREETINGS</strong> features, Chatbuddy will pull a motivational quote from your generated list!</p>
+      <p>You should receive an output including one of the quotes from the quote list such as:</p>
+      <pre><code>ChatBuddy: 💡 Push yourself, because no one else is going to do it for you. 💪</code></pre>
+      <p>And there you have it! When prompted, Chatbuddy will now give you your <strong>daily dose of motivation!🚀</strong></p>
+
+      <!-- Step 2: Try It Out -->
+      <h2>🌀 Module 2 Comes to a Close...</h2>
+      <p><strong>YOU DID IT!</strong></p>
+      <p>With this lesson in the rearview, <strong>Module 2 is OVER!🎉</strong></p>
+      <p>You've upgraded your Chatbuddy in more ways that one and <strong>it looks AWESOME!</strong></p>
+      <p>We can't wait to show you what we have in store in <strong>Module 3!💪</strong></p>
+
+      <h2>🍎 Here's the Plan...</h2>
+      <p>As usual, we'll run you through a quick <strong>overview</strong> of everything you learned in Module 2!</p>
+      <p>Then, in order to <strong>unlock Module 3</strong>, you'll need to pass the <strong>Module 2 Assessment</strong>.</p>
+      <p>Don't freak out just yet. Module 2's Assessment is the <strong>same format as the Module 1 Assessment.</strong> It just holds questions pertaining to Module 2 (obviously).</p>
+      <p>Before we move on, <strong>give your 👀 a break from the computer screen</strong> & go outside to get some fresh air!</p>
+      <p><strong>See You Soon!</strong></p>
+
+      <!-- Next Steps -->
+      <hr>
+      <div style="text-align: center;">
+        <a class="button" href="module2-overview.html">🛫 Module 2 Overview</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

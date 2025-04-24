@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module 2.4 – Mind Reading</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <script>
+    function toggleMenu() {
+      document.getElementById("mobileMenu").classList.toggle("hidden");
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: #2b2b2b;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: #444;
+      margin-top: 40px;
+    }
+
+    code, pre {
+      background-color: #f4f4f4;
+      padding: 10px;
+      border-radius: 6px;
+      display: block;
+      white-space: pre-wrap;
+      font-size: 14px;
+    }
+
+    a.button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      background-color: #4f46e5;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+
+    a.button:hover {
+      background-color: #3730a3;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: white;
+      border-right: 1px solid #ddd;
+      padding: 20px;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 10px;
+      color: #333;
+      text-decoration: none;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      transition: background 0.3s;
+    }
+
+    .sidebar a:hover {
+      background: #eef2ff;
+    }
+
+    .sidebar a.active {
+      background-color: #e0e7ff;
+      font-weight: bold;
+      color: #1e3a8a;
+    }
+
+    .mobile-toggle {
+      display: none;
+      padding: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        display: none;
+      }
+
+      .mobile-toggle {
+        display: block;
+      }
+
+      #mobileMenu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: white;
+        width: 250px;
+        height: 100%;
+        padding: 20px;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        z-index: 999;
+      }
+
+      #mobileMenu a {
+        display: block;
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div style="display: flex;">
+    <!-- Desktop Sidebar -->
+    <div class="sidebar">
+      <h3 style="margin-top: 0;">📘 Module 2.4</h3>
+      <a href="module2-1.html">🧠 Lesson 2.1</a>
+      <a href="quiz2-1.html">✅ Quiz 2.1</a>
+      <a href="module2-2.html">🧠 Lesson 2.2</a>
+      <a href="module2-3.html">🧠 Lesson 2.3</a>
+      <a href="quiz2-3.html">✅ Quiz 2.3</a>
+      <a href="module2-4.html" class="active">🧠 Lesson 2.4</a>
+      <a href="module2-5.html">🧠 Lesson 2.5</a>
+      <a href="module2-overview.html">📖 Module 2 Overview</a>
+      <a href="module2test.html">🏆 Module 2 Assessment</a>
+      <hr>
+      <a href="index.html">← Back to Home</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+      <h1>🧞 Module 2.4: Mind Reading</h1>
+      <p>As developers, we have the capability of <strong>accessing Chatbuddy's memory</strong> whenever we need to make improvements, adjustments or just to see how it's thinking...</p>
+      <p>We just integrated a highly-functioning 🆘 Button, which allows users to see exactly <strong>what Chatbuddy is capable of.</strong> In this lesson, we're going to integrate a command that shows just exactly <strong>how much Chatbuddy remembers.</strong>🧠</p>
+
+      <!-- Personality Section -->
+      <section>
+        <h2>🤔 The 'Summary' Call</h2>
+        <p>Are you ever talking to someone and find yourself wondering <strong>"Are they REALLY paying attention?"</strong></p>
+        <p>Do you almost wish you could <strong>quiz them on the spot</strong> to see exactly just how much they remember?</p>
+        <p>Well, we can make you <strong>TWO promises...</strong></p>
+        <ul>
+          <li>😎 Chatbuddy <strong>IS paying attention</strong></li>
+          <li>🧠 We're about to add the ability to <strong>read Chatbuddy's mind mid-conversation</strong></li>
+        </ul>
+        <p>Want to integrate the ability to <strong>be a mind reader?</strong> Let's do it!</p>
+        <p>To start, we need to integrate a new 'elif' statement...</p>
+        <p>This is what we'll add to the code (and yes, we'll still show you your <strong>FULLY updated chatbot.py at the end of this lesson)...🌟</strong></p>
+        <pre><code>elif user_input == "summary":
+    print("ChatBuddy: Here's what I remember about you so far! 🧠📋")
+    print(f"👤 Name: {user_name}")
+    print(f"🏷️ Nickname: {memory.get('nickname', 'Not set 😕')}")
+    print(f"🎨 Favorite Color: {memory.get('favorite_color', 'Not set 😕')}")
+    print(f"🍔 Favorite Food: {memory.get('favorite_food', 'Not set 😕')}")
+    </code></pre>
+        <p>With this, if the user were to call 'Summary', Chatbuddy is now <strong>able to recall memorable inputs</strong> such as the user's <strong>Name, Nickname, Favorite Color, & Favorite Food</strong>.</p>
+        <p>If the user calls 'Summary' <strong>BEFORE inputting memorable information</strong>, Chatbuddy will respond with this:</p>
+        <pre><code>Not set 😕</code></pre>
+        <p>No, this isn't because Chatbuddy refuses to let you use your mind reading powers... This message occurs when the user hasn't given the information yet.</p>
+        <p>Right now, the information recalled by the 'Summary' feature <strong>is STILL only temporary memory.</strong> This means unlike learned_memory.json, Chatbuddy won't remember your favorite food, nickname, etc. after the conversation comes to an end.</p>
+        <p>Not to worry though! We'll <strong>improve permanent memory</strong> in a later lesson. Right now, it's just important we get the 'Summary' feature integrated!😁</p>
+        <p>There's another crucial step we need to make before this feature reaches <strong>maximum capability⚡</strong></p>
+        <p>Can you guess what it is?🤔</p>
+        <p><strong>HINT:</strong> We JUST integrated it...</p>
+        <p>If you said the answer is the <strong>'Help' Button</strong>, you're 150% correct!</p>
+        <p>The 🆘 feature does <strong>NOT updated automatically.</strong> This means you'll manually have to adjust the output when the user calls for 'Help' during an interaction.</p>
+        <p>☘️ Lucky for us, we've incorporated <strong>modularization</strong>, so it'll be a breeze to find the applicable code we need to update!</p>
+      </section>
+
+      <section>
+        <h2>📚 Your UPDATED HELP_MESSAGE  </h2>
+        <pre><code>HELP_MESSAGE = """
+Here are some things you can ask me! 🤖💬
+                        
+🔹 Greet me: "hi", "hello", "hey"
+🔹 Ask how I'm doing: "how are you?"
+🔹 Ask the time: "what time is it?", "current time"
+🔹 Ask the date: "what's the date?", "current date"
+🔹 Tell me your favorites:
+    - "my favorite color is blue"
+    - "what's my favorite color?"
+    - "my favorite food is pizza"
+    - "what's my favorite food?"
+    - "my nickname is champ"
+    - "what's my nickname?"
+🔹 Ask for a summary of what I know about you: "summary"
+🔹 Tell me how you're feeling (e.g., tired, sad, great)
+🔹 Teach me new responses! If I don’t know something, you can tell me how to reply.
+🔹 Say "bye" to end the chat
+                        
+Type "help" anytime to see this again! 🆘
+"""</code></pre>
+        <p>An easy update to your <strong>HELP_MESSAGE</strong>. Now, let's take a look at your <strong>FULLY updated chatbot.py </strong></p>
+        <pre><code>import random
+import json
+import os
+from datetime import datetime
+                        
+# ============================== Constants ==============================
+                        
+JOKES = [
+    "Why don't skeletons fight each other? They don't have the guts. 💀",
+    "What do you call fake spaghetti? An impasta! 🍝",
+    "Why did the scarecrow win an award? Because he was outstanding in his field! 🌾",
+    "I'm reading a book on anti-gravity. It's impossible to put down! 📚",
+    "Why did the math book look sad? Because it had too many problems. ➗"
+]
+                        
+GREETINGS = ["Hey there! 👋", "Hiya! 😊", "Howdy! 🤠", "What's up? 🙌", "Yo yo yo! 🤖"]
+MOOD_RESPONSES = [
+    "I'm doing great, thanks for asking! 😎",
+    "Better now that you're here! 😁",
+    "Feeling fantastic! What about you? 🌟"
+]
+                        
+NO_RESPONSES = [
+    "Hmm... I don't know how to respond to that yet. 🤔",
+    "I'm still learning! Try something else. 📚",
+    "That one's a mystery to me. 😅"
+]
+                        
+HELP_MESSAGE = """
+Here are some things you can ask me! 🤖💬
+                        
+🔹 Greet me: "hi", "hello", "hey"
+🔹 Ask how I'm doing: "how are you?"
+🔹 Ask the time: "what time is it?", "current time"
+🔹 Ask the date: "what's the date?", "current date"
+🔹 Tell me your favorites:
+    - "my favorite color is blue"
+    - "what's my favorite color?"
+    - "my favorite food is pizza"
+    - "what's my favorite food?"
+    - "my nickname is champ"
+    - "what's my nickname?"
+🔹 Ask for a summary of what I know about you: "summary"
+🔹 Tell me how you're feeling (e.g., tired, sad, great)
+🔹 Teach me new responses! If I don’t know something, you can tell me how to reply.
+🔹 Say "bye" to end the chat
+                        
+Type "help" anytime to see this again! 🆘
+"""
+                        
+MEMORY_FILE = "learned_memory.json"
+                        
+# ============================== Utility Functions ==============================
+                        
+def load_memory():
+    if os.path.exists(MEMORY_FILE):
+        with open(MEMORY_FILE, "r") as f:
+            return json.load(f)
+    return {}
+                        
+def save_memory(memory):
+    with open(MEMORY_FILE, "w") as f:
+        json.dump(memory, f, indent=4)
+                        
+def get_time_greeting():
+    hour = datetime.now().hour
+    if hour < 12:
+        return "Good morning"
+    elif hour < 18:
+        return "Good afternoon"
+    return "Good evening"
+                        
+def get_current_time():
+    return datetime.now().strftime("%I:%M %p")
+                        
+def get_current_date():
+    return datetime.now().strftime("%A, %B %d, %Y")
+                        
+def offer_joke(user_name):
+    print("ChatBuddy: Want to hear a joke to cheer you up? (Yes/No)")
+    response = input(f"{user_name}: ").lower()
+    if "yes" in response:
+        print(f"ChatBuddy: {random.choice(JOKES)}")
+    else:
+        print("ChatBuddy: Alright, I'm here if you need a smile later. 🤗")
+                        
+# ============================== Core Chat Functions ==============================
+                        
+def greet_user():
+    print("🤖 Hello! I'm ChatBuddy. What's your name?")
+    user_name = input("You: ")
+    greeting = get_time_greeting()
+    print(f"ChatBuddy: {greeting}, {user_name}! {random.choice(GREETINGS)} Ask me anything. 😄")
+    return user_name
+                        
+def ask_emotion(user_name):
+    print("ChatBuddy: How are you doing today?")
+    return input(f"{user_name}: ").lower()
+                        
+def handle_emotion(emotion_input, user_name):
+    if "not great" in emotion_input:
+        print("ChatBuddy: I'm sorry you're not feeling great. Anything I can do to cheer you up? 🤗")
+        offer_joke(user_name)
+    elif any(word in emotion_input for word in ["good", "great", "happy"]):
+        print("ChatBuddy: That's awesome to hear! 😄 Keep up the good vibes!")
+    elif "sad" in emotion_input:
+        print("ChatBuddy: I'm sorry you're feeling sad. I'm here if you want to talk. 🤗")
+        offer_joke(user_name)
+    elif "tired" in emotion_input:
+        print("ChatBuddy: You should try to rest up. Sleep is important! 😴")
+    elif "hungry" in emotion_input:
+        print("ChatBuddy: You better grab a snack! 🍕 Got a favorite food?")
+    else:
+        print("ChatBuddy: Thanks for sharing. I'm here for you no matter what! 😊")
+                        
+def respond_to_input(user_input, memory, learned_memory, user_name):
+    if user_input in learned_memory:
+        print(f"ChatBuddy: {learned_memory[user_input]}")
+    elif user_input == "help":
+        print(f"ChatBuddy: {HELP_MESSAGE}")
+    elif "hello" in user_input or "hi" in user_input:
+        print(f"ChatBuddy: {random.choice(GREETINGS)}")
+    elif "how are you" in user_input:
+        print(f"ChatBuddy: {random.choice(MOOD_RESPONSES)}")
+    elif any(phrase in user_input for phrase in ["what time is it", "current time", "tell me the time", "what's the time"]):
+        print(f"ChatBuddy: It's currently {get_current_time()} ⏰")
+    elif any(phrase in user_input for phrase in ["what's the date", "what is the date", "current date"]):
+        print(f"ChatBuddy: Today is {get_current_date()} 📅")
+    elif "my favorite color is" in user_input:
+        color = user_input.split("is")[-1].strip()
+        memory["favorite_color"] = color
+        print(f"ChatBuddy: Got it! I'll remember your favorite color is {color}. 🎨")
+    elif "what's my favorite color" in user_input:
+        print(f"ChatBuddy: Your favorite color is {memory.get('favorite_color', '...Tell me! 🤷‍♂️')}")
+    elif "my favorite food is" in user_input:
+        food = user_input.split("is")[-1].strip()
+        memory["favorite_food"] = food
+        print(f"ChatBuddy: Yum! I'll remember your favorite food is {food}. 😋")
+    elif "what's my favorite food" in user_input:
+        print(f"ChatBuddy: Your favorite food is {memory.get('favorite_food', '...Not sure yet! 🤤')}")
+    elif "my nickname is" in user_input:
+        nickname = user_input.split("is")[-1].strip()
+        memory["nickname"] = nickname
+        print(f"ChatBuddy: That's a cool nickname! I'll remember it's {nickname}, right? 😎")
+    elif "what's my nickname" in user_input:
+        print(f"ChatBuddy: Your nickname is {memory.get('nickname', '...Tell me what it is! 🕵️')}")
+    elif user_input == "summary":
+        print("ChatBuddy: Here's what I remember about you so far! 🧠📋")
+        print(f"👤 Name: {user_name}")
+        print(f"🏷️ Nickname: {memory.get('nickname', 'Not set 😕')}")
+        print(f"🎨 Favorite Color: {memory.get('favorite_color', 'Not set 😕')}")
+        print(f"🍔 Favorite Food: {memory.get('favorite_food', 'Not set 😕')}")
+    elif "bye" in user_input:
+        print(f"ChatBuddy: Bye {user_name}! Catch you later! 👋")
+        return False
+    elif any(word in user_input for word in ["good", "great", "sad", "tired", "hungry", "not great"]):
+        handle_emotion(user_input, user_name)
+    else:
+        print("ChatBuddy: I don't know how to respond to that yet. 🤔")
+        print("ChatBuddy: What should I say next time someone says that?")
+        new_response = input(f"{user_name}: ")
+        learned_memory[user_input] = new_response
+        save_memory(learned_memory)
+        print("ChatBuddy: Got it! I'll remember that next time. 🧠")
+    return True
+                        
+# ============================== Main ==============================
+                        
+def main():
+    learned_memory = load_memory()
+    memory = {}
+    user_name = greet_user()
+    emotion_input = ask_emotion(user_name)
+    handle_emotion(emotion_input, user_name)
+                        
+    while True:
+        user_input = input(f"{user_name}: ").lower()
+        if not respond_to_input(user_input, memory, learned_memory, user_name):
+            break
+                        
+if __name__ == "__main__":
+    main()</code></pre>
+        <p>Go ahead and <strong>Copy & Paste</strong> that into your chatbot.py </p>
+      <!-- Step 1: Create .json -->
+      <h2>🔗 Let's Put It All Together</h2>
+      <p>To test your new <strong>Summary Feature</strong>, boot up Chatbuddy as normal.</p>
+      <p>Next, <strong>go through the introduction phase.</strong></p>
+      <p>If you <strong>call the 'Summary Feature' DIRECTLY after the introduction phase</strong>, you should receive an output like this...</p>
+      <pre><code>ChatBuddy: Here's what I remember about you so far! 🧠📋
+👤 Name: ChatAcademy
+🏷️ Nickname: Not set 😕
+🎨 Favorite Color: Not set 😕
+🍔 Favorite Food: Not set 😕</code></pre>
+      <p>As we discussed, Chatbuddy will only be able to recall information <strong>AFTER</strong> you input it.</p>
+      <p>You might be able to be a mind reader, but Chatbuddy is not... (yet)😉</p>
+      <p>Now, <strong>tell Chatbuddy your favorite color, nickname, and favorite food.</strong></p>
+      <p>Then, <strong>give that Summary Feature another shot by calling...</strong></p>
+      <pre><code>summary</code></pre>
+      <p>You should receive an output displaying the information you plugged in. <strong>Like this...</strong></p>
+      <pre><code>ChatBuddy: Here's what I remember about you so far! 🧠📋
+👤 Name: ChatAcademy
+🏷️ Nickname: C.A.
+🎨 Favorite Color: Blue
+🍔 Favorite Food: Steak</code></pre>
+
+      <!-- Step 2: Try It Out -->
+      <h2>🤔 Didn't Quite Work?</h2>
+      <p>That's <strong>totally fine!</strong></p>
+      <p>Don't get discouraged. Try <strong>Copy & Pasting</strong> the above chatbot.py ⬆️</p>
+      <p>Make sure you <strong>SAVE</strong> your updated file <strong>BEFORE</strong> you run it!</p>
+      <p>The updated code <strong>will NOT run correctly</strong> if the most recent version is not saved!</p>
+
+      <h2>🎯 Ready to Move On?</h2>
+      <p>Take a breather. Hitting the ➡️ button <strong> DOESN'T</strong> take you to a quiz...</p>
+      <p>We have <strong>ONE more</strong> lesson before the <strong>Module 2 Assessment</strong>!</p>
+
+      <!-- Next Steps -->
+      <hr>
+      <div style="text-align: center;">
+        <a class="button" href="module2-5.html">➡️ Lesson 2.5</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
