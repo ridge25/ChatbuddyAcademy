@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module 2.2 – Modular Code</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <script>
+    function toggleMenu() {
+      document.getElementById("mobileMenu").classList.toggle("hidden");
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: #2b2b2b;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: #444;
+      margin-top: 40px;
+    }
+
+    code, pre {
+      background-color: #f4f4f4;
+      padding: 10px;
+      border-radius: 6px;
+      display: block;
+      white-space: pre-wrap;
+      font-size: 14px;
+    }
+
+    a.button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      background-color: #4f46e5;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+
+    a.button:hover {
+      background-color: #3730a3;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: white;
+      border-right: 1px solid #ddd;
+      padding: 20px;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 10px;
+      color: #333;
+      text-decoration: none;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      transition: background 0.3s;
+    }
+
+    .sidebar a:hover {
+      background: #eef2ff;
+    }
+
+    .sidebar a.active {
+      background-color: #e0e7ff;
+      font-weight: bold;
+      color: #1e3a8a;
+    }
+
+    .mobile-toggle {
+      display: none;
+      padding: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        display: none;
+      }
+
+      .mobile-toggle {
+        display: block;
+      }
+
+      #mobileMenu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: white;
+        width: 250px;
+        height: 100%;
+        padding: 20px;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        z-index: 999;
+      }
+
+      #mobileMenu a {
+        display: block;
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div style="display: flex;">
+    <!-- Desktop Sidebar -->
+    <div class="sidebar">
+      <h3 style="margin-top: 0;">📘 Module 2.2</h3>
+      <a href="module2-1.html">🧠 Lesson 2.1</a>
+      <a href="quiz2-1.html">✅ Quiz 2.1</a>
+      <a href="module2-2.html" class="active">🧠 Lesson 2.2</a>
+      <a href="module2-3.html">🧠 Lesson 2.3</a>
+      <a href="quiz2-3.html">✅ Quiz 2.3</a>
+      <a href="module2-4.html">🧠 Lesson 2.4</a>
+      <a href="module2-5.html">🧠 Lesson 2.5</a>
+      <a href="module2-overview.html">📖 Module 2 Overview</a>
+      <a href="module2test.html">🏆 Module 2 Assessment</a>
+      <hr>
+      <a href="index.html">← Back to Home</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+      <h1>🧩 Module 2.2: Modular Code</h1>
+      <p>If you haven't realized by now, <strong>ORGANIZATION IS KEY</strong> when it comes to writing efficient code!</p>
+      <p>As our bot's capabilities increase, our chatbot.py does too. This can sometimes lead to messy code which makes it tough to navigate and edit down the road.</p>
+
+      <!-- Personality Section -->
+      <section>
+        <h2>💭 What is Modularization?</h2>
+        <p>You're probably wondering, <strong>"What the heck is mOdUlAriZaTiOn?"</strong></p>
+        <p>Good news, we have an answer for you!</p>
+        <p>Modularization is the process of <strong>breaking your code into smaller, organized, and reusable parts called functions or modules.</strong> Instead of one long script (like your current chatbot), you separate the logic into chunks with clear responsibilities. This makes your code easier to read, maintain, and extend.</p>
+        <p>Some <strong>benefits</strong> of modularization include...</p>
+        <ul>
+          <li>📦 Easier to Understand</li>
+          <li>🔧 Easier to Fix & Improve</li>
+          <li>🧠 Easier to Reuse</li>
+          <li>👨‍👩‍👧 Team-Friendly</li>
+          <li>📈 Scalable</li>
+        </ul>
+        <p>Whether you realize it or not, those are some 🔥 benefits to the modularization process!</p>
+        <p>So, to make this happen we'll categorize everything!</p>
+        <p>🍴Think of it as putting dishes in the right cabinets after you take them out of the dishwasher...</p>
+        <p>Plates have their own specific place, so do bowls, and so do glasses.</p>
+        <p><strong>Each section of our code has its own specific place too!</strong> It becomes our job to make sure we 'put them away' correctly!</p>
+        <h3>Here Are the Specific Places (or 'Cabinets') for each part of our chatbot.py 🤖</h3>
+        <pre><code># ============================== Constants ==============================</code></pre>
+        <pre><code># ============================== Utility Functions ======================</code></pre>
+        <pre><code># ============================== Core Chat Functions ====================</pre></code>
+        <pre><code># ============================== Main ===================================</code></pre>
+        <p>Now that we know the correct <strong>'cabinets'</strong> our code should be placed in, it's time to put them away correctly!</p>
+        <p>Below is an updated version of the code we've built to this point using modularization. Take a look and see if everything looks put away correctly...</p>
+        <p><strong>Hint:</strong> Everything is put away correctly😉</p>
+      </section>
+
+      <section>
+        <h2>⛰️ Your NEW chatbot.py </h2>
+        <pre><code>import random
+import json
+import os
+from datetime import datetime
+            
+# ============================== Constants ==============================
+            
+JOKES = [
+    "Why don't skeletons fight each other? They don't have the guts. 💀",
+    "What do you call fake spaghetti? An impasta! 🍝",
+    "Why did the scarecrow win an award? Because he was outstanding in his field! 🌾",
+    "I'm reading a book on anti-gravity. It's impossible to put down! 📚",
+    "Why did the math book look sad? Because it had too many problems. ➗"
+]
+            
+GREETINGS = ["Hey there! 👋", "Hiya! 😊", "Howdy! 🤠", "What's up? 🙌", "Yo yo yo! 🤖"]
+MOOD_RESPONSES = [
+    "I'm doing great, thanks for asking! 😎",
+    "Better now that you're here! 😁",
+    "Feeling fantastic! What about you? 🌟"
+]
+            
+NO_RESPONSES = [
+    "Hmm... I don't know how to respond to that yet. 🤔",
+    "I'm still learning! Try something else. 📚",
+    "That one's a mystery to me. 😅"
+]
+            
+MEMORY_FILE = "learned_memory.json"
+            
+# ============================== Utility Functions ==============================
+            
+def load_memory():
+    if os.path.exists(MEMORY_FILE):
+        with open(MEMORY_FILE, "r") as f:
+            return json.load(f)
+    return {}
+            
+def save_memory(memory):
+    with open(MEMORY_FILE, "w") as f:
+        json.dump(memory, f, indent=4)
+            
+def get_time_greeting():
+    hour = datetime.now().hour
+    if hour < 12:
+        return "Good morning"
+    elif hour < 18:
+        return "Good afternoon"
+    return "Good evening"
+            
+def get_current_time():
+    return datetime.now().strftime("%I:%M %p")
+            
+def get_current_date():
+    return datetime.now().strftime("%A, %B %d, %Y")
+            
+def offer_joke(user_name):
+    print("ChatBuddy: Want to hear a joke to cheer you up? (Yes/No)")
+    response = input(f"{user_name}: ").lower()
+    if "yes" in response:
+        print(f"ChatBuddy: {random.choice(JOKES)}")
+    else:
+        print("ChatBuddy: Alright, I'm here if you need a smile later. 🤗")
+            
+# ============================== Core Chat Functions ==============================
+            
+def greet_user():
+    print("🤖 Hello! I'm ChatBuddy. What's your name?")
+    user_name = input("You: ")
+    greeting = get_time_greeting()
+    print(f"ChatBuddy: {greeting}, {user_name}! {random.choice(GREETINGS)} Ask me anything. 😄")
+    return user_name
+            
+def ask_emotion(user_name):
+    print("ChatBuddy: How are you doing today?")
+    return input(f"{user_name}: ").lower()
+            
+def handle_emotion(emotion_input, user_name):
+    if "not great" in emotion_input:
+        print("ChatBuddy: I'm sorry you're not feeling great. Anything I can do to cheer you up? 🤗")
+        offer_joke(user_name)
+    elif any(word in emotion_input for word in ["good", "great", "happy"]):
+        print("ChatBuddy: That's awesome to hear! 😄 Keep up the good vibes!")
+    elif "sad" in emotion_input:
+        print("ChatBuddy: I'm sorry you're feeling sad. I'm here if you want to talk. 🤗")
+        offer_joke(user_name)
+    elif "tired" in emotion_input:
+        print("ChatBuddy: You should try to rest up. Sleep is important! 😴")
+    elif "hungry" in emotion_input:
+        print("ChatBuddy: You better grab a snack! 🍕 Got a favorite food?")
+    else:
+        print("ChatBuddy: Thanks for sharing. I'm here for you no matter what! 😊")
+            
+def respond_to_input(user_input, memory, learned_memory, user_name):
+    if user_input in learned_memory:
+        print(f"ChatBuddy: {learned_memory[user_input]}")
+    elif "hello" in user_input or "hi" in user_input:
+        print(f"ChatBuddy: {random.choice(GREETINGS)}")
+    elif "how are you" in user_input:
+        print(f"ChatBuddy: {random.choice(MOOD_RESPONSES)}")
+    elif any(phrase in user_input for phrase in ["what time is it", "current time", "tell me the time", "what's the time"]):
+        print(f"ChatBuddy: It's currently {get_current_time()} ⏰")
+    elif any(phrase in user_input for phrase in ["what's the date", "what is the date", "current date"]):
+        print(f"ChatBuddy: Today is {get_current_date()} 📅")
+    elif "my favorite color is" in user_input:
+        color = user_input.split("is")[-1].strip()
+        memory["favorite_color"] = color
+        print(f"ChatBuddy: Got it! I'll remember your favorite color is {color}. 🎨")
+    elif "what's my favorite color" in user_input:
+        print(f"ChatBuddy: Your favorite color is {memory.get('favorite_color', '...Tell me! 🤷‍♂️')}")
+    elif "my favorite food is" in user_input:
+        food = user_input.split("is")[-1].strip()
+        memory["favorite_food"] = food
+        print(f"ChatBuddy: Yum! I'll remember your favorite food is {food}. 😋")
+    elif "what's my favorite food" in user_input:
+        print(f"ChatBuddy: Your favorite food is {memory.get('favorite_food', '...Not sure yet! 🤤')}")
+    elif "my nickname is" in user_input:
+        nickname = user_input.split("is")[-1].strip()
+        memory["nickname"] = nickname
+        print(f"ChatBuddy: That's a cool nickname! I'll remember it—{nickname}, right? 😎")
+    elif "what's my nickname" in user_input:
+        print(f"ChatBuddy: Your nickname is {memory.get('nickname', '...Tell me what it is! 🕵️')}")
+    elif "bye" in user_input:
+        print(f"ChatBuddy: Bye {user_name}! Catch you later! 👋")
+        return False
+    elif any(word in user_input for word in ["good", "great", "sad", "tired", "hungry", "not great"]):
+        handle_emotion(user_input, user_name)
+    else:
+        print("ChatBuddy: I don't know how to respond to that yet. 🤔")
+        print("ChatBuddy: What should I say next time someone says that?")
+        new_response = input(f"{user_name}: ")
+        learned_memory[user_input] = new_response
+        save_memory(learned_memory)
+        print("ChatBuddy: Got it! I'll remember that next time. 🧠")
+    return True
+            
+# ============================== Main ==============================
+            
+def main():
+    learned_memory = load_memory()
+    memory = {}
+    user_name = greet_user()
+    emotion_input = ask_emotion(user_name)
+    handle_emotion(emotion_input, user_name)
+            
+    while True:
+        user_input = input(f"{user_name}: ").lower()
+        if not respond_to_input(user_input, memory, learned_memory, user_name):
+            break
+            
+if __name__ == "__main__":
+    main()</code></pre>
+        <p>🎉 And there it is! You've officially used modularization to put your dishes (code) away. It's coming along great so far! <strong>Let's keep going!</strong></p>
+      </section>
+
+      <!-- Step 1: Create .json -->
+      <h2>🚀 Pro Tip</h2>
+      <p>You need to make sure you're continuing to save <strong>BOTH your chatbot.py AND learned_memory.json </strong></p>
+
+      <!-- Step 2: Try It Out -->
+      <h2>🤔 Why Modularization?</h2>
+      <p>You might be thinking, <strong>"If the code functions the same as before, what's the point of categorizing everything?"</strong></p>
+      <p>Think of your code as a map, and your bot as the driver of a car.</p>
+      <p>If you handed your bot an empty map and expected it to find its own way to a destination, <strong>you'd be crazy!</strong></p>
+      <p><strong>Jumbled code is the equivalent of a blank map.</strong> Without efficent code, your bot cannot perform the tasks you programmed it to.</p>
+      <p>Through the use of modularization, the map (A.K.A. Your Code) shows <strong>the perfect route to get your bot to the desired destination!</strong></p>
+
+      <!-- More Personality Tips -->
+      <section>
+        <h2>🤝 Teamwork Makes the Dream Work</h2>
+          <p>Another benefit to modularization is the idea that <strong>it allows for efficent collaboration!</strong></p>
+          <p>When you make coding your professional career, <strong>you'll be put on assignments that require numerous developers at once.</strong></p>
+          <p>The use of modularization will allow you and your collegues to seamlessly integrate changes and improvements without wondering, <strong>"Where the heck did they want me to adjust the bot's initial greetings?"</strong></p>
+          <p>🗺️ Always remember the map!</p>
+      </section>
+      
+      <h2>🚗 Ready to Move On?</h2>
+      <p>With our dishes put away, we can really start to explore some cool functionalities that'll continue to make your bot unique!</p>
+      <p>Go ahead and take a deep breath, <strong>you don't have a quiz just yet.</strong> We're going to keep plugging away on Chatbuddy's capabilities!</p>
+
+      <!-- Next Steps -->
+      <hr>
+      <div style="text-align: center;">
+        <a class="button" href="module2-3.html">🤠 Let's Head to Lesson 2.3</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

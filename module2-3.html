@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module 2.3 – The Help Button</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <script>
+    function toggleMenu() {
+      document.getElementById("mobileMenu").classList.toggle("hidden");
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: #2b2b2b;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: #444;
+      margin-top: 40px;
+    }
+
+    code, pre {
+      background-color: #f4f4f4;
+      padding: 10px;
+      border-radius: 6px;
+      display: block;
+      white-space: pre-wrap;
+      font-size: 14px;
+    }
+
+    a.button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      background-color: #4f46e5;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+
+    a.button:hover {
+      background-color: #3730a3;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: white;
+      border-right: 1px solid #ddd;
+      padding: 20px;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 10px;
+      color: #333;
+      text-decoration: none;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      transition: background 0.3s;
+    }
+
+    .sidebar a:hover {
+      background: #eef2ff;
+    }
+
+    .sidebar a.active {
+      background-color: #e0e7ff;
+      font-weight: bold;
+      color: #1e3a8a;
+    }
+
+    .mobile-toggle {
+      display: none;
+      padding: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        display: none;
+      }
+
+      .mobile-toggle {
+        display: block;
+      }
+
+      #mobileMenu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: white;
+        width: 250px;
+        height: 100%;
+        padding: 20px;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        z-index: 999;
+      }
+
+      #mobileMenu a {
+        display: block;
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div style="display: flex;">
+    <!-- Desktop Sidebar -->
+    <div class="sidebar">
+      <h3 style="margin-top: 0;">📘 Module 2.3</h3>
+      <a href="module2-1.html">🧠 Lesson 2.1</a>
+      <a href="quiz2-1.html">✅ Quiz 2.1</a>
+      <a href="module2-2.html">🧠 Lesson 2.2</a>
+      <a href="module2-3.html" class="active">🧠 Lesson 2.3</a>
+      <a href="quiz2-3.html">✅ Quiz 2.3</a>
+      <a href="module2-4.html">🧠 Lesson 2.4</a>
+      <a href="module2-5.html">🧠 Lesson 2.5</a>
+      <a href="module2-overview.html">📖 Module 2 Overview</a>
+      <a href="module2test.html">🏆 Module 2 Assessment</a>
+      <hr>
+      <a href="index.html">← Back to Home</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+      <h1>🆘 Module 2.3: The Help Button</h1>
+      <p>As the list of Chatbuddy's capabilities continues to grow, it becomes a good idea to give potential users <strong>some sense of direction</strong> when they interact with the bot.</p>
+      <p>We talked about providing Chatbuddy with a <strong>map for making well-informed decisions</strong>, and it is equally as important to make sure your user(s) have some sense of direction as well!</p>
+
+      <!-- Personality Section -->
+      <section>
+        <h2>🔧 Why a Help Button is... Helpful</h2>
+        <p>The implementation might not seem like the most exciting implementation so far, but <strong>let us sway your thinking...</strong></p>
+        <p>Implementing a 'Help Button' is the first step in truly making your bot <strong>user-friendly</strong>.</p>
+        <p>If you think about it, everything we have coded up to this point has been strictly for <strong>your enjoyment</strong>. This isn't a bad thing by any means, but if your plan is to deploy your bot or let your friends interact with it at some point, <strong>you need to provide some sense of direction if it's requested!</strong></p>
+        <p>🤔 Still not totally sure? Here are some benefits of throwing in that good 'ole SOS...</p>
+        <ul>
+          <li>🔍 Improves User Guidance</li>
+          <li>🧭 Reduces Confusion</li>
+          <li>⚡ Boosts Efficiency</li>
+          <li>💬 Encourages Engagement</li>
+          <li>🎯 Supports User Satisfaction</li>
+        </ul>
+        <p>Here's the thing. We know that at some point during your development journey, you've probably thought, <strong>"I feel like bot development could be a good way to make some decent money..."</strong></p>
+        <p>And in this case... <strong>YOU'RE RIGHT</strong>🤑</p>
+        <p>The thing is, <strong>the more user-friendly your bot is, the more money there is to get!</strong>🍊</p>
+        <p>Selling a bot with capabilities that only you understand <strong>is pointless</strong>.</p>
+        <p>But, selling a bot where its capabilities are outlined specifically so the user knows how to interact with it <strong>is priceless</strong>.</p>
+        <h3>Remember, we just worked hard on modularization! It's important to make sure we keep that ball rolling! We'll throw our new 'Help' button information in the:</h3>
+        <pre><code># ============================== Constants ==============================</code></pre>
+        <p>Now that we know where the 'Help' button information will go, let's go ahead and update your <strong>chatbot.py </strong>in FULL!🌟</p>
+        <p>Here is the <strong>Help Button</strong> feature built directly into your existing code!</p>
+      </section>
+
+      <section>
+        <h2>🆘 Your FULLY UPDATED chatbot.py </h2>
+        <pre><code>import random
+import json
+import os
+from datetime import datetime
+            
+# ============================== Constants ==============================
+            
+JOKES = [
+    "Why don't skeletons fight each other? They don't have the guts. 💀",
+    "What do you call fake spaghetti? An impasta! 🍝",
+    "Why did the scarecrow win an award? Because he was outstanding in his field! 🌾",
+    "I'm reading a book on anti-gravity. It's impossible to put down! 📚",
+    "Why did the math book look sad? Because it had too many problems. ➗"
+]
+            
+GREETINGS = ["Hey there! 👋", "Hiya! 😊", "Howdy! 🤠", "What's up? 🙌", "Yo yo yo! 🤖"]
+MOOD_RESPONSES = [
+    "I'm doing great, thanks for asking! 😎",
+    "Better now that you're here! 😁",
+    "Feeling fantastic! What about you? 🌟"
+]
+            
+NO_RESPONSES = [
+    "Hmm... I don't know how to respond to that yet. 🤔",
+    "I'm still learning! Try something else. 📚",
+    "That one's a mystery to me. 😅"
+]
+            
+HELP_MESSAGE = """
+Here are some things you can ask me! 🤖💬
+            
+🔹 Greet me: "hi", "hello", "hey"
+🔹 Ask how I'm doing: "how are you?"
+🔹 Ask the time: "what time is it?", "current time"
+🔹 Ask the date: "what's the date?", "current date"
+🔹 Tell me your favorites:
+    - "my favorite color is blue"
+    - "what's my favorite color?"
+    - "my favorite food is pizza"
+    - "what's my favorite food?"
+    - "my nickname is champ"
+    - "what's my nickname?"
+🔹 Tell me how you're feeling (e.g., tired, sad, great)
+🔹 Teach me new responses! If I don’t know something, you can tell me how to reply.
+🔹 Say "bye" to end the chat
+            
+Type "help" anytime to see this again! 🆘
+"""
+            
+MEMORY_FILE = "learned_memory.json"
+            
+# ============================== Utility Functions ==============================
+            
+def load_memory():
+    if os.path.exists(MEMORY_FILE):
+        with open(MEMORY_FILE, "r") as f:
+            return json.load(f)
+    return {}
+            
+def save_memory(memory):
+    with open(MEMORY_FILE, "w") as f:
+        json.dump(memory, f, indent=4)
+            
+def get_time_greeting():
+    hour = datetime.now().hour
+    if hour < 12:
+        return "Good morning"
+    elif hour < 18:
+        return "Good afternoon"
+    return "Good evening"
+            
+def get_current_time():
+    return datetime.now().strftime("%I:%M %p")
+            
+def get_current_date():
+    return datetime.now().strftime("%A, %B %d, %Y")
+            
+def offer_joke(user_name):
+    print("ChatBuddy: Want to hear a joke to cheer you up? (Yes/No)")
+    response = input(f"{user_name}: ").lower()
+    if "yes" in response:
+        print(f"ChatBuddy: {random.choice(JOKES)}")
+    else:
+        print("ChatBuddy: Alright, I'm here if you need a smile later. 🤗")
+            
+# ============================== Core Chat Functions ==============================
+            
+def greet_user():
+    print("🤖 Hello! I'm ChatBuddy. What's your name?")
+    user_name = input("You: ")
+    greeting = get_time_greeting()
+    print(f"ChatBuddy: {greeting}, {user_name}! {random.choice(GREETINGS)} Ask me anything. 😄")
+    return user_name
+            
+def ask_emotion(user_name):
+    print("ChatBuddy: How are you doing today?")
+    return input(f"{user_name}: ").lower()
+            
+def handle_emotion(emotion_input, user_name):
+    if "not great" in emotion_input:
+        print("ChatBuddy: I'm sorry you're not feeling great. Anything I can do to cheer you up? 🤗")
+        offer_joke(user_name)
+    elif any(word in emotion_input for word in ["good", "great", "happy"]):
+        print("ChatBuddy: That's awesome to hear! 😄 Keep up the good vibes!")
+    elif "sad" in emotion_input:
+        print("ChatBuddy: I'm sorry you're feeling sad. I'm here if you want to talk. 🤗")
+        offer_joke(user_name)
+    elif "tired" in emotion_input:
+        print("ChatBuddy: You should try to rest up. Sleep is important! 😴")
+    elif "hungry" in emotion_input:
+        print("ChatBuddy: You better grab a snack! 🍕 Got a favorite food?")
+    else:
+        print("ChatBuddy: Thanks for sharing. I'm here for you no matter what! 😊")
+            
+def respond_to_input(user_input, memory, learned_memory, user_name):
+    if user_input in learned_memory:
+        print(f"ChatBuddy: {learned_memory[user_input]}")
+    elif user_input == "help":
+        print(f"ChatBuddy: {HELP_MESSAGE}")
+    elif "hello" in user_input or "hi" in user_input:
+        print(f"ChatBuddy: {random.choice(GREETINGS)}")
+    elif "how are you" in user_input:
+        print(f"ChatBuddy: {random.choice(MOOD_RESPONSES)}")
+    elif any(phrase in user_input for phrase in ["what time is it", "current time", "tell me the time", "what's the time"]):
+        print(f"ChatBuddy: It's currently {get_current_time()} ⏰")
+    elif any(phrase in user_input for phrase in ["what's the date", "what is the date", "current date"]):
+        print(f"ChatBuddy: Today is {get_current_date()} 📅")
+    elif "my favorite color is" in user_input:
+        color = user_input.split("is")[-1].strip()
+        memory["favorite_color"] = color
+        print(f"ChatBuddy: Got it! I'll remember your favorite color is {color}. 🎨")
+    elif "what's my favorite color" in user_input:
+        print(f"ChatBuddy: Your favorite color is {memory.get('favorite_color', '...Tell me! 🤷‍♂️')}")
+    elif "my favorite food is" in user_input:
+        food = user_input.split("is")[-1].strip()
+        memory["favorite_food"] = food
+        print(f"ChatBuddy: Yum! I'll remember your favorite food is {food}. 😋")
+    elif "what's my favorite food" in user_input:
+        print(f"ChatBuddy: Your favorite food is {memory.get('favorite_food', '...Not sure yet! 🤤')}")
+    elif "my nickname is" in user_input:
+        nickname = user_input.split("is")[-1].strip()
+        memory["nickname"] = nickname
+        print(f"ChatBuddy: That's a cool nickname! I'll remember it—{nickname}, right? 😎")
+    elif "what's my nickname" in user_input:
+        print(f"ChatBuddy: Your nickname is {memory.get('nickname', '...Tell me what it is! 🕵️')}")
+    elif "bye" in user_input:
+        print(f"ChatBuddy: Bye {user_name}! Catch you later! 👋")
+        return False
+    elif any(word in user_input for word in ["good", "great", "sad", "tired", "hungry", "not great"]):
+        handle_emotion(user_input, user_name)
+    else:
+        print("ChatBuddy: I don't know how to respond to that yet. 🤔")
+        print("ChatBuddy: What should I say next time someone says that?")
+        new_response = input(f"{user_name}: ")
+        learned_memory[user_input] = new_response
+        save_memory(learned_memory)
+        print("ChatBuddy: Got it! I'll remember that next time. 🧠")
+    return True
+            
+# ============================== Main ==============================
+            
+def main():
+    learned_memory = load_memory()
+    memory = {}
+    user_name = greet_user()
+    emotion_input = ask_emotion(user_name)
+    handle_emotion(emotion_input, user_name)
+            
+    while True:
+        user_input = input(f"{user_name}: ").lower()
+        if not respond_to_input(user_input, memory, learned_memory, user_name):
+            break
+            
+if __name__ == "__main__":
+    main()</code></pre>
+        <p>Now your 🆘 button has been <strong>fully implemented!</strong> Here's how you can test it for yourself...</p>
+        <p>First, <strong>start up your bot as usual</strong> and <strong>go through the introduction process</strong> (to be polite of course).</p>
+        <p>Next, type in</p>
+        <pre><code>help</code></pre>
+        <p>After inputting the <strong>'Help'</strong> message, Chatbuddy should display the response we coded:</p>
+        <pre><code>Here are some things you can ask me! 🤖💬
+            
+🔹 Greet me: "hi", "hello", "hey"
+🔹 Ask how I'm doing: "how are you?"
+🔹 Ask the time: "what time is it?", "current time"
+🔹 Ask the date: "what's the date?", "current date"
+🔹 Tell me your favorites:
+    - "my favorite color is blue"
+    - "what's my favorite color?"
+    - "my favorite food is pizza"
+    - "what's my favorite food?"
+    - "my nickname is champ"
+    - "what's my nickname?"
+🔹 Tell me how you're feeling (e.g., tired, sad, great)
+🔹 Teach me new responses! If I don’t know something, you can tell me how to reply.
+🔹 Say "bye" to end the chat
+                        
+Type "help" anytime to see this again! 🆘</code></pre>
+<p>Now, your user has the ability to see just how much Chatbuddy is truly capable of!</p>
+<p><strong>If for some reason your bot doesn't display the help menu, please make sure your code matches ours!</strong></p>
+<p>🤠 A Quick Hint: If you decide to add more to your bot beyond what we're teaching (Which is super great & we encourage), <strong>make sure you update your 'Help' menu with the most up-to-date capabilities</strong> your bot has!</p>
+      </section>
+
+      <!-- Step 1: Create .json -->
+      <h2>🚀 Pro Tip</h2>
+      <p>Ask for feedback! The easiest way to see if your users are satisfied with your bot is by asking a friend to <strong>test-drive</strong> it before deploying it!</p>
+
+      <!-- Step 2: Try It Out -->
+      <h2>🌐 What's Next?</h2>
+      <p>Now that we've given the user the ability to <strong>see what Chatbuddy is capable of</strong>, let's keep seeing how far we can push it!</p>
+      <p>Before we learn more, we do have a <strong>quick quiz</strong> you need to take in order to unlock the next lesson...🔓</p>
+      <p>As the usual mid-module quizzes go, it'll be <strong>5 multiple choice questions.</strong> Just a reminder, you need to get <strong>at least FOUR correct in order to pass.</strong></p>
+      <p>Feeling confident? <strong>Let's do it!</strong></p>
+
+      <!-- Next Steps -->
+      <hr>
+      <div style="text-align: center;">
+        <a class="button" href="quiz2-3.html">🎯 Quiz 2.3</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
