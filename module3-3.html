@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module 3.3 – User Profiles Test-Drive</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <script>
+    function toggleMenu() {
+      document.getElementById("mobileMenu").classList.toggle("hidden");
+    }
+  </script>
+  <style>
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #2c2c2c, #3f3f3f);
+  margin: 0;
+  padding: 0;
+  color: #e0e0e0;
+}
+
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+  background: #1e1e1e;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.05);
+  animation: fadeIn 1s ease-in;
+}
+
+h1, h2 {
+  color: #ffcc00;
+  text-shadow: 1px 1px 0 #000;
+}
+
+h1 {
+  font-size: 2.4rem;
+}
+
+h2 {
+  margin-top: 40px;
+  font-size: 1.8rem;
+}
+
+p {
+  line-height: 1.6;
+}
+
+code, pre {
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #ffcc00;
+  margin: 1em 0;
+  overflow-x: auto;
+}
+
+a.button {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 24px;
+  background-color: #ffcc00;
+  color: #1e1e1e;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+a.button:hover {
+  background-color: #ffd633;
+  transform: scale(1.05);
+}
+
+.sidebar {
+  width: 250px;
+  background: #1b1b1b;
+  border-right: 2px solid #444;
+  padding: 20px;
+  animation: slideInLeft 0.8s ease-in-out;
+}
+
+.sidebar h3 {
+  color: #ffcc00;
+}
+
+.sidebar a {
+  display: block;
+  padding: 10px 12px;
+  color: #dcdcdc;
+  text-decoration: none;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  transition: all 0.3s;
+}
+
+.sidebar a:hover {
+  background: #2e2e2e;
+  color: #ffcc00;
+}
+
+.sidebar a.active {
+  background-color: #ffcc00;
+  color: #1e1e1e;
+  font-weight: bold;
+}
+
+.mobile-toggle {
+  display: none;
+  padding: 16px;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+
+  .mobile-toggle {
+    display: block;
+  }
+
+  #mobileMenu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #1e1e1e;
+    width: 250px;
+    height: 100%;
+    padding: 20px;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.5);
+    z-index: 999;
+    animation: slideInLeft 0.5s ease;
+  }
+
+  #mobileMenu a {
+    display: block;
+    margin-bottom: 10px;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.news-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* spacing between buttons */
+  margin-top: 15px;
+}
+
+.news-buttons button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  background-color: #ffcc00;
+  color: #000;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.news-buttons button:hover {
+  background-color: #555;
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.7);
+}
+
+.modal-content {
+  background-color: #1e1e1e;
+  margin: 15% auto;
+  padding: 20px;
+  border: 2px solid #ffcc00;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 500px;
+  color: #e0e0e0;
+  animation: fadeIn 0.4s ease;
+}
+
+.modal-content h2 {
+  color: #ffcc00;
+}
+
+.close-btn {
+  color: #ffcc00;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: #ffd633;
+}
+
+
+  </style>
+</head>
+<body>
+
+  <div style="display: flex;">
+    <!-- Desktop Sidebar -->
+    <div class="sidebar">
+      <h3 style="margin-top: 0;">🚗 Module 3.3</h3>
+      <a href="module3-1.html">🧠 Lesson 3.1</a>
+      <a href="module3-2.html">🧠 Lesson 3.2</a>
+      <a href="module3-3.html" class="active">🚗 Lesson 3.3</a>
+      <hr>
+      <a href="index.html">← Back to Home</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+      <h1>🚗 Module 3.3: User Profiles Test-Drive</h1>
+      <p>Now that ALL of the necessary changes are in place, let's <strong>see Chatbuddy in action🏁</strong></p>
+      <p>🤔 Let's refer back to the scenario with <strong>you & your brother, Jeff.</strong>
+
+      <section>
+        <p>After implementing the <strong>NEW USER-PROFILE</strong> code, it is YOUR turn to interact with Chatbuddy while Jeff is at work!</p>
+        <p>To begin, go ahead and <strong>boot up</strong> Chatbuddy⚡</p>
+        <p>❗<strong>REMINDER:</strong> To boot up Chatbuddy, <strong>RIGHT-CLICK</strong> on your chatbot.py and click <strong>'Run Python File in Terminal'</strong></p>
+        <p>When Chatbuddy boots up, you should see something like this:</p>
+<pre><code>🤖 Welcome! Are you a returning user or new here?
+
+(No existing profiles yet.)
+            
+Type your name to select a profile or create a new one:
+You:</code></pre>
+        <p>If that's the response you see, <strong>YOU'RE CRUSHING IT!</strong></p>
+        <p>Because there are currently <strong>no active users</strong>, you need to input <strong>YOUR NAME</strong>.</p>
+        <p>For the sake of the exercise, we're going to say our name is '<strong>ChatbuddyAcademy</strong>'</p>
+        <p>Crazy name right? Hey, no judging... It's 2025🙄</p>
+        <p>So, we'll type in our name (ChatbuddyAcademy), and your output should look <strong>similar to this:</strong></p>
+        <pre><code>You: ChatbuddyAcademy
+🔧 Creating a new profile for ChatbuddyAcademy...
+ChatBuddy: Good evening, ChatbuddyAcademy! Hiya! 😊 Ask me anything. 😄
+ChatBuddy: How are you doing today?</code></pre>
+        <p>Now, if you look in the <strong>Explorer Bar</strong> on the left side of your screen while in VS Code, you should see a new file that was created reading:</p>
+        <pre><code>user_chatbuddyacademy.json </code></pre>
+        <p>Obviously, <strong>YOUR</strong> JSON file will look different (Unless your name is actually ChatbuddyAcademy...), but the mere creation of that file means that <strong>your individual user-profile has been created!</strong></p>
+        <p>❗<strong>REMINDER:</strong> We wiped Chatbuddy's previous memory by deleting <strong>learned_memory.json...</strong></p>
+        <p>This means, you need to re-teach Chatbuddy how you want it to respond to certain inputs.</p>
+        <p>Right off the bat, let's teach Chatbuddy who <strong>your favorite baseball team is!</strong></p>
+        <p>Go ahead and ask Chatbuddy:</p>
+        <pre><code>What's my favorite baseball team?</code></pre>
+        <p>(Please anyone but the Baltimore Orioles...)</p>
+        <p><strong>ANYWAY</strong>, then input the response you would like Chatbuddy to give. In this case, we went with:</p>
+        <pre><code>Your favorite MLB team is the New York Yankees! It's tough to argue with the 27x champs!👑</code></pre>
+        <p>Yankees fans always talking about their history...🙄</p>
+        <p><strong>P.S.</strong> - Check your user_json.file! Your individual account memory should be updated!🥳</p>
+        <p><strong>Now</strong>, re-type your question of:</p>
+        <pre><code>What's my favorite baseball team?</code></pre>
+        <p>The response you programmed Chatbuddy to say should now appear!</p>
+
+        <h2>👋 Jeff's Turn</h2>
+        <p>Now, it's your turn to go to work and your brother, <strong>Jeff</strong>, wants to teach Chatbuddy some things.</p>
+        <p>You conclude your interaction by <strong>killing the terminal</strong>, leaving Jeff a clean slate.</p>
+        <p>When Jeff <strong>boots up Chatbuddy</strong>, he now sees this screen:</p>
+<pre><code>🤖 Welcome! Are you a returning user or new here?
+
+📋 Existing Profiles:
+1. chatbuddyacademy
+            
+Type your name to select a profile or create a new one:
+You: </code></pre>
+        <p>Now that <strong>your profile has been created</strong>, it will display your account.</p>
+        <p>Jeff decides to <strong>create his own account</strong> and proceeds to type in his name which displays this upon entering:</p>
+        <pre><code>You: Jeff
+🔧 Creating a new profile for Jeff...
+ChatBuddy: Good morning, Jeff! Hiya! 😊 Ask me anything. 😄
+ChatBuddy: How are you doing today?</code></pre>
+        <p>If Jeff looks in the <strong>Explorer Bar</strong>, a NEW JSON file has immediately been created. <strong>SPECIFICALLY for Jeff!</strong></p>
+        <p>This is where <strong>"Jeff Specific"</strong> memory will be stored.</p>
+        <p>Following the <strong>introduction phase</strong>, Jeff types in:</p>
+        <pre><code>What's my favorite baseball team?</code></pre>
+        <p>Mind you, this is the <strong>SAME EXACT QUESTION</strong> you asked. But, if we programmed correctly Chatbuddy should have no recollection of what to say because Jeff is <strong>operating on his own, individual account.</strong></p>
+        <p>Sure enough, Chatbuddy responds with:</p>
+        <pre><code>ChatBuddy: I don't know how to respond to that yet. 🤔
+ChatBuddy: What should I say next time someone says that?</code></pre>
+        <p><strong>CONGRATULATIONS🎉</strong> This response means your account integration is fully functional!</p>
+        <p>Now, multiple people can operate under their own, individual accounts <strong>preventing Chatbuddy's memory files from getting 'crossed.'</strong></p>
+        
+        <h2>🫠 That was a LOT</h2>
+        <p>Knowing that our account creation integration is <strong>fully functional</strong>, we can officially close this portion of the update to Chatbuddy.</p>
+        <p>And yes, this singular update <strong>took THREE lessons</strong> to complete, but we totally think it's worth it in the long run.</p>
+
+
+<p><strong>🎉AND THERE IT IS</strong></p>
+<p>You've OFFICIALLY made Chatbuddy <strong>more user-friendly</strong> by integrating <strong>individual user-profiles!</strong></p>
+<p>We've got <strong>GOOD NEWS</strong> & <strong>BAD NEWS</strong>...</p>
+<p>Which would you like to hear first?</p>
+
+<div class="news-buttons">
+  <button onclick="showGoodNews()">😃 <strong>GOOD NEWS</strong></button>
+  <button onclick="showBadNews()">😠 <strong>BAD NEWS</strong></button>
+</div>
+
+      <hr>
+      <div style="text-align: center;">
+        <a class="button" href="quiz3-3.html">➡ Next</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Structure -->
+<div id="newsModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h2 id="modalTitle">Title Here</h2>
+      <p id="modalText">Modal message here...</p>
+    </div>
+  </div>
+  
+
+  <script>
+function showModal(title, message) {
+  document.getElementById('modalTitle').innerText = title;
+  document.getElementById('modalText').innerText = message;
+  document.getElementById('newsModal').style.display = 'block';
+}
+
+// Button Handlers
+function showGoodNews() {
+  showModal("🎉 GOOD NEWS", "You now have personalized user sessions!");
+}
+
+function showBadNews() {
+  showModal("😬 BAD NEWS", "There's a quiz inbound...");
+}
+
+// Close Modal
+document.querySelector('.close-btn').onclick = function() {
+  document.getElementById('newsModal').style.display = 'none';
+}
+
+// Close modal if clicking outside the content
+window.onclick = function(event) {
+  const modal = document.getElementById('newsModal');
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+    
+  </script>
+  </body>
+  </html> 
+</body>
+</html>
