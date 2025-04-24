@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🌊 Module 2 Preview | ChatBuddy Academy</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fira+Code&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Fira Code', monospace;
+      background: linear-gradient(to bottom, #002f4b, #005f8f);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      color: #e6faff;
+      position: relative;
+    }
+
+    #bubbles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -2;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      padding: 2.5rem;
+      border-radius: 18px;
+      max-width: 680px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 0 25px rgba(0, 204, 255, 0.25);
+      animation: fadeIn 1.5s ease-out;
+      z-index: 2;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .emoji {
+      font-size: 2.5rem;
+      animation: bounce 2s infinite ease-in-out;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      margin: 1rem 0 2rem;
+      min-height: 24px;
+      color: #ccefff;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      text-align: left;
+    }
+
+    li {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1rem;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      transition: transform 0.3s ease;
+    }
+
+    li:hover {
+      transform: scale(1.03);
+    }
+
+    li span {
+      font-size: 1.5rem;
+      margin-right: 12px;
+    }
+
+    .start-button {
+      display: inline-block;
+      margin-top: 1.8rem;
+      padding: 12px 28px;
+      font-size: 1.1rem;
+      background-color: #00bfff;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 10px;
+      transition: background 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 0 12px #00cfff99;
+    }
+
+    .start-button:hover {
+      background-color: #0099cc;
+      transform: translateY(-3px);
+      box-shadow: 0 0 20px #00cfffdd;
+    }
+
+    .fish {
+  position: absolute;
+  font-size: 2rem;
+  z-index: -1;
+  top: calc(10% + 80px * var(--i));
+  right: -50px;
+  animation: swim linear infinite;
+  /* No flip needed – facing right */
+}
+
+.fish:nth-child(odd) { animation-duration: 20s; }
+.fish:nth-child(even) { animation-duration: 28s; }
+
+@keyframes swim {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-110vw); }
+}
+  </style>
+</head>
+<body>
+
+  <canvas id="bubbles"></canvas>
+
+  <!-- Fishes -->
+  <div class="fish" style="--i: 1;">🐟</div>
+  <div class="fish" style="--i: 2;">🐠</div>
+  <div class="fish" style="--i: 3;">🐡</div>
+  <div class="fish" style="--i: 4;">🐟</div>
+  <div class="fish" style="--i: 5;">🐠</div>
+
+  <div class="container">
+    <div class="emoji">🌊</div>
+    <h1>Welcome to Module 2!</h1>
+    <p class="subtitle" id="typewriter"></p>
+    <ul>
+      <li><span>🤖</span> Introduction to creating dynamic conversations</li>
+      <li><span>🔧</span> Handling user input more efficiently</li>
+      <li><span>🌐</span> Integrating external APIs for more functionality</li>
+      <li><span>🧠</span> Advanced memory capabilities</li>
+    </ul>
+    <a href="module2-1.html" class="start-button">🚀 Start Module 2</a>
+  </div>
+
+  <script>
+    // Typewriter effect
+    const text = "Get ready to unlock powerful chatbot capabilities that take your bot to the next level!";
+    let i = 0;
+    const speed = 35;
+    function typeWriter() {
+      if (i < text.length) {
+        document.getElementById("typewriter").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, speed);
+      }
+    }
+    window.onload = typeWriter;
+
+    // Bubbles effect
+    const canvas = document.getElementById('bubbles');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const bubbles = [];
+
+    for (let i = 0; i < 50; i++) {
+      bubbles.push({
+        x: Math.random() * canvas.width,
+        y: canvas.height + Math.random() * canvas.height,
+        radius: Math.random() * 6 + 2,
+        speed: Math.random() * 1 + 0.5,
+        opacity: Math.random() * 0.6 + 0.2
+      });
+    }
+
+    function drawBubbles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      bubbles.forEach(b => {
+        ctx.beginPath();
+        ctx.arc(b.x, b.y, b.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${b.opacity})`;
+        ctx.fill();
+        b.y -= b.speed;
+        if (b.y < -10) {
+          b.y = canvas.height + 10;
+          b.x = Math.random() * canvas.width;
+        }
+      });
+      requestAnimationFrame(drawBubbles);
+    }
+
+    drawBubbles();
+  </script>
+</body>
+</html>
+
+
